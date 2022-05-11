@@ -2,19 +2,30 @@
 	--font-logo: 'Saira Stencil One', cursive;
 	--font-main: 'Raleway', sans-serif;
 
-	--color-button: #A328D6;
-	--color-main: #8C11BE;
+	--color-button: #a43acb;
+	--color-main: #e9dfe0;
 	--color-white: #fff;
+	--color-transparent: transparent;
+	--color-shadow: rgb(0,0,0,0.2);
+
+	--color-1:#e9dfe0;
+	--color-2:#a43acb;
+	--color-3:#4a15f7;
+	--color-4:#0e0a18;
 	
+	--color-text-dark-blue: #0e0a18;
 	--color-text-white: #fff;
 	--color-text-black: #000;
 	--color-text-gray: #C6C6C6;
+	--color-text-error:#ff0000;
 
 	--font-size-button: 1.4rem;
+	--font-size-input:1.1rem;
+	--font-size-label:0.9rem;
 	--font-size-logo: 2.5rem;
 	--font-size-header: 1.6rem;
 
-	--radio-button: 5px;
+	--radio-button: 70px;
 
 	box-sizing: border-box;
 }
@@ -36,6 +47,7 @@ body {
 .root{  
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	
 	width: 100vw;
 	height: 100vh;
