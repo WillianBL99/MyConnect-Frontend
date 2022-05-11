@@ -20,5 +20,5 @@ const Button = styled.button`
     font-size: var(--font-size-button);
 
     background-color: var(--color-button);
-    color: var(--color-text-white)
+    color: var(--color-text-white);
 `
