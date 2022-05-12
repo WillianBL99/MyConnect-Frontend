@@ -26,7 +26,7 @@ function Login() {
     promise.then((res) => {
       storeLogin(res.data);
       console.log(res.data);
-      navigate("/transactions");
+      navigate("/store");
     });
     promise.catch((error) => {
       setErrorFeedback(error.response.data);
@@ -42,6 +42,7 @@ function Login() {
       config: {
         headers: {
           Authorization: `Bearer ${token}`,
+          Email: email
         },
       },
     };

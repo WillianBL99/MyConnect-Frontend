@@ -13,8 +13,8 @@ function App() {
 		<Provider>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/' element={<MainScreen />} />
-					{/* <Route path='/' element={<Login />} /> */}
+					<Route path='/store' element={<MainScreen />} />
+					<Route path='/' element={<Login />} />
 					<Route path='register' element={<Register />} />
 				</Routes>
 			</BrowserRouter>
