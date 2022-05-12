@@ -30,7 +30,7 @@
 	--radio-button: 70px;
 
 	--padding-menu: 15px;
-	--padding-screen-main: 15px;
+	--padding-window: 10px;
 
   --size-icon: 2.8rem;
   --size-header: calc( var( --size-icon ) * 0.8 );

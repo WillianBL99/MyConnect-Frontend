@@ -8,7 +8,9 @@ function MainScreen() {
   return (
     <ContainerExtended>
       <SideBar />
-      <WindowMain />
+      <WindowMain >
+        <Store />
+      </WindowMain>
     </ContainerExtended>
   )
 }
@@ -21,3 +23,12 @@ const ContainerExtended = styled(Container)`
   justify-content: start;
   background-color: var(--color-2);
 `
+
+
+function Store() {
+  return (
+    <>
+      <h1>oi</h1>
+    </>
+  );
+}
