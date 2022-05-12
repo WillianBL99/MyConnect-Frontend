@@ -27,8 +27,15 @@ const ContainerExtended = styled(Container)`
 
 function Store() {
   return (
-    <>
+    <ContainerStore>
       <h1>oi</h1>
-    </>
+    </ContainerStore>
   );
 }
+
+const ContainerStore = styled.section`
+  width: 100%;
+  height: 100%;
+
+  background-color: blue;
+`

@@ -40,7 +40,7 @@ box-sizing: border-box;
 
   width: calc(100% - calc(2 * var(--padding-window)));
   height: var(--size-header);
-  margin-top: var(--padding-window);
+  margin-block: var(--padding-window);
 
   &>section {
     display: flex;
