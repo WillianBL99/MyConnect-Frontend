@@ -6,13 +6,15 @@ import { Provider } from '../../hooks/UserContext';
 
 import Login from '../Routes/Login';
 import Register from '../Routes/Register';
+import MainScreen from '../Routes/MainScreen';
 
 function App() {
 	return (
 		<Provider>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/' element={<Login />} />
+					<Route path='/' element={<MainScreen />} />
+					{/* <Route path='/' element={<Login />} /> */}
 					<Route path='register' element={<Register />} />
 				</Routes>
 			</BrowserRouter>

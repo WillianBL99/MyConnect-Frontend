@@ -6,10 +6,11 @@ const context = react.createContext();
 
 export function Provider(props) {
     const [user, setUser] = react.useState(persistUser);
-	const url = 'http://localhost:5000';
+    const [states, setStates] = react.useState({menuOpen: false})
+	  const url = 'http://localhost:5000';
 
   return (
-    <context.Provider value={{user, setUser, url}}>
+    <context.Provider value={{user, setUser, states, setStates, url }}>
       {props.children}
     </context.Provider>
   );
