@@ -15,7 +15,10 @@ function Header({title}) {
 
   return (
     <ContainerHeader search={search || states?.menuOpen} >
-      <ion-icon onClick={handleMenu} name={states.menuOpen?'chevron-back':'menu'}></ion-icon>
+      <ion-icon 
+        onClick={handleMenu} 
+        name={states.menuOpen?'chevron-back':'menu'}
+      />
       <section>
         <h1>{describeHeader}</h1> 
         <Search open={search} setSearch={setSearch} />

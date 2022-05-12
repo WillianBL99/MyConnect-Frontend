@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Header from './Header';
 
-function WindowMain(){
+function WindowMain(props){
   return (
     <Container>
       <Header />
+      {props.children}
     </Container>
   );
 }
