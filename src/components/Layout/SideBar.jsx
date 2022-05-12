@@ -4,54 +4,50 @@ function SideBar({open}) {
   
   return (
     <Menu open={open}>
-      <div className="user">
-        <ion-icon name="person-circle-sharp"></ion-icon>
-        <div className="info">
-          <h3>Joãozinho</h3>
-          <p>joao@joao.com</p>
-        </div>
-      </div>
-        
-      <div className="menu_options">
+      <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
+      <ul>
         <section>
-          <div className="option" >
-            <div className="icon"><ion-icon name="storefront-sharp"></ion-icon></div>
-            <p>Loja</p>
-          </div>
-          <div className="option" >
-            <div className="icon"><ion-icon name="cart-sharp"></ion-icon></div>
-            <p>Carrinho</p>
-          </div>
-          <div className="option" >
-            <div className="icon"><ion-icon name="time-sharp"></ion-icon></div>
-            <p>Histórico</p>
-          </div>
+          <OptionMenu title='Loja' ion_icon='storefront-sharp' />
+          <OptionMenu title='Carrinho' ion_icon='cart-sharp' />
+          <OptionMenu title='Histórico' ion_icon='time-sharp' />
         </section>
-        <div className="option" >
-          <div className="icon"><ion-icon name="log-out-sharp"></ion-icon></div>
-          <p>Sair</p>
-        </div>
-      </div>
+        <OptionMenu title='Sair' ion_icon='log-out-sharp' />
+      </ul>
     </Menu>
   )
 }
 
 export default SideBar;
 
+function UserInfo({name, email}){
+  return (
+    <ContainerUser>
+      <ion-icon name="person-circle-sharp"></ion-icon>
+      <section>
+        <h3>{name}</h3>
+        <p>{email}</p>
+      </section>
+    </ContainerUser>
+  );
+}
+
+function OptionMenu({title, ion_icon}) {
+  return (
+    <Option>
+      <div>
+        <ion-icon name={ion_icon}></ion-icon>
+      </div>
+      <p>{title}</p>
+    </Option>
+  );
+}
+
 const Menu = styled.article`
-
-  --fontsize: 1.5rem;
-  --padding-menu: 15px;
-  --size-icon: 3.2rem;
+  --display: ${props => props.open?'block':'none'};
   --size-menu: ${props => props.open
-    ?'calc(var(--size-icon) + calc(12 * var(--fontsize)))'
-    :'calc(var(--size-icon) + 30px)'
+    ?'var( --width-menu-open )'
+    :'var( --width-menu-close )'
   };
-
-  p,h3 {
-    display: ${props => props.open?'bock':'none'};
-  }
-
 
   display: flex;
   flex-direction: column;
@@ -64,46 +60,12 @@ const Menu = styled.article`
 
   background-color: var(--color-2);
 
-  // user  
-  >div.user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-  }
 
-  .user.info{
-    font-family: var(--font-main);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  
-  .user p {
-    color: var(--color-1);    
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-left: 0.13rem;
-  }
+  p,h3 {
+    display: var(--display);
+  } 
 
-  .user h3 {
-    color: var(--color-1);    
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-
-  ion-icon {
-    font-size: var(--size-icon);
-    
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    color: var(--color-1);
-  }
-
-  // icones
-  div.menu_options ion-icon {
-    font-size: calc(var(--size-icon) * 0.62);
-  }
-  
-
-  div.menu_options {
+  &>ul {
     display: flex;
     flex-direction: column;
 
@@ -111,32 +73,89 @@ const Menu = styled.article`
     height: calc(100% - var(--size-icon));
   }
 
-  div.menu_options>section {
+  &>ul>section {
     height: 100%;
   }
+`;
 
-  div.option {
-    display: flex;
-    align-items: center;
-    width: 100%;
+const Option = styled.div`
 
-    margin-block: calc(var(--size-icon) * 0.2);
+  --color-hover-inner: var(--color-3);
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  margin-block: calc(var(--size-icon) * 0.15);
+  padding-block: 5px;
+
+  border-radius: 10px;
+
+  &:hover {
+    background-color: var( --color-1 );
+    box-shadow: var( --shadow );
   }
 
-  div.option>p {
-    font-size: var(--fontsize);
-    font-family: var(--font-main);
-    font-weight: 600;
-    color: var(--color-1);
-    
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  div.icon {
+  &>div {
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: var(--size-icon);
   }
-`
+
+  & ion-icon {
+    font-size: calc(var(--size-icon) * 0.62);
+    color: var(--color-1);
+  }
+
+  &:hover ion-icon {
+    color: var( --color-hover-inner );
+  }
+
+  &>p {
+    font-size: var(--font-size-option-menu);
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--color-1);
+    
+    text-shadow: var( --shadow );
+  }
+
+  &:hover p{
+    color: var( --color-hover-inner );
+  }
+`;
+
+const ContainerUser = styled.article`
+    
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+
+  &>ion-icon {
+    font-size: var(--size-icon);
+    
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: var(--color-1);
+  } 
+
+  &>section {
+    font-family: var(--font-main);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  & p {
+    color: var(--color-1);    
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 0.13rem;
+  }
+
+  & h3 {
+    color: var(--color-1);    
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+`;
