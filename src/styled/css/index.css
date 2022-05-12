@@ -13,6 +13,8 @@
 	--color-3:#4a15f7;
 	--color-4:#0e0a18;
 	
+  --color-hover-inner: var(--color-3);
+	
 	--color-text-dark-blue: #0e0a18;
 	--color-text-white: #fff;
 	--color-text-black: #000;

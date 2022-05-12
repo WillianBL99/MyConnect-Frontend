@@ -14,7 +14,7 @@ function WindowMain(){
     <Container>
       <ion-icon 
         onClick={handleMenu}
-        name="menu"
+        name={states.menuOpen?'chevron-back':'menu'}
       ></ion-icon>
     </Container>
   )
@@ -34,8 +34,12 @@ const Container = styled.section `
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);
   border-radius: 25px 0px 0px 25px;
 
-  >ion-icon {
-    font-size: 2rem;
-    color: blue;
+  &>ion-icon {
+    font-size: calc( var( --size-icon ) * 0.8 );
+    color: var(--color-4);
+  }
+
+  &>ion-icon:hover {
+    color: var(--color-hover-inner )
   }
 `

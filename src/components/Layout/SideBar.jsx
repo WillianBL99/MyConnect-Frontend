@@ -7,11 +7,11 @@ function SideBar({open}) {
       <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
       <ul>
         <section>
-          <OptionMenu title='Loja' ion_icon='storefront-sharp' />
-          <OptionMenu title='Carrinho' ion_icon='cart-sharp' />
-          <OptionMenu title='Histórico' ion_icon='time-sharp' />
+          <OptionMenu title='Loja' ion_icon='storefront' />
+          <OptionMenu title='Carrinho' ion_icon='cart' />
+          <OptionMenu title='Histórico' ion_icon='time' />
         </section>
-        <OptionMenu title='Sair' ion_icon='log-out-sharp' />
+        <OptionMenu title='Sair' ion_icon='log-out' />
       </ul>
     </Menu>
   )
@@ -22,7 +22,7 @@ export default SideBar;
 function UserInfo({name, email}){
   return (
     <ContainerUser>
-      <ion-icon name="person-circle-sharp"></ion-icon>
+      <ion-icon name="person-circle"></ion-icon>
       <section>
         <h3>{name}</h3>
         <p>{email}</p>
@@ -79,8 +79,6 @@ const Menu = styled.article`
 `;
 
 const Option = styled.div`
-
-  --color-hover-inner: var(--color-3);
 
   display: flex;
   align-items: center;
