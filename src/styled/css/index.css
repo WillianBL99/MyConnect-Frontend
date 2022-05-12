@@ -1,6 +1,6 @@
 * {
-	--font-logo: 'Saira Stencil One', cursive;
-	--font-main: 'Raleway', sans-serif;
+	--font-logo: 'Contrail One', cursive;
+	--font-main: 'Rajdhani', sans-serif;
 
 	--color-button: #a43acb;
 	--color-main: #e9dfe0;
@@ -24,6 +24,9 @@
 	--font-size-label:0.9rem;
 	--font-size-logo: 2.5rem;
 	--font-size-header: 1.6rem;
+
+	--font-weight-bold: 600;
+	--font-weight-small: 400;
 
 	--radio-button: 70px;
 

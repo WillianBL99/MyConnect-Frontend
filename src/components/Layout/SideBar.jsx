@@ -20,16 +20,16 @@ function SideBar({open}) {
           </div>
           <div className="option" >
             <div className="icon"><ion-icon name="cart-sharp"></ion-icon></div>
-            <p>Loja</p>
+            <p>Carrinho</p>
           </div>
           <div className="option" >
             <div className="icon"><ion-icon name="time-sharp"></ion-icon></div>
-            <p>Loja</p>
+            <p>Histórico</p>
           </div>
         </section>
         <div className="option" >
           <div className="icon"><ion-icon name="log-out-sharp"></ion-icon></div>
-          <p>Loja</p>
+          <p>Sair</p>
         </div>
       </div>
     </Menu>
@@ -43,9 +43,7 @@ const Menu = styled.article`
   --fontsize: 1.5rem;
   --padding-menu: 15px;
   --size-icon: 3.2rem;
-  //--largura-menu: calc(var(--size-icon) + 30px);
-  //--largura-menu: calc(var(--size-icon) + calc(12 * var(--fontsize)));
-  --largura-menu: ${props => props.open
+  --size-menu: ${props => props.open
     ?'calc(var(--size-icon) + calc(12 * var(--fontsize)))'
     :'calc(var(--size-icon) + 30px)'
   };
@@ -59,7 +57,7 @@ const Menu = styled.article`
   flex-direction: column;
   align-items: start;
   
-  width: var(--largura-menu);
+  width: var(--size-menu);
   height: 100%;  
   
   padding: var(--padding-menu);
@@ -76,19 +74,20 @@ const Menu = styled.article`
 
   .user.info{
     font-family: var(--font-main);
-    font-weight: 400;
-
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
   
   .user p {
     color: var(--color-1);    
     font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 0.13rem;
   }
 
   .user h3 {
     color: var(--color-1);    
     font-size: 1.4rem;
+    font-weight: 700;
   }
 
   ion-icon {
@@ -127,7 +126,7 @@ const Menu = styled.article`
   div.option>p {
     font-size: var(--fontsize);
     font-family: var(--font-main);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-1);
     
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
