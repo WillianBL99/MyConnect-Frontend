@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { getContext } from '../../hooks/UserContext';
 
-function SideBar({open}) {
+function SideBar() {
+  const {states} = getContext();
   
   return (
-    <Menu open={open}>
+    <Menu open={states.menuOpen}>
       <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
       <ul>
         <section>

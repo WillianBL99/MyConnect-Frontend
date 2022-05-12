@@ -1,15 +1,13 @@
-import { getContext } from '../../hooks/UserContext';
 import styled from 'styled-components';
 import Container from '../Layout/Container';
 import SideBar from '../Layout/SideBar';
 import WindowMain from '../Layout/WindowMain';
 
 function MainScreen() {
-  const {states} = getContext();
    
   return (
     <ContainerExtended>
-      <SideBar open={states.menuOpen} />
+      <SideBar />
       <WindowMain />
     </ContainerExtended>
   )

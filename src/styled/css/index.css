@@ -12,14 +12,10 @@
 	--color-2:#a43acb;
 	--color-3:#4a15f7;
 	--color-4:#0e0a18;
-	
-  --color-hover-inner: var(--color-3);
-	
 	--color-text-dark-blue: #0e0a18;
-	--color-text-white: #fff;
-	--color-text-black: #000;
-	--color-text-gray: #C6C6C6;
-	--color-text-error:#ff0000;
+
+  --color-hover-inner: var(--color-3);
+	--color-hover: var(--color-1);
 
 	--font-size-button: 1.4rem;
 	--font-size-input:1.1rem;
@@ -34,8 +30,10 @@
 	--radio-button: 70px;
 
 	--padding-menu: 15px;
+	--padding-screen-main: 15px;
 
   --size-icon: 2.8rem;
+  --size-header: calc( var( --size-icon ) * 0.8 );
 
 	--openingTrack: calc( 10 * var( --font-size-option-menu ) );
 	--width-menu-open: calc( var( --size-icon ) + var( --openingTrack ) );
