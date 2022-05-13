@@ -17,14 +17,7 @@ function Store() {
         <Category describe='Monitor' ion_icon='tv-outline' />
       </div>
       <div className="products">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        <Product img={img} describe='Mouse super sinistro' price='203.34' />
       </div>
     </ContainerStore>
   );
@@ -75,7 +68,7 @@ const ContainerStore = styled.section`
   &>div.products {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center ;
 
     width: 100%;
     height: 80%;

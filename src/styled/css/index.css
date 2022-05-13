@@ -24,6 +24,9 @@
 	--font-size-header: 1.6rem;
 	--font-size-option-menu: 1.5rem;
 
+	--font-size-main: 1rem;
+	--font-size-price: 1.7rem;
+
 	--font-weight-bold: 600;
 	--font-weight-small: 400;
 
@@ -66,4 +69,5 @@ body {
 	height: 100vh;
 
 	font-family: var(--font-main);
+	font-size: var(--font-size-main);
 }

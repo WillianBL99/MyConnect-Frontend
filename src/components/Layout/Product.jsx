@@ -1,14 +1,20 @@
 import styled from 'styled-components';
-import img from '../../assets/img/img.jpg';
 
-function Product() {
+function Product({img, describe, price}) {
+  const [integer, dec] = price.split('.');
   return (
     <ContainerProduct>
-      <section>
+      <figure>
         <img src={img} alt="" />
+      </figure>
+      <section>
+        <p>{describe}</p>
+        <div className="value">
+          <small>R$</small>
+          <strong>{integer}</strong>
+          <small>,{dec}</small>
+        </div>
       </section>
-      <p>Redragon Mouse M908</p>
-
     </ContainerProduct>
   );
 }
@@ -16,6 +22,8 @@ function Product() {
 export default Product;
 
 const ContainerProduct = styled.article`
+  --color-price: var(--color-3);
+
   display: flex;
   flex-direction: column;
 
@@ -29,12 +37,12 @@ const ContainerProduct = styled.article`
   box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.3);;
   background-color: var(--color-1);
 
-  &>section {
+  &>figure {
     width: 100%;
-    height: 60%;
+    min-height:  50%;
   }
 
-  &>section img {
+  &>figure img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -43,5 +51,33 @@ const ContainerProduct = styled.article`
     background-repeat: no-repeat;
 
     border-radius: var(--radio-min);    
+  }
+
+  &>section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+    padding: 3px;
+
+  }
+
+  &>section .value {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &>section .value strong {
+    font-size: var(--font-size-price);
+    font-weight: bold;
+
+    color: var(--color-price);
+  }
+
+  &>section .value small {
+    margin-top: 0.12rem;
+
+    color: var(--color-price);
   }
 `
