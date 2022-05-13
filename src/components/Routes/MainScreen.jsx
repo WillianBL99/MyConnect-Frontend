@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Container from '../Layout/Container';
 import SideBar from '../Layout/SideBar';
-import Store from '../Layout/Store';
+import Store from '../Layout/products/Store';
+import Window from '../Layout/Window';
 import WindowMain from '../Layout/WindowMain';
 
 function MainScreen() {
@@ -11,6 +12,7 @@ function MainScreen() {
       <SideBar />
       <WindowMain >
         <Store />
+        <Window />
       </WindowMain>
     </ContainerExtended>
   )

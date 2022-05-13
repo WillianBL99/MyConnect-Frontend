@@ -1,24 +1,37 @@
 import styled from 'styled-components';
-import Header from './Header';
+import { getContext } from '../../hooks/UserContext';
+import { widthMenu } from '../../styled/css/width_menu';
 
-function WindowMain(props){
+function Window(){
+  const {windowsState}= getContext();
+
   return (
-    <Container>
-      <Header />
-      {props.children}
-    </Container>
+    <ContainerWindow windowsState={windowsState.windowOpen} widthMenu={widthMenu} >
+    </ContainerWindow>
   );
 }
 
-export default WindowMain;
+export default Window;
 
-const Container = styled.section `
+const ContainerWindow = styled.section`
+  --width-window: calc(100vw - ${props => props.widthMenu});
+  --right: ${props => props.windowsState? "0" : "calc(0px - var(--width-window))"}; 
+
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+
+  width: var(--width-window);
   height: 100%;
   
-  background: var(--color-1);
-  box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  z-index: 10;
+  right: var(--right);
+  bottom: 0;
+  
+  transition: all 600ms ease-out;
+
   border-radius: 25px 0px 0px 25px;
+  box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);
+  background: var(--color-1);
 `;

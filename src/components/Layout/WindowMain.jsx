@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { widthMenu } from '../../styled/css/teste';
-import Header from './Header';
+import { widthMenu } from '../../styled/css/width_menu';
 
 function WindowMain(props){
 
@@ -23,7 +22,9 @@ const ContainerMain = styled.section`
   width: var(--width);
   height: 100%;
 
-  transition: all 600ms ease-out;
+  position: relative;
+  
+  overflow: hidden;
   
   background: var(--color-1);
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);

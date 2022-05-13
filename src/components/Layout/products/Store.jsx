@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import Category from "./Category";
-import img from '../../assets/img/img.jpg';
+import img from '../../../assets/img/img.jpg';
 import Product from './Product';
-import { getContext } from '../../hooks/UserContext';
+import { getContext } from '../../../hooks/UserContext';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import Header from './Header';
+import Header from '../Header';
 
 function Store() {
   const {user, url} = getContext();

@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
-import {widthMenu} from '../../styled/css/teste';
+import { widthMenu } from '../../styled/css/width_menu';
 
 function SideBar() {
-  const {states} = getContext();
+  const {states, windowsState, setWindowsState} = getContext();
+
+  function setSubMenu(e){
+    console.log(e.target.name)
+    const windowOpen = !windowsState.windowOpen;
+    if (e.target.name === "cart") {
+      setWindowsState({...windowsState, windowOpen});
+    }
+  }
   
   return (
     <Menu stateMenu={states.menuOpen} widthMenu={widthMenu} >
       <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
       <ul>
-        <section>
+        <section  onClick={ e => setSubMenu(e) }>
           <OptionMenu title='Loja' ion_icon='storefront' />
           <OptionMenu title='Carrinho' ion_icon='cart' />
           <OptionMenu title='Histórico' ion_icon='time' />
