@@ -6,7 +6,6 @@ function WindowMain(props){
 
   return (
     <ContainerMain widthMenu={widthMenu} >
-      <Header />
       {props.children}
     </ContainerMain>
   );
@@ -21,7 +20,6 @@ const ContainerMain = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: var(--width);
   height: 100%;
   
