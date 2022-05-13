@@ -2,20 +2,54 @@ import styled from 'styled-components';
 import Category from "./Category";
 import img from '../../assets/img/img.jpg';
 import Product from './Product';
+import { getContext } from '../../hooks/UserContext';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 function Store() {
+  const {user, url} = getContext();
+  const [products, setProducts] = useState();
+  const categories = [];
+
+  function filterCategories(res){
+    return res.filter(({category}) => {
+      console.log('filterC', category, categories)
+      if(!categories.includes(category.title)){
+        categories.push(category.title);
+        return true;
+      }
+      return false;
+    })
+  }
+
+  function assembleCategories(){
+    return (
+      <div className="categories">{
+        typeof(products) === 'object'
+          ?filterCategories(products).map(product => {
+            const {title, ion_icon} = product.category;
+            return <Category describe={title} ion_icon={ion_icon} />
+          })
+          :<></>
+      }</div>
+    );
+  }
+
+  useEffect(() => {
+    const promise = axios.get(`${url}/products`, user.config);
+    promise.then(res => {
+      setProducts(res.data);
+    });
+    promise.catch(e => console.error(e));
+  }, [])
+
   return (
     <ContainerStore>
       <article className='promotions'>
         <img src={img} alt="" />
       </article>
-      <div className="categories">
-        <Category describe='Monitor' ion_icon='tv-outline' />
-        <Category describe='Monitor' ion_icon='tv-outline' />
-        <Category describe='Monitor' ion_icon='tv-outline' />
-        <Category describe='Monitor' ion_icon='tv-outline' />
-        <Category describe='Monitor' ion_icon='tv-outline' />
-      </div>
+      {assembleCategories()}
       <div className="products">
         <Product img={img} describe='Mouse super sinistro' price='203.34' />
       </div>
