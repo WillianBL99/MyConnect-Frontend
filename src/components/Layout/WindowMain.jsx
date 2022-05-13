@@ -6,6 +6,11 @@ function WindowMain(props){
 
   return (
     <ContainerMain widthMenu={widthMenu} >
+      {/* =======
+        const {position,right,width,zIndex}=props;
+        return (
+          <Container position={position} right={right} width={width} zIndex={zIndex}>
+      >>>>>>> f7abe3537aab5835f6c61d208345e5f7d898cb42 */}
       <Header />
       {props.children}
     </ContainerMain>
@@ -20,7 +25,12 @@ const ContainerMain = styled.section`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100%;
+  width: ${props => props.width};
+  position: ${props => props.position};
+  right: ${props => props.right};
+  z-index: ${props => props.zIndex};
+  transition: all 600ms ease-out;
 
   width: var(--width);
   height: 100%;

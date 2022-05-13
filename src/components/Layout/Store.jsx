@@ -14,7 +14,6 @@ function Store() {
 
   function filterCategories(res){
     return res.filter(({category}) => {
-      console.log('filterC', category, categories)
       if(!categories.includes(category.title)){
         categories.push(category.title);
         return true;
@@ -29,7 +28,20 @@ function Store() {
         typeof(products) === 'object'
           ?filterCategories(products).map(product => {
             const {title, ion_icon} = product.category;
-            return <Category describe={title} ion_icon={ion_icon} />
+            return <Category key={title} describe={title} ion_icon={ion_icon} />
+          })
+          :<></>
+      }</div>
+    );
+  }
+
+  function assembleProducts(){
+    return (
+      <div className="products">{
+        typeof(products) === 'object'
+          ?products.map(product => {
+            const {img, title, price} = product;
+            return <Product key={product._id} img={img} describe={title} price={price} />
           })
           :<></>
       }</div>
@@ -39,6 +51,7 @@ function Store() {
   useEffect(() => {
     const promise = axios.get(`${url}/products`, user.config);
     promise.then(res => {
+      console.log(res.data)
       setProducts(res.data);
     });
     promise.catch(e => console.error(e));
@@ -50,9 +63,7 @@ function Store() {
         <img src={img} alt="" />
       </article>
       {assembleCategories()}
-      <div className="products">
-        <Product img={img} describe='Mouse super sinistro' price='203.34' />
-      </div>
+      {assembleProducts()}
     </ContainerStore>
   );
 }

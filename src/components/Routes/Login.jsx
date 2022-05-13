@@ -20,12 +20,12 @@ function Login() {
   const navigate = useNavigate();
 
   function handleLogin(event) {
+    alert('clicou')
     event.preventDefault();
     const promise = axios.post(`${url}/sign-in`, loginData);
 
     promise.then((res) => {
       storeLogin(res.data);
-      console.log(res.data);
       navigate("/store");
     });
     promise.catch((error) => {
