@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import Header from './Header';
 
 function WindowMain(props){
+  const {position,right,width,zIndex}=props;
   return (
-    <Container>
+    <Container position={position} right={right} width={width} zIndex={zIndex}>
       <Header />
       {props.children}
     </Container>
@@ -15,8 +16,12 @@ export default WindowMain;
 const Container = styled.section `
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
+  width: ${props => props.width};
+  position: ${props => props.position};
+  right: ${props => props.right};
+  z-index: ${props => props.zIndex};
+  transition: all 600ms ease-out;
 
   padding: var(--padding-screen-main);
   

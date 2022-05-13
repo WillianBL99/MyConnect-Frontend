@@ -1,27 +1,35 @@
-import styled from 'styled-components';
-import { getContext } from '../../hooks/UserContext';
+import styled from "styled-components";
+import { getContext } from "../../hooks/UserContext";
 
 function SideBar() {
-  const {states} = getContext();
-  
+  const { states, cartState, setCartState } = getContext();
+
+  function setSubMenu(e){
+    if (e.target.name === "cart") {
+      setCartState(!cartState);
+    }
+  }
+
   return (
     <Menu open={states.menuOpen}>
-      <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
+      <UserInfo name="Joãozinho" email="jõaozinh@ges.com" />
       <ul>
-        <section>
-          <OptionMenu title='Loja' ion_icon='storefront' />
-          <OptionMenu title='Carrinho' ion_icon='cart' />
-          <OptionMenu title='Histórico' ion_icon='time' />
+        <section
+          onClick={(e) => {setSubMenu(e)}}
+        >
+          <OptionMenu title="Loja" ion_icon="storefront" />
+          <OptionMenu title="Carrinho" ion_icon="cart" />
+          <OptionMenu title="Histórico" ion_icon="time" />
         </section>
-        <OptionMenu title='Sair' ion_icon='log-out' />
+        <OptionMenu title="Sair" ion_icon="log-out" />
       </ul>
     </Menu>
-  )
+  );
 }
 
 export default SideBar;
 
-function UserInfo({name, email}){
+function UserInfo({ name, email }) {
   return (
     <ContainerUser>
       <ion-icon name="person-circle"></ion-icon>
@@ -33,7 +41,7 @@ function UserInfo({name, email}){
   );
 }
 
-function OptionMenu({title, ion_icon}) {
+function OptionMenu({ title, ion_icon }) {
   return (
     <Option>
       <div>
@@ -45,29 +53,27 @@ function OptionMenu({title, ion_icon}) {
 }
 
 const Menu = styled.article`
-  --display: ${props => props.open?'block':'none'};
-  --size-menu: ${props => props.open
-    ?'var( --width-menu-open )'
-    :'var( --width-menu-close )'
-  };
+  --display: ${(props) => (props.open ? "block" : "none")};
+  --size-menu: ${(props) =>
+    props.open ? "var( --width-menu-open )" : "var( --width-menu-close )"};
 
   display: flex;
   flex-direction: column;
   align-items: start;
-  
+
   width: var(--size-menu);
-  height: 100%;  
-  
+  height: 100%;
+
   padding: var(--padding-menu);
 
   background-color: var(--color-2);
 
-
-  p,h3 {
+  p,
+  h3 {
     display: var(--display);
-  } 
+  }
 
-  &>ul {
+  & > ul {
     display: flex;
     flex-direction: column;
 
@@ -75,13 +81,12 @@ const Menu = styled.article`
     height: calc(100% - var(--size-icon));
   }
 
-  &>ul>section {
+  & > ul > section {
     height: 100%;
   }
 `;
 
 const Option = styled.div`
-
   display: flex;
   align-items: center;
   width: 100%;
@@ -92,11 +97,11 @@ const Option = styled.div`
   border-radius: 10px;
 
   &:hover {
-    background-color: var( --color-1 );
-    box-shadow: var( --shadow );
+    background-color: var(--color-1);
+    box-shadow: var(--shadow);
   }
 
-  &>div {
+  & > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,51 +115,50 @@ const Option = styled.div`
   }
 
   &:hover ion-icon {
-    color: var( --color-hover-inner );
+    color: var(--color-hover-inner);
   }
 
-  &>p {
+  & > p {
     font-size: var(--font-size-option-menu);
     font-family: var(--font-main);
     font-weight: 600;
     color: var(--color-1);
-    
-    text-shadow: var( --shadow );
+
+    text-shadow: var(--shadow);
   }
 
-  &:hover p{
-    color: var( --color-hover-inner );
+  &:hover p {
+    color: var(--color-hover-inner);
   }
 `;
 
 const ContainerUser = styled.article`
-    
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
 
-  &>ion-icon {
+  & > ion-icon {
     font-size: var(--size-icon);
-    
+
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     color: var(--color-1);
-  } 
+  }
 
-  &>section {
+  & > section {
     font-family: var(--font-main);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  
+
   & p {
-    color: var(--color-1);    
+    color: var(--color-1);
     font-size: 0.9rem;
     font-weight: 600;
     margin-left: 0.13rem;
   }
 
   & h3 {
-    color: var(--color-1);    
+    color: var(--color-1);
     font-size: 1.4rem;
     font-weight: 700;
   }
