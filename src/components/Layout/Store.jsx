@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Category from "./Category";
 import img from '../../assets/img/img.jpg';
+import Product from './Product';
 
 function Store() {
   return (
@@ -16,7 +17,14 @@ function Store() {
         <Category describe='Monitor' ion_icon='tv-outline' />
       </div>
       <div className="products">
-
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
       </div>
     </ContainerStore>
   );
@@ -67,9 +75,12 @@ const ContainerStore = styled.section`
   &>div.products {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     width: 100%;
     height: 80%;
+
+    overflow-y: auto;
 
     background-color: var(--color-white);
     border-radius: 15px;
