@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
+import {widthMenu} from '../../styled/css/teste';
 
 function SideBar() {
   const {states} = getContext();
   
   return (
-    <Menu open={states.menuOpen}>
+    <Menu stateMenu={states.menuOpen} widthMenu={widthMenu} >
       <UserInfo name='Joãozinho' email='jõaozinh@ges.com' />        
       <ul>
         <section>
@@ -45,11 +46,9 @@ function OptionMenu({title, ion_icon}) {
 }
 
 const Menu = styled.article`
-  --display: ${props => props.open?'block':'none'};
-  --size-menu: ${props => props.open
-    ?'var( --width-menu-open )'
-    :'var( --width-menu-close )'
-  };
+  --display: ${props => props.stateMenu?'block':'none'};
+
+  --size-menu: ${props => props.widthMenu};
 
   display: flex;
   flex-direction: column;

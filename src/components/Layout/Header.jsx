@@ -32,15 +32,13 @@ export default Header;
 const ContainerHeader = styled.header`
   --display: ${props => !props.search?'block':'none'};
 
-box-sizing: border-box;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: calc(100% - calc(2 * var(--padding-window)));
+  width: calc(100% - var(--padding-window));
   height: var(--size-header);
-  margin-block: var(--padding-window);
+  margin-block: calc(var(--padding-window) * 0.5);
 
   &>section {
     display: flex;
