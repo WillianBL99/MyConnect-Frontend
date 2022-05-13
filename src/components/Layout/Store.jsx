@@ -6,6 +6,7 @@ import { getContext } from '../../hooks/UserContext';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import Header from './Header';
 
 function Store() {
   const {user, url} = getContext();
@@ -44,7 +45,7 @@ function Store() {
             return <Product key={product._id} img={img} describe={title} price={price} />
           })
           :<></>
-      }</div>
+      }<div className='sp'></div></div>
     );
   }
 
@@ -59,6 +60,7 @@ function Store() {
 
   return (
     <ContainerStore>
+      <Header />
       <article className='promotions'>
         <img src={img} alt="" />
       </article>
@@ -113,7 +115,8 @@ const ContainerStore = styled.section`
   &>div.products {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center ;
+    justify-content: start ;
+    align-items: start;
 
     width: 100%;
     height: 80%;
@@ -124,5 +127,10 @@ const ContainerStore = styled.section`
     border-radius: 15px;
 
     box-shadow: 0px -4px 10px -2px rgba(0, 0, 0, 0.25);;
+  }
+
+  &>div.products .sp {
+    width: 100%;
+    height: 50%;
   }
 `

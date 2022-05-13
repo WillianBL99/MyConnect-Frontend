@@ -22,6 +22,8 @@ const ContainerMain = styled.section`
   align-items: center;
   width: var(--width);
   height: 100%;
+
+  transition: all 600ms ease-out;
   
   background: var(--color-1);
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);

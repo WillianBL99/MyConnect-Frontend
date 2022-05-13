@@ -28,7 +28,7 @@ const ContainerProduct = styled.article`
   flex-direction: column;
 
   width: 8rem;
-  height: 10rem;
+  height: 12rem;
 
   margin: 1rem;
   margin-bottom: 2.5rem;
