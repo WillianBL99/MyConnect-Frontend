@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-function Footer({price}){
+function Footer({price, callback}){
 
   return (
     <ContainerFooter>
@@ -8,7 +8,7 @@ function Footer({price}){
         <small>R$</small>
         <strong>{price}</strong>
       </div>
-      <button>comprar</button>
+      <button onClick={callback}>comprar</button>
     </ContainerFooter>
   );
 }

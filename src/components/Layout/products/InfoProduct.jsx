@@ -28,7 +28,7 @@ function InfoProduct() {
           />
           <Price price={price} size='2.5rem' />
         </div>
-        <Footer price={price * value} />
+        <Footer price={price * value} callback={() => console.log('oiii')} />
       </section>
     </ContainerInfoProduct>
   );
