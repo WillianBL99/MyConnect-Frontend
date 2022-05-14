@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 function InputNumber(props) {
-  const [qtd, setQtd] = useState(1);
-  const {showNumber, setValue, maxValue, width} = props;
+  const {showNumber, setValue, maxValue, width, value} = props;
+  const [qtd, setQtd] = useState(value);
 
   function increase(){
     if(qtd < maxValue){

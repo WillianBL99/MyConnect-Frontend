@@ -51,11 +51,10 @@ function Store() {
   useEffect(() => {
     const promise = axios.get(`${url}/products`, user.config);
     promise.then(res => {
-      console.log(res.data)
       setProducts(res.data);
     });
     promise.catch(e => console.error(e));
-  }, [])
+  }, [url, user.config])
 
   return (
     <ContainerStore>

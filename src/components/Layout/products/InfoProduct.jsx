@@ -1,4 +1,3 @@
-import InputSpinner from 'react-input-number-spinner';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
@@ -20,12 +19,12 @@ function InfoProduct() {
       <section>
         <p>{describe}</p>
         <div className="value">
-          <InputNumber maxValue={10} setValue={setValue} width='5rem' >
+          <InputNumber maxValue={10} setValue={setValue} value={value} width='5rem' >
             <strong className='qtd'>{value}</strong>
           </InputNumber>
           <Price price={price} size='2.5rem' />
         </div>
-        <Footer price={price * value} callback={() => console.log('oiii')} />
+        <Footer title={'Comprar'} price={price * value} callback={() => console.log('oi')} />
       </section>
     </ContainerInfoProduct>
   );
