@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
 import { widthMenu } from '../../styled/css/width_menu';
+import WindowRoutes from './WindowRoutes';
 
 function Window(){
   const {windowsState}= getContext();
 
   return (
     <ContainerWindow windowsState={windowsState.windowOpen} widthMenu={widthMenu} >
+      <WindowRoutes />
     </ContainerWindow>
   );
 }

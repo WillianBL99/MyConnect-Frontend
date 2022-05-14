@@ -6,11 +6,18 @@ function SideBar() {
   const {states, windowsState, setWindowsState} = getContext();
 
   function setSubMenu(e){
-    console.log(e.target.name)
-    const windowOpen = !windowsState.windowOpen;
-    if (e.target.name === "cart") {
+    let windowOpen = !windowsState.windowOpen;
+    let window = windowsState.window;
+
+    if(e.target.name === 'storefront') windowOpen = false;
+    else if( e.target.name !== window) windowOpen = true; //TODO: Implementar setTimeout para fechar e abrir outra janela
+
+    if (e.target.name === "cart" || e.target.name === "time") {
+      window = e.target.name;
+      setWindowsState({window, windowOpen});
+    } else {
       setWindowsState({...windowsState, windowOpen});
-    }
+    }   
   }
   
   return (
