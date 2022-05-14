@@ -12,7 +12,7 @@ export function Provider(props) {
       window: 'cart' // cart, historic
     });
     const [productClicked, setProductClicked] = useState('')
-	  const url = 'http://localhost:5000';
+	  const url = 'http://192.168.1.6:5000';
     console.log(windowsState.window, windowsState.windowOpen, productClicked)
   return (
     <context.Provider 

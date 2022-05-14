@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
+import Price from './Price';
 
 function InfoProduct() {
   const {title, img, describe, price} = getContext().productClicked;
-  const [integer, dec] = price.split('.');
   
   return (
     <ContainerInfoProduct>
@@ -14,12 +14,7 @@ function InfoProduct() {
       </figure>
       <section>
         <p>{describe}</p>
-        <div className="value">
-          <small>R$</small>
-          <strong>{integer}</strong>
-          <small>,{dec}</small>
-        </div>
-
+        <Price price={price} />
       </section>
     </ContainerInfoProduct>
   );
@@ -73,24 +68,5 @@ const ContainerInfoProduct = styled.section`
 
     border-radius: 15px;
     background-color: blue;
-
-  }
-
-  &>section .value {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  &>section .value strong {
-    font-size: var(--font-size-price);
-    font-weight: bold;
-
-    color: var(--color-price);
-  }
-
-  &>section .value small {
-    margin-top: 0.12rem;
-
-    color: var(--color-price);
   }
 `
