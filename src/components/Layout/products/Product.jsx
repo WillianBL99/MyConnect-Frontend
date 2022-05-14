@@ -5,7 +5,7 @@ import setWindow from '../../../utils/setCurrentWindow';
 function Product({props}) {
   const {img, title, price} = props;
   const {windowsState, setWindowsState, setProductClicked} = getContext();
-  const [integer, dec] = price.split('.');
+  const [integer, dec] = price.toString().split('.');
 
   function handleShowProduct(){
     setProductClicked(props);

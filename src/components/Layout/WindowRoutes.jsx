@@ -7,8 +7,8 @@ function WindowRoutes(){
   const {windowsState} = getContext();
 
   const windows = {
-    cart: <Store />, //Cart
-    historic: <Cart />, //Historic
+    cart: <Cart />, //Cart
+    historic: <Store />, //Historic
     info_product: <InfoProduct />
   }
 
