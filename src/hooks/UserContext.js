@@ -12,6 +12,7 @@ export function Provider(props) {
       window: 'cart' // cart, historic
     });
 	  const url = 'http://localhost:5000';
+    console.log(windowsState.window, windowsState.windowOpen)
 
   return (
     <context.Provider value={{user, setUser, states, setStates, windowsState, setWindowsState, url }}>

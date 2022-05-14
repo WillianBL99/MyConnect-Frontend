@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+import { getContext } from '../../../hooks/UserContext';
+import setWindow from '../../../utils/setCurrentWindow';
 
 function Product({img, describe, price}) {
+  const {windowsState, setWindowsState} = getContext();
   const [integer, dec] = price.split('.');
+
   return (
-    <ContainerProduct>
+    <ContainerProduct onClick={() => setWindow(windowsState, setWindowsState, 'info_product')}>
       <figure>
         <img src={img} alt="" />
       </figure>
@@ -33,13 +37,22 @@ const ContainerProduct = styled.article`
   margin: 1rem;
   margin-bottom: 2.5rem;
 
+  cursor: pointer;
+
   border-radius: var(--radio-min);
-  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.3);;
+  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.3);
   background-color: var(--color-1);
+
+  &:hover {
+    box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.4);
+  }
 
   &>figure {
     width: 100%;
     min-height:  50%;
+
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radio-min);  
   }
 
   &>figure img {
