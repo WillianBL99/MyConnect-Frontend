@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
+import Price from './Price';
+import Footer from '../Footer';
+import InputNumber from '../InputNumber';
 
 function InfoProduct() {
   const {title, img, describe, price} = getContext().productClicked;
-  const [integer, dec] = price.split('.');
+  const [value, setValue] = useState(1);
   
   return (
     <ContainerInfoProduct>
@@ -15,11 +19,12 @@ function InfoProduct() {
       <section>
         <p>{describe}</p>
         <div className="value">
-          <small>R$</small>
-          <strong>{integer}</strong>
-          <small>,{dec}</small>
+          <InputNumber maxValue={10} setValue={setValue} value={value} width='5rem' >
+            <strong className='qtd'>{value}</strong>
+          </InputNumber>
+          <Price price={price} size='2.5rem' />
         </div>
-
+        <Footer title={'Comprar'} price={price * value} callback={() => console.log('oi')} />
       </section>
     </ContainerInfoProduct>
   );
@@ -63,34 +68,36 @@ const ContainerInfoProduct = styled.section`
   &>section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
 
     position: absolute;
     top: calc(100vh * 0.27);;
     bottom: 0;
+    right: 0;
+    left: 0;
 
     padding: 1rem;
 
     border-radius: 15px;
-    background-color: blue;
-
+    box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-1);
   }
 
-  &>section .value {
+  &>section p {
+    font-weight: var(--font-weight-bold);
+  }
+
+  &>section div.value {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 1rem;
   }
 
-  &>section .value strong {
-    font-size: var(--font-size-price);
+  &>section div.value strong.qtd {
+    width: 100%;
     font-weight: bold;
-
-    color: var(--color-price);
-  }
-
-  &>section .value small {
-    margin-top: 0.12rem;
-
-    color: var(--color-price);
+    text-align: center;
   }
 `

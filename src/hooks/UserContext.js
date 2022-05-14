@@ -9,11 +9,11 @@ export function Provider(props) {
     const [states, setStates] = react.useState({menuOpen: false})
     const [windowsState, setWindowsState] = useState({
       windowOpen: false,
-      window: 'cart' // cart, historic
+      window: 'cart'
     });
     const [productClicked, setProductClicked] = useState('')
-	  const url = 'http://localhost:5000';
-    console.log(windowsState.window, windowsState.windowOpen, productClicked)
+	  const url = 'http://192.168.1.6:5000';
+    
   return (
     <context.Provider 
       value={{
