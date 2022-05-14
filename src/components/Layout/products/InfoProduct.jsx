@@ -5,10 +5,11 @@ import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
 import Price from './Price';
 import Footer from '../Footer';
+import InputNumber from '../InputNumber';
 
 function InfoProduct() {
   const {title, img, describe, price} = getContext().productClicked;
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(1);
   
   return (
     <ContainerInfoProduct>
@@ -19,13 +20,9 @@ function InfoProduct() {
       <section>
         <p>{describe}</p>
         <div className="value">
-          <InputSpinner
-            step={1}
-            min={1}
-            max={10}
-            value={value}
-            onChange={ num => setValue(num) }
-          />
+          <InputNumber maxValue={10} setValue={setValue} width='5rem' >
+            <strong className='qtd'>{value}</strong>
+          </InputNumber>
           <Price price={price} size='2.5rem' />
         </div>
         <Footer price={price * value} callback={() => console.log('oiii')} />
@@ -95,10 +92,13 @@ const ContainerInfoProduct = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    margin-top: 1rem;
   }
-  
-  &>section div.value>div:first-child{
-    margin-bottom: 10px;
-    max-width: 8rem;
+
+  &>section div.value strong.qtd {
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
   }
 `
