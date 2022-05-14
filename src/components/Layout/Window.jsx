@@ -31,7 +31,7 @@ const ContainerWindow = styled.section`
   right: var(--right);
   bottom: 0;
   
-  transition: all 600ms ease-out;
+  transition: all 400ms ease;
 
   border-radius: 25px 0px 0px 25px;
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);

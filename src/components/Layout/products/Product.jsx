@@ -2,17 +2,23 @@ import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 import setWindow from '../../../utils/setCurrentWindow';
 
-function Product({img, describe, price}) {
-  const {windowsState, setWindowsState} = getContext();
+function Product({props}) {
+  const {img, title, price} = props;
+  const {windowsState, setWindowsState, setProductClicked} = getContext();
   const [integer, dec] = price.split('.');
 
+  function handleShowProduct(){
+    setProductClicked(props);
+    setWindow(windowsState, setWindowsState, 'info_product');
+  }
+
   return (
-    <ContainerProduct onClick={() => setWindow(windowsState, setWindowsState, 'info_product')}>
+    <ContainerProduct onClick={handleShowProduct}>
       <figure>
         <img src={img} alt="" />
       </figure>
       <section>
-        <p>{describe}</p>
+        <p>{title}</p>
         <div className="value">
           <small>R$</small>
           <strong>{integer}</strong>

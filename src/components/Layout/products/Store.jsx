@@ -41,8 +41,7 @@ function Store() {
       <div className="products">{
         typeof(products) === 'object'
           ?products.map(product => {
-            const {img, title, price} = product;
-            return <Product key={product._id} img={img} describe={title} price={price} />
+            return <Product key={product._id} props={{...product}} />
           })
           :<></>
       }<div className='sp'></div></div>
