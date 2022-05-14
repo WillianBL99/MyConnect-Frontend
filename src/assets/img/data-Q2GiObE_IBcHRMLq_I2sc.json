@@ -1,0 +1,42 @@
+[
+	{
+		"img": "http://img.jpg",
+		"title": "TECLADO GAMER PICHAU P421 RGB",
+		"describe": "Lorem ipsum dolor sit amet,",
+		"category":{"ion_icon": "tv-outline","title": "Monitor"},
+		"price": "$60.79",
+		"qtd": 8		
+	},
+	{
+		"img": "http://img.jpg",
+		"title": "teclado processador TECLADO GAMER PICHAU",
+		"describe": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur sed tortor.",
+		"category":{"ion_icon": "tv-outline","title": "Teclado"},
+		"price": "$49.12",
+		"qtd": 4		
+	},
+	{
+		"img": "http://img.jpg",
+		"title": "GAMER PICHAU P421 RGB RAINBOW,",
+		"describe": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur sed",
+		"category":{"ion_icon": "tv-outline","title": "Monitor"},
+		"price": "$79.63",
+		"qtd": 4		
+	},
+	{
+		"img": "http://img.jpg",
+		"title": "GAMER PICHAU P421 RGB RAINBOW,",
+		"describe": "Lorem ipsum dolor sit",
+		"category":{"ion_icon": "tv-outline","title": "Monitor"},
+		"price": "$45.80",
+		"qtd": 2		
+	},
+	{
+		"img": "http://img.jpg",
+		"title": "TECLADO GAMER PICHAU P421 RGB",
+		"describe": "Lorem ipsum dolor sit amet,",
+		"category":{"ion_icon": "tv-outline","title": "Teclado"},
+		"price": "$96.08",
+		"qtd": 9		
+	}
+]

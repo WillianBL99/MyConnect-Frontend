@@ -24,20 +24,22 @@
 	--font-size-header: 1.6rem;
 	--font-size-option-menu: 1.5rem;
 
+	--font-size-main: 1rem;
+	--font-size-price: 1.7rem;
+
 	--font-weight-bold: 600;
 	--font-weight-small: 400;
 
 	--radio-button: 70px;
+	--radio-min: 10px;
 
 	--padding-menu: 15px;
-	--padding-screen-main: 15px;
+	--padding-window: 20px;
 
   --size-icon: 2.8rem;
   --size-header: calc( var( --size-icon ) * 0.8 );
 
-	--openingTrack: calc( 10 * var( --font-size-option-menu ) );
-	--width-menu-open: calc( var( --size-icon ) + var( --openingTrack ) );
-	--width-menu-close: calc( var( --size-icon ) + calc( 2 * var( var( --padding-menu ) ) ) );
+	--openingTrack: calc( 7 * var( --font-size-option-menu ) );
 
 	--shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -67,4 +69,5 @@ body {
 	height: 100vh;
 
 	font-family: var(--font-main);
+	font-size: var(--font-size-main);
 }

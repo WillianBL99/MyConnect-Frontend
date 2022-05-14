@@ -4,24 +4,28 @@ import { getContext } from '../../hooks/UserContext';
 import Search from './Search';
 
 function Header({title}) {
-  const {states, setStates} = getContext();
+  const {states, setStates, windowsState, setWindowsState} = getContext();
   const [search, setSearch] = useState(false);
 
   const describeHeader = title?title:'MyConnect';
   
   function handleMenu(){
-    setStates({...states, menuOpen: !states.menuOpen});
+    if(title){
+      setWindowsState({...windowsState, windowOpen: false});
+    } else {
+      setStates({...states, menuOpen: !states.menuOpen});
+    }
   }
 
   return (
-    <ContainerHeader search={search || states?.menuOpen} >
+    <ContainerHeader search={search || states?.menuOpen} contaisTitle={title} >
       <ion-icon 
         onClick={handleMenu} 
-        name={states.menuOpen?'chevron-back':'menu'}
+        name={states.menuOpen || title?'chevron-back':'menu'}
       />
       <section>
         <h1>{describeHeader}</h1> 
-        <Search open={search} setSearch={setSearch} />
+        <Search open={search} setSearch={setSearch} visible={!title} />
       </section>
     </ContainerHeader>
   );
@@ -31,6 +35,8 @@ export default Header;
 
 const ContainerHeader = styled.header`
   --display: ${props => !props.search?'block':'none'};
+  --margin: calc(var(--padding-window) * 0.5);
+  --font-title: ${props => props.contaisTitle?'1.3rem':'2rem'};
 
   display: flex;
   justify-content: space-between;
@@ -38,6 +44,8 @@ const ContainerHeader = styled.header`
 
   width: 100%;
   height: var(--size-header);
+  margin-block: var(--margin);
+  padding-inline: var(--margin);
 
   &>section {
     display: flex;
@@ -58,9 +66,11 @@ const ContainerHeader = styled.header`
     display: var(--display);
     position: absolute;
 
+    padding-right: calc( var(--size-icon) - 0.5rem);
+
     z-index: 2;
     font-family: var(--font-family-logo);
-    font-size: 2rem;
+    font-size: var(--font-title);
     font-weight: bold;
   }
 

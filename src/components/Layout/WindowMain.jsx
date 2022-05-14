@@ -1,24 +1,30 @@
 import styled from 'styled-components';
-import Header from './Header';
+import { widthMenu } from '../../styled/css/width_menu';
 
 function WindowMain(props){
+
   return (
-    <Container>
-      <Header />
+    <ContainerMain widthMenu={widthMenu} >
       {props.children}
-    </Container>
+    </ContainerMain>
   );
 }
 
 export default WindowMain;
 
-const Container = styled.section `
+const ContainerMain = styled.section`
+  --width-menu: ${props => props.widthMenu};
+  --width: calc(100vw - var(--width-menu));
+
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: var(--width);
   height: 100%;
 
-  padding: var(--padding-screen-main);
+  position: relative;
+  
+  overflow: hidden;
   
   background: var(--color-1);
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);

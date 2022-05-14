@@ -9,7 +9,7 @@ import Register from '../Routes/Register';
 import MainScreen from '../Routes/MainScreen';
 
 function App() {
-	return (
+	return (		
 		<Provider>
 			<BrowserRouter>
 				<Routes>

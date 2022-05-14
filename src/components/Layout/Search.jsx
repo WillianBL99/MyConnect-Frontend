@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
 
-function Search({search, setSearch}){
+function Search({search, setSearch, visible}){
   const [openSearch, setOpenSearch] = useState(search);
   const {states} = getContext();
 
@@ -12,9 +12,9 @@ function Search({search, setSearch}){
   }
 
   return (
-    <ContainerSearch search={openSearch || states?.menuOpen} > 
+    <ContainerSearch search={openSearch || states?.menuOpen} visible={visible}> 
       <input type="search" name="" id="" />
-      <ion-icon onClick={handleSearc} name="search"></ion-icon>
+      <ion-icon onClick={handleSearc} display='none' name="search"></ion-icon>
     </ContainerSearch>
   );
 }
@@ -23,6 +23,7 @@ export default Search;
 
 const ContainerSearch = styled.article`
   --display: ${props => props.search?'block':'none'};
+  --display-search: ${props => props.visible?'block':'none'};
 
   display: flex;
   position: relative;
@@ -34,6 +35,7 @@ const ContainerSearch = styled.article`
 
   &>ion-icon {
     --size: 1.5rem;
+    display: var(--display-search);
     font-size: 1.5rem;
     z-index: 3;
     position: absolute;
