@@ -39,6 +39,14 @@ const ContainerCategory = styled.article`
     background-color: #fff;
   } 
 
+  &:hover span {
+    box-shadow: var(--shadow-hover);
+  }
+
+  &:hover p {
+    font-weight: var(--font-weight-bold);
+  }
+
   &>span ion-icon {
     font-size: 2rem;
   }
