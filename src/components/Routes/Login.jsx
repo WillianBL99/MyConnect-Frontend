@@ -25,7 +25,6 @@ function Login() {
 
     promise.then((res) => {
       storeLogin(res.data);
-      console.log(res.data);
       navigate("/store");
     });
     promise.catch((error) => {

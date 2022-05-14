@@ -52,11 +52,10 @@ function Store() {
   useEffect(() => {
     const promise = axios.get(`${url}/products`, user.config);
     promise.then(res => {
-      console.log(res.data)
       setProducts(res.data);
     });
     promise.catch(e => console.error(e));
-  }, [])
+  }, [url, user.config])
 
   return (
     <ContainerStore>
@@ -126,7 +125,7 @@ const ContainerStore = styled.section`
     background-color: var(--color-white);
     border-radius: 15px;
 
-    box-shadow: 0px -4px 10px -2px rgba(0, 0, 0, 0.25);;
+    box-shadow: 0px -4px 10px -2px rgba(0, 0, 0, 0.25);
   }
 
   &>div.products .sp {

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 import setWindow from '../../../utils/setCurrentWindow';
+import Price from './Price';
 
 function Product({props}) {
   const {img, title, price} = props;
   const {windowsState, setWindowsState, setProductClicked} = getContext();
-  const [integer, dec] = price.toString().split('.');
 
   function handleShowProduct(){
     setProductClicked(props);
@@ -19,11 +19,7 @@ function Product({props}) {
       </figure>
       <section>
         <p>{title}</p>
-        <div className="value">
-          <small>R$</small>
-          <strong>{integer}</strong>
-          <small>,{dec}</small>
-        </div>
+        <Price price={price} />
       </section>
     </ContainerProduct>
   );
@@ -32,7 +28,6 @@ function Product({props}) {
 export default Product;
 
 const ContainerProduct = styled.article`
-  --color-price: var(--color-3);
 
   display: flex;
   flex-direction: column;
@@ -80,23 +75,5 @@ const ContainerProduct = styled.article`
     height: 100%;
     padding: 3px;
 
-  }
-
-  &>section .value {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  &>section .value strong {
-    font-size: var(--font-size-price);
-    font-weight: bold;
-
-    color: var(--color-price);
-  }
-
-  &>section .value small {
-    margin-top: 0.12rem;
-
-    color: var(--color-price);
   }
 `
