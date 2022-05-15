@@ -22,7 +22,7 @@ function InfoProduct() {
       email,
       title,
       describe,
-      price: qtd * price
+      price: price
     };
 
     console.log(body)

@@ -36,6 +36,8 @@ function Cart() {
   function getValues(res) {
     let values = [];
     res.forEach((value) => {
+      console.log(value.price);
+      console.log(value.qtd);
       values.push(value.price * value.qtd);
     });
     setProductValue(values);
@@ -70,32 +72,33 @@ function Cart() {
     }
   }
   //efetuando as compras
-  function submitPurchases(){
-    let totalPurchase=0;
-    let qtdPurchase=0;
-    let titlesPurchase =[];
-    products.forEach((product,index)=>{
-      qtdPurchase+=(productValue[index]/product.price);
+  function submitPurchases() {
+    let totalPurchase = 0;
+    let qtdPurchase = 0;
+    let titlesPurchase = [];
+    products.forEach((product, index) => {
+      qtdPurchase += productValue[index] / product.price;
       titlesPurchase.push(product.title);
-      totalPurchase+=productValue[index];
+      totalPurchase += productValue[index];
     });
-    const purchase ={
-      email:user.config.headers.Email,
-      qtd:qtdPurchase,
-      total:totalPurchase,
-      products:titlesPurchase
+    const purchase = {
+      email: user.config.headers.Email,
+      qtd: qtdPurchase,
+      total: totalPurchase,
+      products: titlesPurchase,
     };
-    const promisse = axios.post(`${url}/historic`,purchase,user.config);
-    promisse.then(res=>{
+    const promisse = axios.post(`${url}/historic`, purchase, user.config);
+    promisse.then((res) => {
       console.log(res.data);
-    })
+    });
     promisse.catch((e) => console.error(e));
   }
   return (
     <CartContainer>
-      <Header title={"meu carrionho"} 
-      callback={deleteProduct}
-      ion_icon="trash-outline"
+      <Header
+        title={"meu carrionho"}
+        callback={deleteProduct}
+        ion_icon="trash-outline"
       />
       {products.length === 0 ? (
         <h1 className="no-habits">Você não tem nenhum produto no carrinho</h1>
@@ -105,27 +108,28 @@ function Cart() {
             const { img, price, title, _id } = product;
             let { qtd } = product;
             return (
-              <InputNumber
-                key={_id}
-                showNumber={true}
-                maxValue={10}
-                value={qtd}
-                setValue={(v) => {
-                  const newValue = productValue;
-                  newValue.splice(index, 1, v * price);
-                  setProductValue([...newValue]);
-                }}
-                width="80%"
-              >
-                <Product
-                  img={img}
-                  title={title}
-                  selectingProduct={selectingProduct}
-                  selected={selected}
-                  value={productValue[index].toFixed(2)}
-                  id={_id}
-                />
-              </InputNumber>
+              <InputContainer key={_id}>
+                <InputNumber
+                  showNumber={true}
+                  maxValue={10}
+                  value={qtd}
+                  setValue={(v) => {
+                    const newValue = productValue;
+                    newValue.splice(index, 1, v * price);
+                    setProductValue([...newValue]);
+                  }}
+                  width="80%"
+                >
+                  <Product
+                    img={img}
+                    title={title}
+                    selectingProduct={selectingProduct}
+                    selected={selected}
+                    value={productValue[index].toFixed(2)}
+                    id={_id}
+                  />
+                </InputNumber>
+              </InputContainer>
             );
           })}
         </section>
@@ -149,7 +153,7 @@ function Product(props) {
       onClick={() => {
         selectingProduct(id);
       }}
-      color={selected === id ? "red" : "green"}
+      border={selected === id}
     >
       <img src={img} alt="" />
       <div className="info">
@@ -177,7 +181,7 @@ const CartContainer = styled.div`
     width: 100%;
     height: 80%;
 
-    padding: 1rem;
+    padding: 1rem 1rem 3.3rem 1rem;
 
     border-radius: 15px;
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
@@ -185,25 +189,46 @@ const CartContainer = styled.div`
   }
 `;
 const ProductContainer = styled.article`
-  background-color: ${(props) => props.color};
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-white);
+  //background-color: ${(props) => props.color};
+  //border: 3px solid var(--color-border);
+  outline:${(props) => props.border? "3px solid var(--color-border)":"none"};
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 0px 6px -5px rgba(0, 0, 0, 0.25);
-  border-radius: 8px 0 0 8px;
+  align-items: center;
+  border-radius: 8px;
   width: 100%;
-  height: 90px;
+  height: 7rem;
   padding: 7px 16px 7px 7px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  img {
+    width: 8rem;
+    min-width: 8rem;
+    height: 100%;
+    border-radius: 6px;
+  }
   .info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    text-align: end;
     p {
-      font-weight: 600;
-      font-size: 15px;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-input);
       line-height: 17px;
-      color: #0e0a18;
+      color: var(--color-text-dark-blue);
     }
   }
+`;
+const InputContainer = styled.div`
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 `;
 export default Cart;
