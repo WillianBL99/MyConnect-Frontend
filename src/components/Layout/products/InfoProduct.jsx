@@ -8,12 +8,16 @@ import InputNumber from '../InputNumber';
 import axios from 'axios';
 
 function InfoProduct() {
-  const {user, url} = getContext();
+  const {user, url, setWindowsState} = getContext();
   const {_id, title, img, describe, price} = getContext().productClicked;
   const [value, setValue] = useState(1);
+  const {email} = user;
+
+  function backStore() {
+    setWindowsState({windowOpen: false});
+  }
 
   function addToCart(){
-    const {email} = user;
     const body = {
       email,
       _id,
@@ -24,12 +28,18 @@ function InfoProduct() {
       price: value * price
     };
     const promise = axios.post(`${url}/cart`, body ,user.config);
-    promise.then(() => console.log('deubom'))
+    promise.then(() => backStore());
     promise.catch((e) => console.log('ruim',e))
   }
 
   function confirmBuy(){
-    alert('Deseja confirmar compra?')
+    if(!window.confirm(`Deseja efetuar a compra?\nValor: R$${value * price}`)) return;
+
+    const body = {email, total: value * price, qtd: value, products:[title]}
+
+    const promise = axios.post(`${url}/historic`, body ,user.config);
+    promise.then(() => backStore());
+    promise.catch((e) => console.log('ruim',e))
   }
   
   return (
