@@ -10,36 +10,56 @@ import axios from 'axios';
 function InfoProduct() {
   const {user, url, setWindowsState} = getContext();
   const {_id, title, img, describe, price} = getContext().productClicked;
-  const [value, setValue] = useState(1);
+  const [qtd, setQtd] = useState(1);
   const {email} = user;
 
-  function backStore() {
-    setWindowsState({windowOpen: false});
-  }
+  const backStore = () => setWindowsState({windowOpen: false});
 
   function addToCart(){
     const body = {
-      email,
       _id,
       img,
+      qtd,
+      email,
       title,
       describe,
-      qtd:value,
-      price: value * price
+      price: qtd * price
     };
-    const promise = axios.post(`${url}/cart`, body ,user.config);
-    promise.then(() => backStore());
-    promise.catch((e) => console.log('ruim',e))
+
+    axios.post(`${url}/cart`, body ,user.config)
+      .then(() => backStore())
+      .catch((e) => alert(e));
   }
 
   function confirmBuy(){
-    if(!window.confirm(`Deseja efetuar a compra?\nValor: R$${value * price}`)) return;
+    const msg = `Deseja efetuar a compra?\nValor: R$${qtd * price}`;
+    if(!window.confirm(msg)) return;
 
-    const body = {email, total: value * price, qtd: value, products:[title]}
+    const body = {
+      qtd, 
+      email, 
+      products:[title],
+      total: qtd * price
+    }
 
-    const promise = axios.post(`${url}/historic`, body ,user.config);
-    promise.then(() => backStore());
-    promise.catch((e) => console.log('ruim',e))
+    axios.post(`${url}/historic`, body ,user.config)
+      .then(() => backStore())
+      .catch((e) => alert(e));
+  }
+
+  function productActions(){
+    return (
+      <section>
+        <p>{describe}</p>
+        <div className="value">
+          <InputNumber maxValue={10} setValue={setQtd} value={qtd} width='5rem' >
+            <strong className='qtd'>{qtd}</strong>
+          </InputNumber>
+          <Price price={price} size='2.5rem' />
+        </div>
+        <Footer title={'Comprar'} price={price * qtd} callback={confirmBuy} />
+      </section>
+    );
   }
   
   return (
@@ -48,16 +68,7 @@ function InfoProduct() {
       <figure>
         <img src={img} alt="" />
       </figure>
-      <section>
-        <p>{describe}</p>
-        <div className="value">
-          <InputNumber maxValue={10} setValue={setValue} value={value} width='5rem' >
-            <strong className='qtd'>{value}</strong>
-          </InputNumber>
-          <Price price={price} size='2.5rem' />
-        </div>
-        <Footer title={'Comprar'} price={price * value} callback={confirmBuy} />
-      </section>
+      {productActions()}
     </ContainerInfoProduct>
   );
 }
