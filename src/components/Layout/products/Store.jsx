@@ -24,6 +24,7 @@ function Store() {
   }
 
   function assembleCategories(){
+    
     return (
       <div className="categories">
         <Category describe='Todos' ion_icon='cube-outline' />        
