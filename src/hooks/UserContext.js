@@ -11,9 +11,8 @@ export function Provider(props) {
     const [windowsState, setWindowsState] = useState({
       windowOpen: false,
       window: 'cart'
-    });
-    
-    const [productClicked, setProductClicked] = useState('')
+    });    
+    const [productClicked, setProductClicked] = useState({})
 	  const url = 'http://192.168.1.6:5000';
     
   return (

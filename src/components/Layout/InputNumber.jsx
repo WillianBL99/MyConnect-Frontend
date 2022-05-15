@@ -56,7 +56,7 @@ const ContainerInputNumber = styled.div`
     height: 100%;
 
     border-radius: var(--radio-min);
-    background-color: #C4C4C4;
+    background-color: var(--color-gray);
   }
 
   &>.options ion-icon {

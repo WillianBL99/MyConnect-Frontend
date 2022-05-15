@@ -112,8 +112,12 @@ const ContainerHeader = styled.header`
     border-radius: 50%;
     
     box-shadow: var(--shadow);
-    background-color: var(--color-3);
+    background-color: var(--color-gray);
   } 
+
+  &>section span:hover {
+    background-color: var(--color-3);
+  }
 
   &>section span ion-icon {
     color: var(--color-1);

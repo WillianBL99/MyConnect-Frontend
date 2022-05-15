@@ -42,7 +42,7 @@ function Store() {
       <div className="products">
         {
           verifyObject(products) ? filterCategories(products, cat).map(product => 
-          <Product key={product._id} props={{...product}} />) : <></>
+          <Product key={product._id} props={product} />) : <></>
         }
         <div className='sp'></div>
       </div>
