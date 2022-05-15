@@ -25,8 +25,6 @@ function InfoProduct() {
       price: price
     };
 
-    console.log(body)
-
     axios.post(`${url}/cart`, body ,user.config)
       .then(() => backStore())
       .catch((e) => alert(e));

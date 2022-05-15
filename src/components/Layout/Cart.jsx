@@ -36,8 +36,6 @@ function Cart() {
   function getValues(res) {
     let values = [];
     res.forEach((value) => {
-      console.log(value.price);
-      console.log(value.qtd);
       values.push(value.price * value.qtd);
     });
     setProductValue(values);
@@ -87,11 +85,18 @@ function Cart() {
       total: totalPurchase,
       products: titlesPurchase,
     };
-    const promisse = axios.post(`${url}/historic`, purchase, user.config);
-    promisse.then((res) => {
-      console.log(res.data);
-    });
-    promisse.catch((e) => console.error(e));
+    const confirm = window.confirm(
+      `Sua compra ficou: R$${totalPurchase}!!! Deseja continuar ?`
+    );
+    if (confirm) {
+      const promisse = axios.post(`${url}/historic`, purchase, user.config);
+      promisse.then((res) => {
+        console.log(res.data);
+        setSelected("");
+        deleteProduct();
+      });
+      promisse.catch((e) => console.error(e));
+    }
   }
   return (
     <CartContainer>
@@ -101,7 +106,13 @@ function Cart() {
         ion_icon="trash-outline"
       />
       {products.length === 0 ? (
-        <h1 className="no-habits">Você não tem nenhum produto no carrinho</h1>
+        <section>
+          <h1 className="no-cart">
+            Você não tem nenhum produto no carrinho.
+            <br />
+            Vá até a loja e faça já o seu pedido !!!
+          </h1>
+        </section>
       ) : (
         <section>
           {products.map((product, index) => {
@@ -186,6 +197,13 @@ const CartContainer = styled.div`
     border-radius: 15px;
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
     background-color: var(--color-1);
+    .no-cart {
+      color: var(--color-3);
+      font-weight: var(--font-weight-bold);
+      font-size: var();
+      font-size: var(--font-size-price);
+      text-align: center;
+    }
   }
 `;
 const ProductContainer = styled.article`
@@ -193,7 +211,8 @@ const ProductContainer = styled.article`
   background-color: var(--color-white);
   //background-color: ${(props) => props.color};
   //border: 3px solid var(--color-border);
-  outline:${(props) => props.border? "3px solid var(--color-border)":"none"};
+  outline: ${(props) =>
+    props.border ? "3px solid var(--color-border)" : "none"};
   display: flex;
   justify-content: space-between;
   align-items: center;

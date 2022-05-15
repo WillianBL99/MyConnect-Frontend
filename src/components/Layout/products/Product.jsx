@@ -8,7 +8,6 @@ function Product({props}) {
   const {setStates, windowsState, setWindowsState, setProductClicked} = getContext();
   
   function handleShowProduct(){
-    console.log('prp', props, props.title)
     setProductClicked(props);
     setWindow(setStates, windowsState, setWindowsState, 'info_product');
   }

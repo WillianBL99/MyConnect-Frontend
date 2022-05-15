@@ -26,7 +26,6 @@ function Historic() {
   useEffect(() => {
     axios.get(`${url}/historic`, user.config)
       .then((res) => {
-        console.log('deu bom', res.data);
         setPushase(res.data.reverse());
       })
       .catch(e => console.error('deu ruim', e));
