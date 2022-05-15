@@ -10,11 +10,17 @@ function Historic() {
   const [purshase, setPushase] = useState(null);
 
   function assemblePurshase(){
-    if(purshase === null) return <></>
-
-    return purshase.map(buy => { 
-      console.log('i', buy)
-      return <PurshaseHistory key={buy.id} buy={buy} />});
+    if(purshase?.length) {
+      return purshase.map((buy, id) => 
+        <PurshaseHistory key={id} buy={buy} />
+      ); 
+    } 
+    
+    return (
+      <div className="null">
+        <p>Histórico vasio</p>
+      </div>
+    );
   }
 
   useEffect(() => {
@@ -29,7 +35,7 @@ function Historic() {
 
   return (
     <ContainerHistoric>
-      <Header title={'Meu carrinho'} ion_icon={'trash-outline'} />
+      <Header title={'Meu carrinho'} ion_icon={'trash-outline'} icon_visible={false} />
       <section>
         {assemblePurshase()}
       </section>
@@ -70,5 +76,13 @@ const ContainerHistoric = styled.section`
     border-radius: 15px;
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
     background-color: var(--color-1);
+
+    div.null {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      font-size: 1.3rem;
+    }
   }
 `

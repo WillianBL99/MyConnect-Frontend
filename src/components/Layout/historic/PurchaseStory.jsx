@@ -39,6 +39,10 @@ const ContainerPurshaseHistory = styled.div`
   background-color: var(--color-white);
   box-shadow: var(--shadow);
 
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
   &>section {
     display: flex;
     width: 100%;

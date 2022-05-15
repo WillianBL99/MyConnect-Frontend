@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
 import Search from './Search';
 
-function Header({title, ion_icon, callback}) {
+function Header({title, ion_icon, callback, icon_visible = true}) {
   const {states, setStates, windowsState, setWindowsState} = getContext();
   const [search, setSearch] = useState(false);
 
@@ -18,7 +18,7 @@ function Header({title, ion_icon, callback}) {
   }
 
   return (
-    <ContainerHeader search={search || states?.menuOpen} contaisTitle={title} >
+    <ContainerHeader search={search || states?.menuOpen} contaisTitle={title} icon_visible={icon_visible} >
       <ion-icon 
         onClick={handleMenu} 
         name={states.menuOpen || title?'chevron-back':'menu'}
@@ -40,6 +40,7 @@ const ContainerHeader = styled.header`
   --display: ${props => !props.search?'block':'none'};
   --margin: calc(var(--padding-window) * 0.5);
   --font-title: ${props => props.contaisTitle?'1.3rem':'2rem'};
+  --display-icon: ${props => props.icon_visible && props.contaisTitle?'flex':'none'};
 
   display: flex;
   justify-content: space-between;
@@ -98,7 +99,7 @@ const ContainerHeader = styled.header`
 
   &>section span {
     --padding: calc(var(--size-header) - 6px);
-    display: ${props => props.contaisTitle?'flex':'none'};
+    display: var(--display-icon);
     align-items: center;
     justify-content: center;
 
