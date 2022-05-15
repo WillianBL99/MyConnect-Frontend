@@ -36,9 +36,9 @@ function UserInfo({name, email}){
 }
 
 function OptionMenu({rote, title, ion_icon}) {
-  const {windowsState, setWindowsState} = getContext();
+  const {setStates, windowsState, setWindowsState} = getContext();
   return (
-    <Option onClick={() => setWindow(windowsState, setWindowsState, rote)}>
+    <Option onClick={() => setWindow(setStates, windowsState, setWindowsState, rote)}>
       <div>
         <ion-icon name={ion_icon}></ion-icon>
       </div>

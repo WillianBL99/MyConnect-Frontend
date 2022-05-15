@@ -5,11 +5,11 @@ import Price from './Price';
 
 function Product({props}) {
   const {img, title, price} = props;
-  const {windowsState, setWindowsState, setProductClicked} = getContext();
+  const {setStates, windowsState, setWindowsState, setProductClicked} = getContext();
 
   function handleShowProduct(){
     setProductClicked(props);
-    setWindow(windowsState, setWindowsState, 'info_product');
+    setWindow(setStates, windowsState, setWindowsState, 'info_product');
   }
 
   return (

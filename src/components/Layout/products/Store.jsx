@@ -6,7 +6,7 @@ import { getContext } from '../../../hooks/UserContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../Header';
-import filterCategories from '../../../utils/filterCategories';
+import {filterCategories} from '../../../utils/filterProducts';
 
 function Store() {
   const {user, url, category: cat} = getContext();

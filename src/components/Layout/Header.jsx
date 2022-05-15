@@ -65,13 +65,21 @@ const ContainerHeader = styled.header`
   &>section h1 {
     display: var(--display);
     position: absolute;
-
-    padding-right: calc( var(--size-icon) - 0.5rem);
-
+    left: 6px;
+    top: auto;
+    right: 1px;
+    bottom: auto;
     z-index: 2;
+
     font-family: var(--font-family-logo);
     font-size: var(--font-title);
     font-weight: bold;
+
+    //text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
   }
 
   &>ion-icon {
