@@ -8,29 +8,62 @@ import InputNumber from '../InputNumber';
 import axios from 'axios';
 
 function InfoProduct() {
-  const {user, url} = getContext();
+  const {user, url, setWindowsState} = getContext();
   const {_id, title, img, describe, price} = getContext().productClicked;
-  const [value, setValue] = useState(1);
+  const [qtd, setQtd] = useState(1);
+  const {email} = user;
+
+  const backStore = () => setWindowsState({windowOpen: false});
 
   function addToCart(){
-    const {email} = user;
     const body = {
-      email,
       _id,
       img,
+      qtd,
+      email,
       title,
       describe,
-      qtd:value,
-      price: value * price
+      price: qtd * price
     };
-    const promise = axios.post(`${url}/cart`, body ,user.config);
-    promise.then(() => console.log('deubom'))
-    promise.catch((e) => console.log('ruim',e))
+
+    axios.post(`${url}/cart`, body ,user.config)
+      .then(() => backStore())
+      .catch((e) => alert(e));
   }
 
+
   function confirmBuy(){
-    alert('Deseja confirmar compra?')
+    const msg = `Deseja efetuar a compra?\nValor: R$${qtd * price}`;
+    if(!window.confirm(msg)) return;
+
+    const body = {
+      qtd, 
+      email, 
+      products:[title],
+      total: qtd * price
+    }
+
+    axios.post(`${url}/historic`, body ,user.config)
+      .then(() => backStore())
+      .catch((e) => alert(e));
   }
+
+
+  function productActions(){
+    return (
+      <section>
+        <p>{describe}</p>
+        <div className="value">
+          <InputNumber maxValue={10} setValue={setQtd} value={qtd} width='5rem' >
+            <strong className='qtd'>{qtd}</strong>
+          </InputNumber>
+          <Price price={price} size='2.5rem' />
+        </div>
+        <Footer title={'Comprar'} price={price * qtd} callback={confirmBuy} />
+      </section>
+    );
+  }
+  
   
   return (
     <ContainerInfoProduct>
@@ -38,16 +71,7 @@ function InfoProduct() {
       <figure>
         <img src={img} alt="" />
       </figure>
-      <section>
-        <p>{describe}</p>
-        <div className="value">
-          <InputNumber maxValue={10} setValue={setValue} value={value} width='5rem' >
-            <strong className='qtd'>{value}</strong>
-          </InputNumber>
-          <Price price={price} size='2.5rem' />
-        </div>
-        <Footer title={'Comprar'} price={price * value} callback={confirmBuy} />
-      </section>
+      {productActions()}
     </ContainerInfoProduct>
   );
 }

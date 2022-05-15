@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 
 function Category({describe, ion_icon}) {
-  const {setCategory} = getContext();
+  const {setSelectedCategory, setSearchText} = getContext();
 
   return (
-    <ContainerCategory onClick={() => setCategory(describe)}>
+    <ContainerCategory onClick={() => {
+      setSearchText('');
+      setSelectedCategory(describe);
+    }}>
       <span>
         <ion-icon name={ion_icon}></ion-icon>
       </span>
