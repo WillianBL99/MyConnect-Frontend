@@ -71,7 +71,7 @@ const ContainerInfoProduct = styled.section`
     justify-content: start;
 
     position: absolute;
-    top: calc(100vh * 0.27);;
+    top: calc(100vh * 0.27);
     bottom: 0;
     right: 0;
     left: 0;
