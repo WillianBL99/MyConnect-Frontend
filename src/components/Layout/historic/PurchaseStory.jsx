@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Price from '../products/Price';
 
-function PurshaseHistory({date, qtd, total}) {
+function PurshaseHistory({buy}) {
+  const {date, qtd, total} = buy;
 
   return (
     <ContainerPurshaseHistory>
@@ -32,6 +33,7 @@ const ContainerPurshaseHistory = styled.div`
   height: 4.5rem;
 
   padding: 0.3rem;
+  margin-bottom: 1rem;
   
   border-radius: var(--radio-min);
   background-color: var(--color-white);

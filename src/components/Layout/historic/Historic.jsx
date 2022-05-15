@@ -1,14 +1,37 @@
 import styled from 'styled-components';
 import Header from '../Header';
+import { getContext } from '../../../hooks/UserContext';
 import PurshaseHistory from './PurchaseStory';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Historic() {
+  const {user, url} = getContext();
+  const [purshase, setPushase] = useState(null);
+
+  function assemblePurshase(){
+    if(purshase === null) return <></>
+
+    return purshase.map(buy => { 
+      console.log('i', buy)
+      return <PurshaseHistory key={buy.id} buy={buy} />});
+  }
+
+  useEffect(() => {
+    axios.get(`${url}/historic`, user.config)
+      .then((res) => {
+        console.log('deu bom', res.data);
+        setPushase(res.data);
+      })
+      .catch(e => console.error('deu ruim', e));
+
+  }, [user, url]);
 
   return (
     <ContainerHistoric>
       <Header title={'Meu carrinho'} ion_icon={'trash-outline'} />
       <section>
-        <PurshaseHistory date='22/22/22' qtd='5' total={234.23} />
+        {assemblePurshase()}
       </section>
     </ContainerHistoric>
   );
@@ -41,6 +64,8 @@ const ContainerHistoric = styled.section`
     left: 0;
 
     padding: 1rem;
+
+  overflow-y: auto;
 
     border-radius: 15px;
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
