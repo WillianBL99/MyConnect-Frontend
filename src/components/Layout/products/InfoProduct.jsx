@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function InfoProduct() {
   const {user, url, setWindowsState} = getContext();
-  const { title, img, describe, price} = getContext().productClicked;
+  const {title, img, describe, price} = getContext().productClicked;
   const [qtd, setQtd] = useState(1);
   const {email} = user;
 
@@ -24,6 +24,8 @@ function InfoProduct() {
       describe,
       price: qtd * price
     };
+
+    console.log(body)
 
     axios.post(`${url}/cart`, body ,user.config)
       .then(() => backStore())
@@ -58,7 +60,7 @@ function InfoProduct() {
           </InputNumber>
           <Price price={price} size='2.5rem' />
         </div>
-        <Footer title={'Comprar'} price={price * qtd} callback={confirmBuy} />
+        <Footer title={'Comprar'} price={(price * qtd).toFixed(2)} callback={confirmBuy} />
       </section>
     );
   }
