@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function InfoProduct() {
   const {user, url, setWindowsState} = getContext();
-  const {_id, title, img, describe, price} = getContext().productClicked;
+  const { title, img, describe, price} = getContext().productClicked;
   const [qtd, setQtd] = useState(1);
   const {email} = user;
 
@@ -17,7 +17,6 @@ function InfoProduct() {
 
   function addToCart(){
     const body = {
-      _id,
       img,
       qtd,
       email,
