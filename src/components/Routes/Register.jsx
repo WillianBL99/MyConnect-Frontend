@@ -16,7 +16,7 @@ function Login() {
     name: "",
     email: "",
     password: "",
-    image: "",
+    img: "",
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [errorFeedback, setErrorFeedback] = useState("!");
@@ -61,7 +61,7 @@ function Login() {
             type="url"
             placeholder="URL da imagem"
             onChange={(e) => {
-              setRegisterData({ ...registerData, image: e.target.value });
+              setRegisterData({ ...registerData, img: e.target.value });
             }}
           />
           <Input

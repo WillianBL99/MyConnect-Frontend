@@ -4,7 +4,7 @@ function Footer({price, callback, title}){
 
   return (
     <ContainerFooter>
-      <div className="value">
+      <div className="valueFooter">
         <small>R$</small>
         <strong>{price}</strong>
       </div>
@@ -33,19 +33,19 @@ const ContainerFooter = styled.footer`
   border-radius: 15px;
   background-color: var(--color-white);
 
-  &>.value {
+  &>.valueFooter {
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: start;
   }
 
-  &>.value small {
-    margin-top: -5px;
+  &>.valueFooter small {
+    //margin-top: -5px;
     margin-right: 2px;
     font-size: calc(var(--font-size) * 0.6);
   }
 
-  &>.value strong {
+  &>.valueFooter strong {
     font-size: var(--font-size);
     font-weight: bold;
   }  

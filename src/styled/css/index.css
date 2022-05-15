@@ -18,6 +18,8 @@
 
   --color-price: var(--color-3);
 
+  --color-border:rgb(74,21,247,0.6);
+
   --color-hover-inner: var(--color-3);
 	--color-hover: var(--color-1);
 
