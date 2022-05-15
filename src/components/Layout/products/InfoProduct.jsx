@@ -31,6 +31,7 @@ function InfoProduct() {
       .catch((e) => alert(e));
   }
 
+
   function confirmBuy(){
     const msg = `Deseja efetuar a compra?\nValor: R$${qtd * price}`;
     if(!window.confirm(msg)) return;
@@ -47,6 +48,7 @@ function InfoProduct() {
       .catch((e) => alert(e));
   }
 
+
   function productActions(){
     return (
       <section>
@@ -61,6 +63,7 @@ function InfoProduct() {
       </section>
     );
   }
+  
   
   return (
     <ContainerInfoProduct>

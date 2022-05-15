@@ -8,9 +8,10 @@ export function filterCategories(products, tipe) {
 
 export function filterTitle(products, title){
   if(verifyObject(products)) return null;
+  if(title === '' || title === undefined) return products;
 
   return products.filter(product => {
-    return product.title === title
+    return product.title.toUpperCase().includes(title.toUpperCase());
   })
 }
 

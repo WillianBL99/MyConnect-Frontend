@@ -4,16 +4,21 @@ import { getContext } from '../../hooks/UserContext';
 
 function Search({search, setSearch, visible}){
   const [openSearch, setOpenSearch] = useState(search);
-  const {states} = getContext();
+  const {states, setSearchText} = getContext();
+  const [currentSearchText, setCurrentSearchText] = useState('');
 
   function handleSearc(){
+    if(openSearch) {
+      setSearchText(currentSearchText);
+      setCurrentSearchText('');
+    }
     setSearch(!openSearch)
     setOpenSearch(!openSearch);
   }
 
   return (
     <ContainerSearch search={openSearch || states?.menuOpen} visible={visible}> 
-      <input type="search" name="" id="" />
+      <input type="search" value={currentSearchText} onChange={e => setCurrentSearchText(e.target.value)} />
       <ion-icon onClick={handleSearc} display='none' name="search"></ion-icon>
     </ContainerSearch>
   );

@@ -6,10 +6,10 @@ import { getContext } from '../../../hooks/UserContext';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../Header';
-import {filterCategories} from '../../../utils/filterProducts';
+import {filterCategories, filterTitle} from '../../../utils/filterProducts';
 
 function Store() {
-  const {user, url, category: cat} = getContext();
+  const {user, url, selectedCategory, searchText, setSearchText} = getContext();
   const [products, setProducts] = useState(null);
   const categories = [];
 
@@ -22,6 +22,7 @@ function Store() {
       return false;
     })
   }
+
 
   function assembleCategories(){
     return (
@@ -37,11 +38,19 @@ function Store() {
     );
   }
 
+  function filterProducts(){
+    return filterTitle( 
+      filterCategories(products, selectedCategory), 
+      searchText 
+    );
+  }
+
+
   function assembleProducts(){
     return (
       <div className="products">
         {
-          verifyObject(products) ? filterCategories(products, cat).map(product => 
+          verifyObject(products) ? filterProducts().map(product => 
           <Product key={product._id} props={product} />) : <></>
         }
         <div className='sp'></div>
@@ -49,10 +58,12 @@ function Store() {
     );
   }
 
+
   function verifyObject(obj){
     return typeof(products) === 'object' && products !== null;
   }
 
+  
   useEffect(() => {
     const promise = axios.get(`${url}/products`, user.config);
     promise.then(res => {
