@@ -33,11 +33,11 @@ function Login() {
   }
 
   function storeLogin(res) {
-    const { token, name, email, image } = res;
+    const { token, name, email, img } = res;
     const userInfo = {
       name,
       email,
-      image,
+      img,
       config: {
         headers: {
           Authorization: `Bearer ${token}`,

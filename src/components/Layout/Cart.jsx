@@ -93,14 +93,10 @@ function Cart() {
   }
   return (
     <CartContainer>
-      <Header title={"meu carrionho"} />
-      <h1
-        onClick={() => {
-          deleteProduct();
-        }}
-      >
-        deletar
-      </h1>
+      <Header title={"meu carrionho"} 
+      callback={deleteProduct}
+      ion_icon="trash-outline"
+      />
       {products.length === 0 ? (
         <h1 className="no-habits">Você não tem nenhum produto no carrinho</h1>
       ) : (
