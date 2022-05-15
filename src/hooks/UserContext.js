@@ -14,7 +14,7 @@ export function Provider(props) {
     });    
     const [productClicked, setProductClicked] = useState({});
     const [searchText, setSearchText] = useState('');
-	  const url = 'http://192.168.1.6:5000';
+	  const url = 'http://192.168.1.6:5002';
     
   return (
     <context.Provider 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import axios from "axios";
-import dayjs from "dayjs";
 
 import { getContext } from "../../hooks/UserContext";
 import InputNumber from "./InputNumber";
@@ -141,7 +140,7 @@ function Cart() {
         <Footer
           price={total.toFixed(2)}
           title={"comprar"}
-          callback={() => {submitPurchases();}}
+          callback={submitPurchases}
         />
       )}
     </CartContainer>
