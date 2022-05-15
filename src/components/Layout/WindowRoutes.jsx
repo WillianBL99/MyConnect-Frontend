@@ -1,6 +1,6 @@
 import { getContext } from "../../hooks/UserContext";
-import Store from '../Layout/products/Store';
 import Cart from "./Cart";
+import Historic from "./historic/Historic";
 import InfoProduct from "./products/InfoProduct";
 
 function WindowRoutes(){
@@ -8,7 +8,7 @@ function WindowRoutes(){
 
   const windows = {
     cart: <Cart />, //Cart
-    historic: <Store />, //Historic
+    historic: <Historic />, //Historic
     info_product: <InfoProduct />
   }
 
