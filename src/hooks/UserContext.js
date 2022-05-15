@@ -6,11 +6,13 @@ const context = react.createContext();
 
 export function Provider(props) {
     const [user, setUser] = react.useState(persistUser);
-    const [states, setStates] = react.useState({menuOpen: false})
+    const [states, setStates] = react.useState({menuOpen: false});
+    const [category, setCategory] = useState('Todos');
     const [windowsState, setWindowsState] = useState({
       windowOpen: false,
       window: 'cart'
     });
+    
     const [productClicked, setProductClicked] = useState('')
 	  const url = 'http://192.168.1.6:5000';
     
@@ -21,6 +23,7 @@ export function Provider(props) {
         states, setStates, 
         windowsState, setWindowsState, 
         productClicked, setProductClicked,
+        category, setCategory,
         url 
       }}
 

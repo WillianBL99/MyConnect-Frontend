@@ -3,20 +3,20 @@ import Category from "./Category";
 import img from '../../../assets/img/img.jpg';
 import Product from './Product';
 import { getContext } from '../../../hooks/UserContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
 import Header from '../Header';
+import filterCategories from '../../../utils/filterCategories';
 
 function Store() {
-  const {user, url} = getContext();
-  const [products, setProducts] = useState();
+  const {user, url, category: cat} = getContext();
+  const [products, setProducts] = useState(null);
   const categories = [];
 
-  function filterCategories(res){
-    return res.filter(({category}) => {
-      if(!categories.includes(category.title)){
-        categories.push(category.title);
+  function getCategories(res){
+    return res.filter(({ category }) => {
+      if(!categories.includes( category.title )){
+        categories.push( category.title );
         return true;
       }
       return false;
@@ -25,27 +25,32 @@ function Store() {
 
   function assembleCategories(){
     return (
-      <div className="categories">{
-        typeof(products) === 'object'
-          ?filterCategories(products).map(product => {
-            const {title, ion_icon} = product.category;
-            return <Category key={title} describe={title} ion_icon={ion_icon} />
-          })
-          :<></>
-      }</div>
+      <div className="categories">
+        <Category describe='Todos' ion_icon='cube-outline' />        
+        {
+          verifyObject(products) ? getCategories(products).map(product => {
+              const {title, ion_icon} = product.category;
+              return <Category key={title} describe={title} ion_icon={ion_icon} />
+          }) : <></>
+        }
+      </div>
     );
   }
 
   function assembleProducts(){
     return (
-      <div className="products">{
-        typeof(products) === 'object'
-          ?products.map(product => {
-            return <Product key={product._id} props={{...product}} />
-          })
-          :<></>
-      }<div className='sp'></div></div>
+      <div className="products">
+        {
+          verifyObject(products) ? filterCategories(products, cat).map(product => 
+          <Product key={product._id} props={{...product}} />) : <></>
+        }
+        <div className='sp'></div>
+      </div>
     );
+  }
+
+  function verifyObject(obj){
+    return typeof(products) === 'object' && products !== null;
   }
 
   useEffect(() => {
@@ -54,7 +59,7 @@ function Store() {
       setProducts(res.data);
     });
     promise.catch(e => console.error(e));
-  }, [url, user.config])
+  }, [user, url])
 
   return (
     <ContainerStore>
