@@ -5,14 +5,36 @@ import Header from '../Header';
 import Price from './Price';
 import Footer from '../Footer';
 import InputNumber from '../InputNumber';
+import axios from 'axios';
 
 function InfoProduct() {
-  const {title, img, describe, price} = getContext().productClicked;
+  const {user, url} = getContext();
+  const {_id, title, img, describe, price} = getContext().productClicked;
   const [value, setValue] = useState(1);
+
+  function addToCart(){
+    const {email} = user;
+    const body = {
+      email,
+      _id,
+      img,
+      title,
+      describe,
+      qtd:value,
+      price: value * price
+    };
+    const promise = axios.post(`${url}/cart`, body ,user.config);
+    promise.then(() => console.log('deubom'))
+    promise.catch((e) => console.log('ruim',e))
+  }
+
+  function confirmBuy(){
+    alert('Deseja confirmar compra?')
+  }
   
   return (
     <ContainerInfoProduct>
-      <Header title={title} />
+      <Header title={title} ion_icon={'cart-outline'} callback={addToCart} />
       <figure>
         <img src={img} alt="" />
       </figure>
@@ -24,7 +46,7 @@ function InfoProduct() {
           </InputNumber>
           <Price price={price} size='2.5rem' />
         </div>
-        <Footer title={'Comprar'} price={price * value} callback={() => console.log('oi')} />
+        <Footer title={'Comprar'} price={price * value} callback={confirmBuy} />
       </section>
     </ContainerInfoProduct>
   );

@@ -36,9 +36,9 @@ function UserInfo({name, email}){
 }
 
 function OptionMenu({rote, title, ion_icon}) {
-  const {windowsState, setWindowsState} = getContext();
+  const {setStates, windowsState, setWindowsState} = getContext();
   return (
-    <Option onClick={() => setWindow(windowsState, setWindowsState, rote)}>
+    <Option onClick={() => setWindow(setStates, windowsState, setWindowsState, rote)}>
       <div>
         <ion-icon name={ion_icon}></ion-icon>
       </div>
@@ -114,13 +114,17 @@ const Option = styled.div`
     color: var( --color-hover-inner );
   }
 
+  &  ion-icon {
+    filter: drop-shadow(var(--text-shadow));
+  } 
+
   &>p {
     font-size: var(--font-size-option-menu);
     font-family: var(--font-main);
     font-weight: 600;
     color: var(--color-1);
     
-    text-shadow: var( --shadow );
+    text-shadow: var( --text-shadow );
   }
 
   &:hover p{
@@ -136,9 +140,8 @@ const ContainerUser = styled.article`
   width: 100%;
 
   &>ion-icon {
-    font-size: var(--size-icon);
-    
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-size: var(--size-icon);    
+    filter: drop-shadow(var(--text-shadow));
     color: var(--color-1);
   } 
 

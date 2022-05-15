@@ -24,6 +24,8 @@ export default Search;
 const ContainerSearch = styled.article`
   --display: ${props => props.search?'block':'none'};
   --display-search: ${props => props.visible?'block':'none'};
+  --background-color: ${props => props.visible?'none':'white'};
+  --box-shadow: ${props => props.visible?'none':'var(--shadow)'};
 
   display: flex;
   position: relative;
@@ -32,6 +34,8 @@ const ContainerSearch = styled.article`
   height: 100%;
 
   border-radius: 10px;
+  background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
 
   &>ion-icon {
     --size: 1.5rem;

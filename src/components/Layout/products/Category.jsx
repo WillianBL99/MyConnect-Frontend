@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { getContext } from '../../../hooks/UserContext';
 
 function Category({describe, ion_icon}) {
+  const {setCategory} = getContext();
 
   return (
-    <ContainerCategory>
+    <ContainerCategory onClick={() => setCategory(describe)}>
       <span>
         <ion-icon name={ion_icon}></ion-icon>
       </span>
@@ -38,6 +40,14 @@ const ContainerCategory = styled.article`
     box-shadow: var(--shadow);
     background-color: #fff;
   } 
+
+  &:hover span {
+    box-shadow: var(--shadow-hover);
+  }
+
+  &:hover p {
+    font-weight: var(--font-weight-bold);
+  }
 
   &>span ion-icon {
     font-size: 2rem;

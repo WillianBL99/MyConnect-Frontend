@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
 import Search from './Search';
 
-function Header({title}) {
+function Header({title, ion_icon, callback}) {
   const {states, setStates, windowsState, setWindowsState} = getContext();
   const [search, setSearch] = useState(false);
 
@@ -26,6 +26,9 @@ function Header({title}) {
       <section>
         <h1>{describeHeader}</h1> 
         <Search open={search} setSearch={setSearch} visible={!title} />
+        <span>
+          <ion-icon onClick={callback} name={ion_icon}></ion-icon>
+        </span>
       </section>
     </ContainerHeader>
   );
@@ -65,13 +68,23 @@ const ContainerHeader = styled.header`
   &>section h1 {
     display: var(--display);
     position: absolute;
-
-    padding-right: calc( var(--size-icon) - 0.5rem);
-
+    left: 6px;
+    top: auto;
+    right: 1px;
+    bottom: auto;
     z-index: 2;
+
+    margin-right: 2rem;
+
     font-family: var(--font-family-logo);
     font-size: var(--font-title);
     font-weight: bold;
+
+    //text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
   }
 
   &>ion-icon {
@@ -81,5 +94,33 @@ const ContainerHeader = styled.header`
 
   &>ion-icon:hover {
     color: var(--color-hover-inner )
+  }
+
+  &>section span {
+    --padding: calc(var(--size-header) - 6px);
+    display: ${props => props.contaisTitle?'flex':'none'};
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    z-index: 3;
+    right: 3px;
+    top: 3px;
+    width: var(--padding);
+    height: var(--padding);
+
+    border-radius: 50%;
+    
+    box-shadow: var(--shadow);
+    background-color: var(--color-gray);
+  } 
+
+  &>section span:hover {
+    background-color: var(--color-3);
+  }
+
+  &>section span ion-icon {
+    color: var(--color-1);
+    font-size: 1.2rem;
   }
 `
