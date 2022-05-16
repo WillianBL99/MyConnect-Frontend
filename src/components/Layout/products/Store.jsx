@@ -66,6 +66,7 @@ function Store() {
 
   
   useEffect(() => {
+    console.log(user.config);
     const promise = axios.get(`${url}/products`, user.config);
     promise.then(res => {
       setProducts(res.data);

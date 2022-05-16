@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -10,8 +10,6 @@ import Container from "../Layout/Container";
 import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
-import background from "./../../styled/assets/layout_mobile.png";
-import logoTest from "./../../styled/assets/logo_test.png";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -19,6 +17,14 @@ function Login() {
   const { setUser, url } = getContext();
   const { state } = useLocation();
   const navigate = useNavigate();
+  const errorEmail = useRef();
+  const errorPassword = useRef();
+
+  useEffect(() => {
+    if (state) {
+      setLoginData({ ...state });
+    }
+  }, [state]);
 
   function handleLogin(event) {
     event.preventDefault();
@@ -30,12 +36,26 @@ function Login() {
     });
     promise.catch((error) => {
       console.log(error.response);
-      if(typeof error.response.data === "string"){
-        setErrorFeedback([error.response.data]);
-      }else{
-        setErrorFeedback(error.response.data);
-      }
+      treatingError(error);
     });
+  }
+  function treatingError(error) {
+    let firstError = "";
+    if (typeof error.response.data === "string") {
+      firstError = error.response.data.split(" ")[0];
+      setErrorFeedback([error.response.data]);
+    } else {
+      firstError = error.response.data[0].split(" ")[0];
+      setErrorFeedback(error.response.data);
+    }
+    focusInputError(firstError);
+  }
+  function focusInputError(firstError) {
+    if (firstError.includes("email")) {
+      errorEmail.current.focus();
+    } else {
+      errorPassword.current.focus();
+    }
   }
 
   function storeLogin(res) {
@@ -56,23 +76,18 @@ function Login() {
     setUser(persistUser);
   }
 
-  useEffect(() => {
-    if (state) {
-      setLoginData({ ...state });
-    }
-  }, [state]);
-
   return (
     <ContainerExtended>
-      <AuthContainer style={{ backgroundImage: `url(${background})` }}>
+      <AuthContainer >
         <Logo>
-          <img src={logoTest} alt="logo do site" />
+          <img src={"#"} alt="logo do site" />
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended
             error={errorFeedback.filter((error) => error.includes("email"))}
+            ref={errorEmail}
             type="email"
-            placeholder="E-mail"
+            placeholder="email"
             value={loginData.email}
             onChange={(e) => {
               setLoginData({
@@ -88,8 +103,9 @@ function Login() {
           />
           <InputExtended
             error={errorFeedback.filter((error) => error.includes("password"))}
+            ref={errorPassword}
             type="password"
-            placeholder="Senha"
+            placeholder="senha"
             value={loginData.password}
             onChange={(e) => {
               setLoginData({
@@ -112,19 +128,16 @@ function Login() {
     </ContainerExtended>
   );
 }
-
 export default Login;
 
-
-
 const Logo = styled.div`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   overflow-x: hidden;
-  &>img{
+  & > img {
     height: 120px;
-    max-width:500px;
+    max-width: 500px;
   }
 `;
 
@@ -139,6 +152,7 @@ const ContainerExtended = styled(Container)`
     color: var(--color-text-dark-blue);
   }
 `;
+
 const InputExtended = styled(Input)`
   margin-bottom: 0;
   border: ${(props) =>
