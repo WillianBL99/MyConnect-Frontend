@@ -76,7 +76,7 @@ function Login() {
     <ContainerExtended>
       <AuthContainer >
         <Logo>
-          <img src={"#"} alt="logo" />
+        <h1>MyConect</h1>
         </Logo>
         <Form onSubmit={register}>
           <InputExtended
@@ -164,9 +164,11 @@ function Login() {
 export default Login;
 
 const Logo = styled.h1`
-  & > img {
-    height: 60px;
-    width: 300px;
+  &>h1{
+    margin-bottom: 2rem;
+    font-size: var(--font-size-logo);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-4);
   }
 `;
 
