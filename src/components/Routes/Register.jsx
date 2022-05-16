@@ -10,6 +10,7 @@ import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
 import background from "./../../styled/assets/layout_mobile.png";
+import logoTest from "./../../styled/assets/logo_test.png";
 
 function Login() {
   const [registerData, setRegisterData] = useState({
@@ -51,7 +52,7 @@ function Login() {
   return (
     <ContainerExtended>
       <AuthContainer style={{ backgroundImage: `url(${background})` }}>
-        <Logo>Nome</Logo>
+        <Logo><img src={logoTest} alt="logo" /></Logo>
         <Form onSubmit={register}>
           <InputExtended
             error={errorFeedback.filter((error) => error.includes("name"))}
@@ -133,12 +134,10 @@ function Login() {
 export default Login;
 
 const Logo = styled.h1`
-  margin-bottom: 0.5rem;
-
-  font-family: var(--font-logo);
-  font-size: var(--font-size-logo);
-
-  color: var(--color-text-dark-blue);
+  &>img{
+    height: 60px;
+    width: 300px;
+  }
 `;
 
 const Form = styled.form`

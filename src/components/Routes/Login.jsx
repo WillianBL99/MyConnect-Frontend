@@ -11,6 +11,7 @@ import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
 import background from "./../../styled/assets/layout_mobile.png";
+import logoTest from "./../../styled/assets/logo_test.png";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -65,7 +66,7 @@ function Login() {
     <ContainerExtended>
       <AuthContainer style={{ backgroundImage: `url(${background})` }}>
         <Logo>
-          LogoLegal <br /> Nome{" "}
+          <img src={logoTest} alt="logo do site" />
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended
@@ -117,11 +118,10 @@ export default Login;
 
 
 const Logo = styled.h1`
-  text-align: center;
-  font-family: var(--font-logo);
-  font-size: var(--font-size-logo);
-  margin-bottom: 4rem;
-  color: var(--color-text-dark-blue);
+  &>img{
+    height: 120px;
+    width:500px;
+  }
 `;
 
 const Form = styled.form`
