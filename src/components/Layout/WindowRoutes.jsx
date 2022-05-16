@@ -1,5 +1,5 @@
 import { getContext } from "../../hooks/UserContext";
-import Cart from "./Cart";
+import Cart from "./cart/Cart";
 import Historic from "./historic/Historic";
 import InfoProduct from "./products/InfoProduct";
 
