@@ -209,8 +209,6 @@ const CartContainer = styled.div`
 const ProductContainer = styled.article`
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   background-color: var(--color-white);
-  //background-color: ${(props) => props.color};
-  //border: 3px solid var(--color-border);
   outline: ${(props) =>
     props.border ? "3px solid var(--color-border)" : "none"};
   display: flex;

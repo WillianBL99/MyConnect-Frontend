@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-function FeedbackLabel({ errorFeedback }) {
+function FeedbackLabel({ error,text }) {
   return (
     <DivLabel>
       <Label
         color={
-          errorFeedback === "!"
+          error.length===0
             ? "var(--color-transparent)"
-            : "var(--color-text-error)"
+            : "var(--color-error)"
         }
       >
-        {errorFeedback}
+        {text}
       </Label>
     </DivLabel>
   );
@@ -24,10 +24,9 @@ const Label = styled.label`
 `;
 const DivLabel = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
-  padding-left: 15px;
-  min-height: 45px;
-  margin-bottom: 0.6rem;
+  min-height: 15px;
+  margin-bottom: 0.2rem;
 `;

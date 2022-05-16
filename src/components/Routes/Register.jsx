@@ -19,7 +19,7 @@ function Login() {
     img: "",
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [errorFeedback, setErrorFeedback] = useState("!");
+  const [errorFeedback, setErrorFeedback] = useState([]);
   const navigate = useNavigate();
   const { url } = getContext();
 
@@ -27,7 +27,7 @@ function Login() {
     event.preventDefault();
 
     if (registerData.password !== passwordConfirm) {
-      setErrorFeedback("different passwords");
+      setErrorFeedback(["Different passwords"]);
       return;
     }
 
@@ -35,12 +35,16 @@ function Login() {
 
     promise.then(() => {
       const { email, password } = registerData;
-      navigate('/', {state: {email, password}});
+      navigate("/", { state: { email, password } });
     });
 
     promise.catch((error) => {
-      console.log(error);
-      setErrorFeedback(error.response.data);
+      console.log(error.response);
+      if (typeof error.response.data === "string") {
+        setErrorFeedback([error.response.data]);
+      } else {
+        setErrorFeedback(error.response.data);
+      }
     });
   }
 
@@ -49,41 +53,72 @@ function Login() {
       <AuthContainer style={{ backgroundImage: `url(${background})` }}>
         <Logo>Nome</Logo>
         <Form onSubmit={register}>
-          <FeedbackLabel errorFeedback={errorFeedback} />
-          <Input
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("name"))}
             type="text"
-            placeholder="Name"
+            placeholder="nome"
             onChange={(e) => {
               setRegisterData({ ...registerData, name: e.target.value });
+              setErrorFeedback([]);
             }}
           />
-          <Input
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("name"))}
+            text={registerData.name ? "Nome inválido" : "Campo necessário"}
+          />
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("img"))}
             type="url"
             placeholder="URL da imagem"
             onChange={(e) => {
               setRegisterData({ ...registerData, img: e.target.value });
+              setErrorFeedback([]);
             }}
           />
-          <Input
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("img"))}
+            text={registerData.img ? "Imagem inválida" : "Campo necessário"}
+          />
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("email"))}
             type="email"
             placeholder="E-mail"
             onChange={(e) => {
               setRegisterData({ ...registerData, email: e.target.value });
+              setErrorFeedback([]);
             }}
           />
-          <Input
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("email"))}
+            text={
+              registerData.email ? "email já cadastrado" : "Campo necessário"
+            }
+          />
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("password"))}
             type="password"
             placeholder="Senha"
             onChange={(e) => {
               setRegisterData({ ...registerData, password: e.target.value });
+              setErrorFeedback([]);
             }}
           />
-          <Input
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("password"))}
+            text={registerData.password ? "Senha inválida" : "Campo necessário"}
+          />
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("Different"))}
             type="password"
             placeholder="Confirme a senha"
             onChange={(e) => {
               setPasswordConfirm(e.target.value);
+              setErrorFeedback([]);
             }}
+          />
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("Different"))}
+            text={"repita a senha corretamente"}
           />
           <RetangularButton type="submit" title={"Registrar"} />
         </Form>
@@ -115,4 +150,11 @@ const ContainerExtended = styled(Container)`
     font-weight: 700;
     color: var(--color-text-dark-blue);
   }
+`;
+const InputExtended = styled(Input)`
+  margin-bottom: 0;
+  border: ${(props) =>
+    props.error.length === 0
+      ? "2px solid var(--color-border)"
+      : "2px solid red"};
 `;

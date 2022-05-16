@@ -14,7 +14,7 @@ import background from "./../../styled/assets/layout_mobile.png";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [errorFeedback, setErrorFeedback] = useState("!");
+  const [errorFeedback, setErrorFeedback] = useState([]);
   const { setUser, url } = getContext();
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -28,7 +28,12 @@ function Login() {
       navigate("/store");
     });
     promise.catch((error) => {
-      setErrorFeedback(error.response.data);
+      console.log(error.response);
+      if(typeof error.response.data === "string"){
+        setErrorFeedback([error.response.data]);
+      }else{
+        setErrorFeedback(error.response.data);
+      }
     });
   }
 
@@ -41,7 +46,7 @@ function Login() {
       config: {
         headers: {
           Authorization: `Bearer ${token}`,
-          Email: email
+          Email: email,
         },
       },
     };
@@ -63,8 +68,8 @@ function Login() {
           LogoLegal <br /> Nome{" "}
         </Logo>
         <Form onSubmit={handleLogin}>
-          <FeedbackLabel errorFeedback={errorFeedback} />
-          <Input
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("email"))}
             type="email"
             placeholder="E-mail"
             value={loginData.email}
@@ -73,9 +78,15 @@ function Login() {
                 ...loginData,
                 email: e.target.value,
               });
+              setErrorFeedback([]);
             }}
           />
-          <Input
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("email"))}
+            text={loginData.email ? "Email não cadastrado" : "Campo necessário"}
+          />
+          <InputExtended
+            error={errorFeedback.filter((error) => error.includes("password"))}
             type="password"
             placeholder="Senha"
             value={loginData.password}
@@ -84,7 +95,12 @@ function Login() {
                 ...loginData,
                 password: e.target.value,
               });
+              setErrorFeedback([]);
             }}
+          />
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("password"))}
+            text={loginData.email ? "Senha inválida" : "Campo necessário"}
           />
           <RetangularButton type="submit" title={"Entrar"} />
         </Form>
@@ -98,12 +114,13 @@ function Login() {
 
 export default Login;
 
-const Logo = styled.h1`
 
+
+const Logo = styled.h1`
   text-align: center;
   font-family: var(--font-logo);
   font-size: var(--font-size-logo);
-
+  margin-bottom: 4rem;
   color: var(--color-text-dark-blue);
 `;
 
@@ -117,4 +134,11 @@ const ContainerExtended = styled(Container)`
     font-weight: 700;
     color: var(--color-text-dark-blue);
   }
+`;
+const InputExtended = styled(Input)`
+  margin-bottom: 0;
+  border: ${(props) =>
+    props.error.length === 0
+      ? "2px solid var(--color-border)"
+      : "2px solid red"};
 `;
