@@ -82,6 +82,7 @@ function Login() {
               setErrorFeedback([]);
             }}
           />
+          <input type="file" name="" id="" width={'200px'} height={'30px'} onChange={e => console.log(e)} />
           <FeedbackLabel
             error={errorFeedback.filter((error) => error.includes("email"))}
             text={loginData.email ? "Email não cadastrado" : "Campo necessário"}
