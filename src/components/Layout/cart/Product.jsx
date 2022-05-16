@@ -2,9 +2,9 @@ import Price from '../products/Price';
 import styled from 'styled-components';
 
 function Product(props) {
-  const { img, title, id, selectingProduct, selected, value } = props;
+  const { img, title, id, selectingProduct, value } = props;
   return (
-    <ProductContainer onClick={() => selectingProduct(id)} border={selected === id} selected={selected} >
+    <ProductContainer onClick={() => selectingProduct(id)}>
       <img src={img} alt="" />
       <div className="info">
         <p>{title}</p>
@@ -20,12 +20,10 @@ const ProductContainer = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
   height: 100%;
   padding: 0.5rem;
   padding-right: 1rem;
-
   overflow: hidden;
   
   border-radius: 8px;

@@ -117,10 +117,14 @@ export default Login;
 
 
 
-const Logo = styled.h1`
+const Logo = styled.div`
+display: flex;
+justify-content: center;
+  width: 100%;
+  overflow-x: hidden;
   &>img{
     height: 120px;
-    width:500px;
+    max-width:500px;
   }
 `;
 
