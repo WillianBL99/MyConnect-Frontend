@@ -19,7 +19,7 @@ function SideBar() {
           <OptionMenu rote='cart' title='Carrinho' ion_icon='cart' />
           <OptionMenu rote='historic' title='Histórico' ion_icon='time' />
         </section>
-        <OptionMenu title='Sair' ion_icon='log-out' />
+        <OptionMenu rote='log-out' title='Sair' ion_icon='log-out' />
       </ul>
     </Menu>
   )

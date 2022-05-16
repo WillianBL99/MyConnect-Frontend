@@ -2,12 +2,28 @@ import { getContext } from '../../../hooks/UserContext';
 
 import styled from 'styled-components';
 import setWindow from '../../../utils/setCurrentWindow';
+import { useNavigate } from 'react-router-dom';
 
 function OptionMenu({rote, title, ion_icon}) {
   const {setStates, windowsState, setWindowsState} = getContext();
+  const navigate = useNavigate();
+
+  function handleOnClick(){
+    if(rote === 'log-out'){
+      const msg = `Tem certeza que deseja sair?`;
+
+      if(window.confirm(msg)) {
+        localStorage.clear();
+        navigate('/');
+      }
+
+    } else {
+      setWindow(setStates, windowsState, setWindowsState, rote)
+    }
+  }
   
   return (
-    <ContainerOptionMenu onClick={() => setWindow(setStates, windowsState, setWindowsState, rote)}>
+    <ContainerOptionMenu onClick={handleOnClick}>
       <div>
         <ion-icon name={ion_icon}></ion-icon>
       </div>
