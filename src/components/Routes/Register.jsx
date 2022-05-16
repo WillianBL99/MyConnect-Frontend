@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { getContext } from "../../hooks/UserContext";
@@ -23,6 +23,11 @@ function Login() {
   const [errorFeedback, setErrorFeedback] = useState([]);
   const navigate = useNavigate();
   const { url } = getContext();
+  const errorEmail = useRef();
+  const errorPassword = useRef();
+  const errorName = useRef();
+  const errorImg = useRef();
+  const errorConfirm = useRef();
 
   function register(event) {
     event.preventDefault();
@@ -41,34 +46,44 @@ function Login() {
 
     promise.catch((error) => {
       console.log(error.response);
-      if (typeof error.response.data === "string") {
-        setErrorFeedback([error.response.data]);
-      } else {
-        setErrorFeedback(error.response.data);
-      }
+      treatingError(error);
     });
+  }
+  function treatingError(error) {
+    let firstError = "";
+    if (typeof error.response.data === "string") {
+      firstError = error.response.data.split(" ")[0];
+      setErrorFeedback([error.response.data]);
+    } else {
+      firstError = error.response.data[0].split(" ")[0];
+      setErrorFeedback(error.response.data);
+    }
+    focusInputError(firstError);
+  }
+  function focusInputError(firstError) {
+    if (firstError.includes("img")) {
+      errorImg.current.focus();
+    } else if(firstError.includes("name")) {
+      errorName.current.focus();
+    }else if(firstError.includes("email")) {
+      errorEmail.current.focus();
+    }else if(firstError.includes("password")) {
+      errorPassword.current.focus();
+    }else{
+      errorConfirm.current.focus();
+    }
   }
 
   return (
     <ContainerExtended>
       <AuthContainer style={{ backgroundImage: `url(${background})` }}>
-        <Logo><img src={logoTest} alt="logo" /></Logo>
+        <Logo>
+          <img src={logoTest} alt="logo" />
+        </Logo>
         <Form onSubmit={register}>
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("name"))}
-            type="text"
-            placeholder="nome"
-            onChange={(e) => {
-              setRegisterData({ ...registerData, name: e.target.value });
-              setErrorFeedback([]);
-            }}
-          />
-          <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("name"))}
-            text={registerData.name ? "Nome inválido" : "Campo necessário"}
-          />
-          <InputExtended
             error={errorFeedback.filter((error) => error.includes("img"))}
+            ref={errorImg}
             type="url"
             placeholder="URL da imagem"
             onChange={(e) => {
@@ -81,7 +96,22 @@ function Login() {
             text={registerData.img ? "Imagem inválida" : "Campo necessário"}
           />
           <InputExtended
+            error={errorFeedback.filter((error) => error.includes("name"))}
+            ref={errorName}
+            type="text"
+            placeholder="nome"
+            onChange={(e) => {
+              setRegisterData({ ...registerData, name: e.target.value });
+              setErrorFeedback([]);
+            }}
+          />
+          <FeedbackLabel
+            error={errorFeedback.filter((error) => error.includes("name"))}
+            text={registerData.name ? "Nome inválido" : "Campo necessário"}
+          />
+          <InputExtended
             error={errorFeedback.filter((error) => error.includes("email"))}
+            ref={errorEmail}
             type="email"
             placeholder="E-mail"
             onChange={(e) => {
@@ -97,6 +127,7 @@ function Login() {
           />
           <InputExtended
             error={errorFeedback.filter((error) => error.includes("password"))}
+            ref={errorPassword}
             type="password"
             placeholder="Senha"
             onChange={(e) => {
@@ -110,6 +141,7 @@ function Login() {
           />
           <InputExtended
             error={errorFeedback.filter((error) => error.includes("Different"))}
+            ref={errorConfirm}
             type="password"
             placeholder="Confirme a senha"
             onChange={(e) => {
@@ -134,7 +166,7 @@ function Login() {
 export default Login;
 
 const Logo = styled.h1`
-  &>img{
+  & > img {
     height: 60px;
     width: 300px;
   }
