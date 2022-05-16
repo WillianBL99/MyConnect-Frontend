@@ -9,8 +9,6 @@ import Container from "../Layout/Container";
 import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
-import background from "./../../styled/assets/layout_mobile.png";
-import logoTest from "./../../styled/assets/logo_test.png";
 
 function Login() {
   const [registerData, setRegisterData] = useState({
@@ -76,9 +74,9 @@ function Login() {
 
   return (
     <ContainerExtended>
-      <AuthContainer style={{ backgroundImage: `url(${background})` }}>
+      <AuthContainer >
         <Logo>
-          <img src={logoTest} alt="logo" />
+          <img src={"#"} alt="logo" />
         </Logo>
         <Form onSubmit={register}>
           <InputExtended

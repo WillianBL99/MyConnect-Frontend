@@ -1,0 +1,5 @@
+@media (max-width: 600px) {
+  * {
+    --image:url("../../assets/img/layoutMobile.png");
+  }
+}

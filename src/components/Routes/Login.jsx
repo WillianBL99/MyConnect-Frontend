@@ -10,8 +10,6 @@ import Container from "../Layout/Container";
 import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
-import background from "./../../styled/assets/layout_mobile.png";
-import logoTest from "./../../styled/assets/logo_test.png";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -80,9 +78,9 @@ function Login() {
 
   return (
     <ContainerExtended>
-      <AuthContainer style={{ backgroundImage: `url(${background})` }}>
+      <AuthContainer >
         <Logo>
-          <img src={logoTest} alt="logo do site" />
+          <img src={"#"} alt="logo do site" />
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended
