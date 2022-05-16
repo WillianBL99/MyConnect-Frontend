@@ -50,6 +50,8 @@ const ContainerPurshaseHistory = styled.div`
     time,
     p {
       font-size: 1.1rem;
+      color: #656565;
+      font-weight: 600;
     }
 
     div {
@@ -57,7 +59,8 @@ const ContainerPurshaseHistory = styled.div`
     }
 
     div>ion-icon {
-      margin-right: 0.3rem;
+      color: #000;
+      margin-right: 0.2rem;
     }
 
     div.date {
