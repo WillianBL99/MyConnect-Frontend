@@ -10,6 +10,7 @@ import Container from "../Layout/Container";
 import RetangularButton from "../Layout/RetangularButton";
 import FeedbackLabel from "../Layout/Label";
 import AuthContainer from "../Layout/AuthContainer";
+import logo from "./../../assets/img/logo.png"
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -80,7 +81,8 @@ function Login() {
     <ContainerExtended>
       <AuthContainer >
         <Logo>
-          <img src={"#"} alt="logo do site" />
+          <img src={logo} alt="logo do site" />
+          <h1>MyConect</h1>
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended
@@ -132,12 +134,20 @@ export default Login;
 
 const Logo = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
   overflow-x: hidden;
   & > img {
     height: 120px;
     max-width: 500px;
+  }
+  &>h1{
+    margin-bottom: 2rem;
+    font-size: var(--font-size-logo);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-4);
   }
 `;
 
