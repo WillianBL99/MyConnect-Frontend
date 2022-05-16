@@ -102,31 +102,39 @@ function Cart() {
   }
 
   //monta os produtos na tela
-  function assembleProducts(){
+  function assembleProducts() {
     return (
       <section>
-      {products.map((product, index) => {
-        const { img, price, title, _id } = product;
-        let { qtd } = product; // FIX: resover problema de passagem por referencia
-        return (
-          <InputNumber key={index} showNumber={true} maxValue={10} value={qtd} 
-            width="100%"
-            height="7.5rem"
-            setValue={(v) => {
-              const newValue = productValue;
-              newValue.splice(index, 1, v * price);
-              setProductValue([...newValue]);
-            }}
-          >
-            <Product img={img} title={title} selectingProduct={selectingProduct} 
-              value={price}
-              id={_id}
-            />
-          </InputNumber>
-        );
-      })}
+        {products.map((product, index) => {
+          const { img, price, title, _id } = product;
+          let { qtd } = product; // FIX: resover problema de passagem por referencia
+          return (
+            <ProductDiv key={_id} border={selected === _id}>
+              <InputNumber
+                showNumber={true}
+                maxValue={10}
+                value={qtd}
+                width="100%"
+                height="7.5rem"
+                setValue={(v) => {
+                  const newValue = productValue;
+                  newValue.splice(index, 1, v * price);
+                  setProductValue([...newValue]);
+                }}
+              >
+                <Product
+                  img={img}
+                  title={title}
+                  selectingProduct={selectingProduct}
+                  value={price}
+                  id={_id}
+                />
+              </InputNumber>
+            </ProductDiv>
+          );
+        })}
       </section>
-    )
+    );
   }
 
   const message = (
@@ -140,16 +148,22 @@ function Cart() {
   );
 
   return (
-    <CartContainer  >
-      <Header title={"meu carrionho"} callback={deleteProduct} ion_icon="trash-outline" />
-      {products.length === 0 
-        ? message 
-        : assembleProducts()
-      }
-      {products.length === 0 
-        ? (<></>) 
-        : (<Footer price={total.toFixed(2)} title={"comprar"} callback={submitPurchases} />)
-      }
+    <CartContainer>
+      <Header
+        title={"meu carrionho"}
+        callback={deleteProduct}
+        ion_icon="trash-outline"
+      />
+      {products.length === 0 ? message : assembleProducts()}
+      {products.length === 0 ? (
+        <></>
+      ) : (
+        <Footer
+          price={total.toFixed(2)}
+          title={"comprar"}
+          callback={submitPurchases}
+        />
+      )}
     </CartContainer>
   );
 }
@@ -161,10 +175,10 @@ const CartContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  
+
   width: 100%;
   height: 100%;
-  
+
   border-radius: 15px;
   background-color: white;
 
@@ -186,14 +200,6 @@ const CartContainer = styled.div`
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
     background-color: var(--color-1);
 
-    &>div {
-      outline: ${(props) =>
-        props.border ? "3px solid var(--color-border)" : "none"
-      };
-      margin-bottom: 1rem;
-      box-shadow: var(--shadow);
-    }
-
     .no-cart {
       color: var(--color-3);
       font-weight: var(--font-weight-bold);
@@ -202,4 +208,12 @@ const CartContainer = styled.div`
       text-align: center;
     }
   }
+`;
+const ProductDiv = styled.div`
+  width: 100%;
+  border-radius: 15px;
+  outline: ${(props) =>
+    props.border ? "3px solid var(--color-border)" : "none"};
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
 `;
