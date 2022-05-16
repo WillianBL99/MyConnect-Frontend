@@ -82,7 +82,7 @@ function Login() {
       <AuthContainer >
         <Logo>
           <img src={logo} alt="logo do site" />
-          <h1>MyConect</h1>
+          <h1>MyConnect</h1>
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended

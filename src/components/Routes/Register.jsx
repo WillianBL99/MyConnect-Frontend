@@ -76,7 +76,7 @@ function Login() {
     <ContainerExtended>
       <AuthContainer >
         <Logo>
-        <h1>MyConect</h1>
+        <h1>MyConnect</h1>
         </Logo>
         <Form onSubmit={register}>
           <InputExtended
