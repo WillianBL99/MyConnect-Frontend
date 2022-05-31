@@ -8,6 +8,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import Product from "./Product";
 import InputNumber from "../InputNumber";
+import MessageInformation from "../MessageInformation";
 
 function Cart() {
   const { user, url, windowsState } = getContext();
@@ -137,20 +138,15 @@ function Cart() {
     );
   }
 
-  const message = (
-    <section>
-      <h1 className="no-cart">
-        Você não tem nenhum produto no carrinho.
-        <br />
-        Vá até a loja e faça já o seu pedido !!!
-      </h1>
-    </section>
-  );
+  const message = <MessageInformation
+    title="Seu carrinho está vazio."
+    subTitle="Vá até a loja e adicione produtos ao seu carrinho!"
+  />
 
   return (
     <CartContainer>
       <Header
-        title={"meu carrionho"}
+        title={"meu carrinho"}
         callback={deleteProduct}
         ion_icon="trash-outline"
       />

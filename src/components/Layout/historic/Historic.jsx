@@ -4,6 +4,7 @@ import { getContext } from '../../../hooks/UserContext';
 import PurshaseHistory from './PurchaseStory';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import MessageInformation from '../MessageInformation';
 
 function Historic() {
   const {user, url} = getContext();
@@ -16,25 +17,25 @@ function Historic() {
       ); 
     } 
     
-    return (
-      <div className="null">
-        <p>Histórico vasio</p>
-      </div>
-    );
+    return <MessageInformation 
+      title={'Histórico vasio.'} 
+      subTitle={'Vá até a loja e realize um compra!'}
+    />;
   }
+  
 
   useEffect(() => {
     axios.get(`${url}/historic`, user.config)
       .then((res) => {
         setPushase(res.data.reverse());
       })
-      .catch(e => console.error('deu ruim', e));
+      .catch(e => console.error(e));
 
   }, [user, url]);
 
   return (
     <ContainerHistoric>
-      <Header title={'Meu carrinho'} ion_icon={'trash-outline'} icon_visible={false} />
+      <Header title={'Meu histórico'} ion_icon={'trash-outline'} icon_visible={false} />
       <section>
         {assemblePurshase()}
       </section>
