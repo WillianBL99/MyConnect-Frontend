@@ -62,7 +62,8 @@ function Cart() {
       setSelected("");
       getProducts();
     });
-    promisse.catch((e) => console.error(e));
+
+    promisse.catch((e) => console.error(e.response.data));
   }
   //selecionando produto com click
   function selectingProduct(id) {

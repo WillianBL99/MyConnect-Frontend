@@ -44,7 +44,7 @@ function InfoProduct() {
 
     axios.post(`${url}/historic`, body ,user.config)
       .then(() => backStore())
-      .catch((e) => alert(e));
+      .catch((e) => alert(e.response.data));
   }
 
 
