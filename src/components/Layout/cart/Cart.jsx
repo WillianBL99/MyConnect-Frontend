@@ -90,7 +90,7 @@ function Cart() {
       products: titlesPurchase,
     };
     const confirm = window.confirm(
-      `Sua compra ficou: R$${totalPurchase}!!! Deseja continuar ?`
+      `Deseja efetuar a compra?\nValor: R$${totalPurchase}`
     );
     if (confirm) {
       const promisse = axios.post(`${url}/historic`, purchase, user.config);
@@ -99,7 +99,7 @@ function Cart() {
         setSelected("");
         deleteProduct();
       });
-      promisse.catch((e) => console.error(e));
+      promisse.catch((e) => console.error(e.response.data));
     }
   }
 

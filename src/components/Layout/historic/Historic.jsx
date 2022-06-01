@@ -29,7 +29,7 @@ function Historic() {
       .then((res) => {
         setPushase(res.data.reverse());
       })
-      .catch(e => console.error(e));
+      .catch(e => console.error(e.response.data));
 
   }, [user, url]);
 
