@@ -30,7 +30,7 @@ const ContainerFooter = styled.footer`
   height: 4.3rem;
   padding: 1rem;
 
-  border-radius: 15px;
+  border-radius: var(--radius-min);
   background-color: var(--color-white);
 
   &>.valueFooter {
@@ -54,7 +54,7 @@ const ContainerFooter = styled.footer`
     height: 100%;
     padding-inline: 1rem;
     font-size: var(--font-size-option-menu);
-    border-radius: var(--radio-min);
+    border-radius: var(--radius-min);
 
     color: var(--color-3);
     background-color: var(--color-1);

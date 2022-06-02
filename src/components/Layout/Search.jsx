@@ -38,18 +38,22 @@ const ContainerSearch = styled.article`
   width: 100%;
   height: 100%;
 
-  border-radius: 10px;
+  border-radius: var(--radius-main);
   background-color: var(--background-color);
   box-shadow: var(--box-shadow);
 
   &>ion-icon {
     --size: 1.5rem;
+
     display: var(--display-search);
-    font-size: 1.5rem;
-    z-index: 3;
+    
     position: absolute;
-    right: 5px;
+    z-index: 3;
     top: calc(calc(var(--size-header)/2) - calc(var(--size)/2));
+    right: 5px;
+
+    font-size: 1.5rem; 
+    color: var(--color-4);
   }
 
   &>input {
@@ -60,6 +64,6 @@ const ContainerSearch = styled.article`
     left: 0;
     right: 0;
 
-    border-radius: 10px;
+    border-radius: var(--radius-main);
   }
 `

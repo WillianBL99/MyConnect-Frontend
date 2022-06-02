@@ -28,5 +28,6 @@ const ContainerMain = styled.section`
   
   background: var(--color-1);
   box-shadow: 4px 0px 8px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 25px 0px 0px 25px;
+  border-top-left-radius: var(--radius-main);
+  border-bottom-left-radius: var(--radius-main);
 `;

@@ -41,12 +41,12 @@ const ContainerInputNumber = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  background-color: white;
+  background-color: var(--color-white);
 
   width: ${props => props.width};
   height: ${props => props.height};
 
-  border-radius: var(--radio-min);
+  border-radius: var(--radius-min);
 
   &>div.options {
     display: flex;
@@ -56,7 +56,7 @@ const ContainerInputNumber = styled.div`
 
     height: 100%;
 
-    border-radius: var(--radio-min);
+    border-radius: var(--radius-min);
     background-color: var(--color-gray);
 
     ion-icon {

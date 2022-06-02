@@ -25,8 +25,9 @@ const ProductContainer = styled.article`
   padding: 0.5rem;
   padding-right: 1rem;
   overflow: hidden;
+
+  border-radius: var(--radius-min);
   
-  border-radius: 8px;
   background-color: var(--color-white);
 
   &>img {
@@ -38,7 +39,7 @@ const ProductContainer = styled.article`
     min-width: 8rem;
     height: 100%;
     margin-right: 5px;
-    border-radius: var(--radio-min);
+    border-radius: var(--radius-min);
   }
 
   &>div.info {

@@ -40,7 +40,7 @@ const ContainerProduct = styled.article`
 
   cursor: pointer;
 
-  border-radius: var(--radio-min);
+  border-radius: var(--radius-min);
   box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.3);
   background-color: var(--color-1);
 
@@ -53,7 +53,7 @@ const ContainerProduct = styled.article`
     min-height:  50%;
 
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-    border-radius: var(--radio-min);  
+    border-radius: var(--radius-min);  
   }
 
   &>figure img {
@@ -64,7 +64,7 @@ const ContainerProduct = styled.article`
     object-position: center;
     background-repeat: no-repeat;
 
-    border-radius: var(--radio-min);    
+    border-radius: var(--radius-min);    
   }
 
   &>section {

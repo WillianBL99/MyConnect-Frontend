@@ -63,7 +63,7 @@ const ContainerHeader = styled.header`
 
     margin-left: var(--padding-screen-main);
 
-    border-radius: 10px;
+    border-radius: var(--radius-min);
   }
 
   &>section h1 {

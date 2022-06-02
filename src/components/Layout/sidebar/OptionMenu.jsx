@@ -43,7 +43,7 @@ const ContainerOptionMenu = styled.div`
   margin-block: calc(var(--size-icon) * 0.15);
   padding-block: 5px;
 
-  border-radius: 10px;
+  border-radius: var(--radius-min);
 
   &:hover {
     background-color: var( --color-1 );

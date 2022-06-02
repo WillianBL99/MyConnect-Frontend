@@ -1,32 +1,36 @@
 * {
 	--font-logo: 'Contrail One', cursive;
 	--font-main: 'Rajdhani', sans-serif;
-
-	--color-button: #a43acb;
-	--color-main: #e9dfe0;
-	--color-white: #fff;
-	--color-transparent: transparent;
-	--color-shadow: rgb(0,0,0,0.2);
-
-	--color-1:#e9dfe0;
-	--color-2:#a43acb;
+	
+	/* --color-1:#e9dfe0;
+	--color-4:#0e0a18; 
 	--color-3:#4a15f7;
-	--color-4:#0e0a18;
+	--color-2:#a43acb; */
+	--color-white: #fff;
 
+
+	--color-1: #f5f5f5;
+	--color-2: #4b566b;
+	--color-4: #232836;
+	--color-3: #ed5d5f; /* main color */
+	--color-white: #c0c0c0; /* base color */
+	
 	--color-gray: #a2a2a2;
-	--color-text-dark-blue: #0e0a18;
+	--color-transparent: transparent;	
 
   --color-price: var(--color-3);
-
-  --color-border:rgb(74,21,247,0.6);
-
-	--color-error: red;
-	
-  --color-hover-inner: var(--color-3);
 	--color-hover: var(--color-1);
+  --color-border:var(--color-3);
+	--color-button: var(--color-2);
+  --color-hover-inner: var(--color-3);
+
+	--color-text-dark-blue: #0e0a18;
+	--color-error: red;
+		
 
 	--font-size-button: 1.4rem;
-	--font-size-input:1.1rem;
+	--font-size-input:1.4rem;
+
 	--font-size-label:0.9rem;
 	--font-size-logo: 2.5rem;
 	--font-size-header: 1.6rem;
@@ -35,11 +39,16 @@
 	--font-size-main: 1rem;
 	--font-size-price: 1.7rem;
 
-	--font-weight-bold: 600;
+	--font-weight-bold: bold;
+	--font-weight-regular: 600;
 	--font-weight-small: 400;
 
-	--radio-button: 70px;
-	--radio-min: 10px;
+
+	--height-button-login: 3rem;
+	--radius-button-login: 1.5rem;
+
+	--radius-main: 22px;
+	--radius-min: 12px;
 
 	--padding-menu: 15px;
 	--padding-window: 20px;
@@ -49,10 +58,10 @@
 
 	--openingTrack: calc( 8 * var( --font-size-option-menu ) );
 
-	--text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.45);
-	--text-shadow-hover: 0px 2px 4px rgba(0, 0, 0, 0.65);
 	--shadow: 0px 1px 10px -1px rgba(0, 0, 0, 0.45);
+	--text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.45);
 	--shadow-hover: 0px 1px 8px 2px rgba(0, 0, 0, 0.45);
+	--text-shadow-hover: 0px 2px 4px rgba(0, 0, 0, 0.65);
 
 	--image:url("../../assets/img/layoutDesktop.png");
 	box-sizing: border-box;

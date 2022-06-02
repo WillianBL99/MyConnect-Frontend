@@ -35,7 +35,7 @@ const ContainerPurshaseHistory = styled.div`
   padding: 0.3rem;
   margin-bottom: 1rem;
   
-  border-radius: var(--radio-min);
+  border-radius: var(--radius-min);
   background-color: var(--color-white);
   box-shadow: var(--shadow);
 

@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const Input = styled.input`
     width: 100%;
-    height: 2.5rem;
+    height: var(--height-button-login);
 
     padding: 0 15px 0 15px;
     margin-bottom: 0.6rem;
 
-    border-radius: var(--radio-button);
+    border-radius: var(--radius-button-login);
 
     border: 1px solid var(--color-button);
 

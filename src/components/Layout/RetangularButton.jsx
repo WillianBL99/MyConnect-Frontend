@@ -13,9 +13,9 @@ export default RetangularButton;
 
 const Button = styled.button`
     width: 100%;
-    height: 3rem;
+    height: var(--height-button-login);
 
-    border-radius: var(--radio-button);
+    border-radius: var(--radius-button-login);
 
     font-size: var(--font-size-button);
 

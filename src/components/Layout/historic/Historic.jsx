@@ -73,7 +73,7 @@ const ContainerHistoric = styled.section`
 
   overflow-y: auto;
 
-    border-radius: 15px;
+    border-radius: var(--radius-min);
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
     background-color: var(--color-1);
 

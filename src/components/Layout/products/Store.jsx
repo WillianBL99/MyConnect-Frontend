@@ -113,7 +113,7 @@ const ContainerStore = styled.section`
     object-position: center;
     background-repeat: no-repeat;
 
-    border-radius: var(--radio-min);    
+    border-radius: var(--radius-min);    
   }
 
   &>div.categories {
@@ -139,7 +139,7 @@ const ContainerStore = styled.section`
     overflow-y: auto;
 
     background-color: var(--color-white);
-    border-radius: 15px;
+    border-radius: var(--radius-min);
 
     box-shadow: 0px -4px 10px -2px rgba(0, 0, 0, 0.25);
   }

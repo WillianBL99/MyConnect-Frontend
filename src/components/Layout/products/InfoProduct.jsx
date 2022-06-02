@@ -27,7 +27,7 @@ function InfoProduct() {
 
     axios.post(`${url}/cart`, body ,user.config)
       .then(() => backStore())
-      .catch((e) => alert(e));
+      .catch((e) => alert(e.response.data));
   }
 
 
@@ -107,7 +107,7 @@ const ContainerInfoProduct = styled.section`
     object-position: center;
     background-repeat: no-repeat;
     
-    border-radius: var(--radio-min);
+    border-radius: var(--radius-min);
   }
 
   &>section {
@@ -123,7 +123,7 @@ const ContainerInfoProduct = styled.section`
 
     padding: 1rem;
 
-    border-radius: 15px;
+    border-radius: var(--radius-min);
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
     background-color: var(--color-1);
   }
