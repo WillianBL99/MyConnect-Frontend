@@ -1,0 +1,61 @@
+/* {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {}
+}
+ */
+
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": 0,
+    "react/static-property-placement": 0,
+    "react/react-in-jsx-scope": 0,
+    "react-in-jsx-scope": 0,
+    "no-use-before-define": 0,
+    "react/prop-types": 0,
+    "react/button-has-type": 0,
+    "no-plusplus": 1,
+
+    "quotes": [2, "single"],
+    "import/no-unresolved": 0,
+    "comma-dangle": 0,
+    "linebreak-style": 0,
+    "react/state-in-constructor": 0,
+    "no-underscore-dangle": 0,
+    "react/jsx-props-no-spreading": 0,
+    "semi": 1,
+    "comma-dangle:": 0,
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": 0
+  }
+}

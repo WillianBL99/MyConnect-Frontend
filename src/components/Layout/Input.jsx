@@ -15,5 +15,5 @@ const Input = styled.input`
 
     color: var(--color-text-black);
     background-color: var(--color-transparent);
-`
-export default Input
+`;
+export default Input;

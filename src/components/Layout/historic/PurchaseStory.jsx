@@ -1,22 +1,24 @@
 import styled from 'styled-components';
 import Price from '../products/Price';
 
-function PurshaseHistory({buy}) {
-  const {date, qtd, total} = buy;
+function PurshaseHistory({ buy }) {
+  const { date, qtd, total } = buy;
 
   return (
     <ContainerPurshaseHistory>
       <section>
         <div className="date">
-          <ion-icon name="today-outline"></ion-icon>
+          <ion-icon name="today-outline" />
           <time>{date}</time>
         </div>
         <div className="qtd_products">
-          <ion-icon name="bag-handle-outline"></ion-icon>
-          <p>{qtd} produtos</p>
+          <ion-icon name="bag-handle-outline" />
+          <p>
+            {`${qtd} produto(s)`}
+          </p>
         </div>
       </section>
-      <Price price={total.toFixed(2)} size='1.8rem' />
+      <Price price={total.toFixed(2)} size="1.8rem" />
     </ContainerPurshaseHistory>
   );
 }
@@ -36,7 +38,7 @@ const ContainerPurshaseHistory = styled.div`
   margin-bottom: 1rem;
   
   border-radius: var(--radius-min);
-  background-color: var(--color-white);
+  background-color: var(--color-3);
   box-shadow: var(--shadow);
 
   &:hover {
@@ -50,8 +52,8 @@ const ContainerPurshaseHistory = styled.div`
     time,
     p {
       font-size: 1.1rem;
-      color: #656565;
-      font-weight: 600;
+      color: var(--text-color-plain);
+      font-weight: var(--font-weight-small);
     }
 
     div {
@@ -59,7 +61,7 @@ const ContainerPurshaseHistory = styled.div`
     }
 
     div>ion-icon {
-      color: #000;
+      color: var(--text-color-main);
       margin-right: 0.2rem;
     }
 
@@ -68,4 +70,4 @@ const ContainerPurshaseHistory = styled.div`
     }
   }
   
-`
+`;

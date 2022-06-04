@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function RetangularButton({title, to}){
-    const navigate = useNavigate();
+function RetangularButton({ title, to }) {
+  const navigate = useNavigate();
 
-    return (
-        <Button onClick={() => navigate(to?to:'')} >{title}</Button>
-    );
+  return (
+    <Button onClick={() => navigate(to || '')}>{title}</Button>
+  );
 }
 
 export default RetangularButton;
@@ -21,4 +21,4 @@ const Button = styled.button`
 
     background-color: var(--color-button);
     color: var(--color-text-white);
-`
+`;

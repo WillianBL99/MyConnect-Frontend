@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-function UserInfo({img, name, email}){
+function UserInfo({ img, name, email }) {
   return (
     <ContainerUserInfo>
       {img
-        ?<figure><img src={img} alt="Usuário" /></figure> 
-        : <ion-icon name="person-circle"></ion-icon>
-      }
+        ? <figure><img src={img} alt="Usuário" /></figure>
+        : <ion-icon name="person-circle" />}
       <section>
         <h3>{name}</h3>
         <p>{email}</p>
@@ -27,7 +26,7 @@ const ContainerUserInfo = styled.article`
   &>ion-icon {
     font-size: var(--size-icon);    
     filter: drop-shadow(var(--text-shadow));
-    color: var(--color-1);
+    color: var(--color-2);
   } 
 
   &>figure {
@@ -57,14 +56,14 @@ const ContainerUserInfo = styled.article`
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     p {
-      color: var(--color-1);    
+      color: var(--color-3);    
       font-size: 0.9rem;
       font-weight: 600;
       margin-left: 0.13rem;
     }
 
     h3 {
-      color: var(--color-1);    
+      color: var(--color-3);    
       font-size: 1.4rem;
       font-weight: 700;
     }

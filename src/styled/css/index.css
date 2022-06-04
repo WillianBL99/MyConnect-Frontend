@@ -2,30 +2,35 @@
 	--font-logo: 'Contrail One', cursive;
 	--font-main: 'Rajdhani', sans-serif;
 	
-	/* --color-1:#e9dfe0;
-	--color-4:#0e0a18; 
-	--color-3:#4a15f7;
-	--color-2:#a43acb; */
+/* 	--color-1:#d3c4df;
+	--color-2:#7B61FF; 
+	--color-3:#43414e;
+	--color-4:#a43acb;
 	--color-white: #fff;
+	 */
 
 
-	--color-1: #f5f5f5;
+	--color-1: #C4C4C4;
 	--color-2: #4b566b;
-	--color-4: #232836;
-	--color-3: #ed5d5f; /* main color */
-	--color-white: #c0c0c0; /* base color */
-	
+	--color-3: #232836; 
+	--color-4: #ed5d5f; /* main color  */
+	--color-white: #e4e2e2; /*  base color */
+	--color-black: rgb(20, 20, 20);
+
 	--color-gray: #a2a2a2;
 	--color-transparent: transparent;	
 
-  --color-price: var(--color-3);
-	--color-hover: var(--color-1);
+  --color-price: var(--color-4);
+	--color-hover: var(--color-2);
   --color-border:var(--color-3);
 	--color-button: var(--color-2);
   --color-hover-inner: var(--color-3);
 
 	--color-text-dark-blue: #0e0a18;
 	--color-error: red;
+
+	--text-color-main: var(--color-white);
+	--text-color-plain: var(--color-1);
 		
 
 	--font-size-button: 1.4rem;
@@ -41,7 +46,7 @@
 
 	--font-weight-bold: bold;
 	--font-weight-regular: 600;
-	--font-weight-small: 400;
+	--font-weight-small: 500;
 
 
 	--height-button-login: 3rem;
@@ -50,7 +55,7 @@
 	--radius-main: 22px;
 	--radius-min: 12px;
 
-	--padding-menu: 15px;
+	--padding-menu: 8px;
 	--padding-window: 20px;
 
   --size-icon: 2.8rem;
@@ -78,7 +83,7 @@ body {
 	flex-direction: column;
 	
 	font-family: var(--font-family-main);
-	background-color: var(--color-2);
+	background-color: var(--color-1);
 	
 }
 

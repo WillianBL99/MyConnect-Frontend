@@ -1,8 +1,10 @@
-import Price from '../products/Price';
 import styled from 'styled-components';
+import Price from '../products/Price';
 
 function Product(props) {
-  const { img, title, id, selectingProduct, value } = props;
+  const {
+    img, title, id, selectingProduct, value
+  } = props;
   return (
     <ProductContainer onClick={() => selectingProduct(id)}>
       <img src={img} alt="" />
@@ -28,7 +30,7 @@ const ProductContainer = styled.article`
 
   border-radius: var(--radius-min);
   
-  background-color: var(--color-white);
+  background-color: var(--color-3);
 
   &>img {
     object-fit: cover;
@@ -56,7 +58,7 @@ const ProductContainer = styled.article`
       font-weight: var(--font-weight-bold);
       font-size: var(--font-size-input);
       line-height: 17px;
-      color: var(--color-text-dark-blue);
+      color: var(--text-color-plain);
     }
   }
 `;

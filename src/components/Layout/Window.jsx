@@ -3,11 +3,11 @@ import { getContext } from '../../hooks/UserContext';
 import { widthMenu } from '../../styled/css/width_menu';
 import WindowRoutes from './WindowRoutes';
 
-function Window(){
-  const {windowsState}= getContext();
+function Window() {
+  const { windowsState } = getContext();
 
   return (
-    <ContainerWindow windowsState={windowsState.windowOpen} widthMenu={widthMenu} >
+    <ContainerWindow windowsState={windowsState.windowOpen} widthMenu={widthMenu}>
       <WindowRoutes />
     </ContainerWindow>
   );
@@ -16,8 +16,8 @@ function Window(){
 export default Window;
 
 const ContainerWindow = styled.section`
-  --width-window: calc(100vw - ${props => props.widthMenu});
-  --right: ${props => props.windowsState? "0" : "calc(0px - var(--width-window))"}; 
+  --width-window: calc(100vw - ${(props) => props.widthMenu});
+  --right: ${(props) => (props.windowsState ? '0' : 'calc(0px - var(--width-window))')}; 
 
   display: flex;
   flex-direction: column;

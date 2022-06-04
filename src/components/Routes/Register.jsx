@@ -1,23 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import { getContext } from "../../hooks/UserContext";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import { getContext } from '../../hooks/UserContext';
 
-import Input from "../Layout/Input";
-import Container from "../Layout/Container";
-import RetangularButton from "../Layout/RetangularButton";
-import FeedbackLabel from "../Layout/Label";
-import AuthContainer from "../Layout/AuthContainer";
+import Input from '../Layout/Input';
+import Container from '../Layout/Container';
+import RetangularButton from '../Layout/RetangularButton';
+import FeedbackLabel from '../Layout/Label';
+import AuthContainer from '../Layout/AuthContainer';
 
 function Login() {
   const [registerData, setRegisterData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    img: "",
+    name: '',
+    email: '',
+    password: '',
+    img: '',
   });
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorFeedback, setErrorFeedback] = useState([]);
   const navigate = useNavigate();
   const { url } = getContext();
@@ -31,7 +31,7 @@ function Login() {
     event.preventDefault();
 
     if (registerData.password !== passwordConfirm) {
-      setErrorFeedback(["Different passwords"]);
+      setErrorFeedback(['Different passwords']);
       return;
     }
 
@@ -39,7 +39,7 @@ function Login() {
 
     promise.then(() => {
       const { email, password } = registerData;
-      navigate("/", { state: { email, password } });
+      navigate('/', { state: { email, password } });
     });
 
     promise.catch((error) => {
@@ -48,39 +48,39 @@ function Login() {
     });
   }
   function treatingError(error) {
-    let firstError = "";
-    if (typeof error.response.data === "string") {
-      firstError = error.response.data.split(" ")[0];
+    let firstError = '';
+    if (typeof error.response.data === 'string') {
+      firstError = error.response.data.split(' ')[0];
       setErrorFeedback([error.response.data]);
     } else {
-      firstError = error.response.data[0].split(" ")[0];
+      firstError = error.response.data[0].split(' ')[0];
       setErrorFeedback(error.response.data);
     }
     focusInputError(firstError);
   }
   function focusInputError(firstError) {
-    if (firstError.includes("img")) {
+    if (firstError.includes('img')) {
       errorImg.current.focus();
-    } else if(firstError.includes("name")) {
+    } else if (firstError.includes('name')) {
       errorName.current.focus();
-    }else if(firstError.includes("email")) {
+    } else if (firstError.includes('email')) {
       errorEmail.current.focus();
-    }else if(firstError.includes("password")) {
+    } else if (firstError.includes('password')) {
       errorPassword.current.focus();
-    }else{
+    } else {
       errorConfirm.current.focus();
     }
   }
 
   return (
     <ContainerExtended>
-      <AuthContainer >
+      <AuthContainer>
         <Logo>
-        <h1>MyConnect</h1>
+          <h1>MyConnect</h1>
         </Logo>
         <Form onSubmit={register}>
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("img"))}
+            error={errorFeedback.filter((error) => error.includes('img'))}
             ref={errorImg}
             type="url"
             placeholder="URL da imagem"
@@ -90,11 +90,11 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("img"))}
-            text={registerData.img ? "Imagem inválida" : "Campo necessário"}
+            error={errorFeedback.filter((error) => error.includes('img'))}
+            text={registerData.img ? 'Imagem inválida' : 'Campo necessário'}
           />
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("name"))}
+            error={errorFeedback.filter((error) => error.includes('name'))}
             ref={errorName}
             type="text"
             placeholder="nome"
@@ -104,11 +104,11 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("name"))}
-            text={registerData.name ? "Nome inválido" : "Campo necessário"}
+            error={errorFeedback.filter((error) => error.includes('name'))}
+            text={registerData.name ? 'Nome inválido' : 'Campo necessário'}
           />
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("email"))}
+            error={errorFeedback.filter((error) => error.includes('email'))}
             ref={errorEmail}
             type="email"
             placeholder="E-mail"
@@ -118,13 +118,13 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("email"))}
+            error={errorFeedback.filter((error) => error.includes('email'))}
             text={
-              registerData.email ? "email já cadastrado" : "Campo necessário"
+              registerData.email ? 'email já cadastrado' : 'Campo necessário'
             }
           />
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("password"))}
+            error={errorFeedback.filter((error) => error.includes('password'))}
             ref={errorPassword}
             type="password"
             placeholder="Senha"
@@ -134,11 +134,11 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("password"))}
-            text={registerData.password ? "Senha inválida" : "Campo necessário"}
+            error={errorFeedback.filter((error) => error.includes('password'))}
+            text={registerData.password ? 'Senha inválida' : 'Campo necessário'}
           />
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("Different"))}
+            error={errorFeedback.filter((error) => error.includes('Different'))}
             ref={errorConfirm}
             type="password"
             placeholder="Confirme a senha"
@@ -148,12 +148,12 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("Different"))}
-            text={"repita a senha corretamente"}
+            error={errorFeedback.filter((error) => error.includes('Different'))}
+            text="repita a senha corretamente"
           />
-          <RetangularButton type="submit" title={"Registrar"} />
+          <RetangularButton type="submit" title="Registrar" />
         </Form>
-        <Link className="link" to={"/"}>
+        <Link className="link" to="/">
           Já tem uma conta? Entre agora!
         </Link>
       </AuthContainer>
@@ -184,8 +184,7 @@ const ContainerExtended = styled(Container)`
 `;
 const InputExtended = styled(Input)`
   margin-bottom: 0;
-  border: ${(props) =>
-    props.error.length === 0
-      ? "2px solid var(--color-border)"
-      : "2px solid red"};
+  border: ${(props) => (props.error.length === 0
+    ? '2px solid var(--color-border)'
+    : '2px solid red')};
 `;

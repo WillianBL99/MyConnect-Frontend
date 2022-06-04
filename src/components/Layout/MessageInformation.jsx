@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-function MessageInformation({title, subTitle}){
-
+function MessageInformation({ title, subTitle }) {
   return (
     <MessageContainer>
       <h1>
@@ -10,7 +9,7 @@ function MessageInformation({title, subTitle}){
         {subTitle}
       </h1>
     </MessageContainer>
-  )
+  );
 }
 
 export default MessageInformation;
