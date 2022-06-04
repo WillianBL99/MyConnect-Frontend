@@ -53,6 +53,7 @@ function Cart() {
     });
     setTotal(currentValue);
   }
+
   // deletando produto da api
   function deleteProduct() {
     const promisse = axios.delete(`${url}/cart`, {
@@ -184,7 +185,7 @@ const CartContainer = styled.div`
 
   border-top-left-radius: var(--radius-min);
   border-bottom-left-radius: var(--radius-min);
-  
+
   background-color: var(--color-3);
 
   & > section {
