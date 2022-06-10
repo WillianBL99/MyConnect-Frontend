@@ -1,19 +1,19 @@
-import { useEffect, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import styled from "styled-components";
-import persistUser from "../../utils/persistUser";
-import { getContext } from "../../hooks/UserContext";
+import { useEffect, useState, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import styled from 'styled-components';
+import persistUser from '../../utils/persistUser';
+import { getContext } from '../../hooks/UserContext';
 
-import Input from "../Layout/Input";
-import Container from "../Layout/Container";
-import RetangularButton from "../Layout/RetangularButton";
-import FeedbackLabel from "../Layout/Label";
-import AuthContainer from "../Layout/AuthContainer";
-import logo from "./../../assets/img/logo.png"
+import Input from '../Layout/Input';
+import Container from '../Layout/Container';
+import RetangularButton from '../Layout/RetangularButton';
+import FeedbackLabel from '../Layout/Label';
+import AuthContainer from '../Layout/AuthContainer';
+import logo from '../../assets/img/logo.png';
 
 function Login() {
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [errorFeedback, setErrorFeedback] = useState([]);
   const { setUser, url } = getContext();
   const { state } = useLocation();
@@ -33,7 +33,7 @@ function Login() {
 
     promise.then((res) => {
       storeLogin(res.data);
-      navigate("/store");
+      navigate('/store');
     });
     promise.catch((error) => {
       console.log(error.response);
@@ -41,18 +41,18 @@ function Login() {
     });
   }
   function treatingError(error) {
-    let firstError = "";
-    if (typeof error.response.data === "string") {
-      firstError = error.response.data.split(" ")[0];
+    let firstError = '';
+    if (typeof error.response.data === 'string') {
+      firstError = error.response.data.split(' ')[0];
       setErrorFeedback([error.response.data]);
     } else {
-      firstError = error.response.data[0].split(" ")[0];
+      firstError = error.response.data[0].split(' ')[0];
       setErrorFeedback(error.response.data);
     }
     focusInputError(firstError);
   }
   function focusInputError(firstError) {
-    if (firstError.includes("email")) {
+    if (firstError.includes('email')) {
       errorEmail.current.focus();
     } else {
       errorPassword.current.focus();
@@ -60,7 +60,9 @@ function Login() {
   }
 
   function storeLogin(res) {
-    const { token, name, email, img } = res;
+    const {
+      token, name, email, img
+    } = res;
     const userInfo = {
       name,
       email,
@@ -73,20 +75,20 @@ function Login() {
       },
     };
 
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
     setUser(persistUser);
   }
 
   return (
     <ContainerExtended>
-      <AuthContainer >
+      <AuthContainer>
         <Logo>
           <img src={logo} alt="logo do site" />
-          <h1>MyConect</h1>
+          <h1>MyConnect</h1>
         </Logo>
         <Form onSubmit={handleLogin}>
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("email"))}
+            error={errorFeedback.filter((error) => error.includes('email'))}
             ref={errorEmail}
             type="email"
             placeholder="email"
@@ -100,11 +102,11 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("email"))}
-            text={loginData.email ? "Email não cadastrado" : "Campo necessário"}
+            error={errorFeedback.filter((error) => error.includes('email'))}
+            text={loginData.email ? 'Email não cadastrado' : 'Campo necessário'}
           />
           <InputExtended
-            error={errorFeedback.filter((error) => error.includes("password"))}
+            error={errorFeedback.filter((error) => error.includes('password'))}
             ref={errorPassword}
             type="password"
             placeholder="senha"
@@ -118,12 +120,12 @@ function Login() {
             }}
           />
           <FeedbackLabel
-            error={errorFeedback.filter((error) => error.includes("password"))}
-            text={loginData.email ? "Senha inválida" : "Campo necessário"}
+            error={errorFeedback.filter((error) => error.includes('password'))}
+            text={loginData.email ? 'Senha inválida' : 'Campo necessário'}
           />
-          <RetangularButton type="submit" title={"Entrar"} />
+          <RetangularButton type="submit" title="Entrar" />
         </Form>
-        <Link className="link" to={"register"}>
+        <Link className="link" to="register">
           Não tem uma conta? Cadastre-se!
         </Link>
       </AuthContainer>
@@ -165,8 +167,7 @@ const ContainerExtended = styled(Container)`
 
 const InputExtended = styled(Input)`
   margin-bottom: 0;
-  border: ${(props) =>
-    props.error.length === 0
-      ? "2px solid var(--color-border)"
-      : "2px solid red"};
+  border: ${(props) => (props.error.length === 0
+    ? '2px solid var(--color-border)'
+    : '2px solid red')};
 `;

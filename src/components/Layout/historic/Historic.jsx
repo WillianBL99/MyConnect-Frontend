@@ -1,25 +1,25 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Header from '../Header';
 import { getContext } from '../../../hooks/UserContext';
 import PurshaseHistory from './PurchaseStory';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import MessageInformation from '../MessageInformation';
 
 function Historic() {
-  const {user, url} = getContext();
+  const { user, url } = getContext();
   const [purshase, setPushase] = useState(null);
 
-  function assemblePurshase(){
-    if(purshase?.length) {
-      return purshase.map((buy, id) => 
-        <PurshaseHistory key={id} buy={buy} />
-      ); 
-    } 
-    
+  function assemblePurshase() {
+    if (purshase?.length) {
+      return purshase.map((buy) => <PurshaseHistory key={buy.id} buy={buy} />);
+    }
+
     return (
-      <div className="null">
-        <p>Histórico vasio</p>
-      </div>
+      <MessageInformation
+        title="Histórico vasio."
+        subTitle="Vá até a loja e realize um compra!"
+      />
     );
   }
 
@@ -28,13 +28,12 @@ function Historic() {
       .then((res) => {
         setPushase(res.data.reverse());
       })
-      .catch(e => console.error('deu ruim', e));
-
+      .catch((e) => console.error(e.response.data));
   }, [user, url]);
 
   return (
     <ContainerHistoric>
-      <Header title={'Meu carrinho'} ion_icon={'trash-outline'} icon_visible={false} />
+      <Header title="Meu histórico" ion_icon="trash-outline" icon_visible={false} />
       <section>
         {assemblePurshase()}
       </section>
@@ -55,7 +54,7 @@ const ContainerHistoric = styled.section`
 
   overflow: hidden;
 
-  background-color: var(--color-white);
+  background-color: var(--color-3);
 
   &>section {
     display: flex;
@@ -70,11 +69,11 @@ const ContainerHistoric = styled.section`
 
     padding: 1rem;
 
-  overflow-y: auto;
+    overflow-y: auto;
 
-    border-radius: 15px;
+    border-radius: var(--radius-min);
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
-    background-color: var(--color-1);
+    background-color: var(--color-2);
 
     div.null {
       display: flex;
@@ -84,4 +83,4 @@ const ContainerHistoric = styled.section`
       font-size: 1.3rem;
     }
   }
-`
+`;

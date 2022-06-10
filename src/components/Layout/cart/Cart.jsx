@@ -1,20 +1,23 @@
-import { getContext } from "../../../hooks/UserContext";
-import { useEffect, useState } from "react";
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable react/jsx-no-bind */
+import { useEffect, useState } from 'react';
 
-import axios from "axios";
-import styled from "styled-components";
+import axios from 'axios';
+import styled from 'styled-components';
+import { getContext } from '../../../hooks/UserContext';
 
-import Header from "../Header";
-import Footer from "../Footer";
-import Product from "./Product";
-import InputNumber from "../InputNumber";
+import Header from '../Header';
+import Footer from '../Footer';
+import Product from './Product';
+import InputNumber from '../InputNumber';
+import MessageInformation from '../MessageInformation';
 
 function Cart() {
   const { user, url, windowsState } = getContext();
 
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('');
   const [productValue, setProductValue] = useState([]);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ function Cart() {
     getTotal();
   }, [productValue]);
 
-  //buscando os produtos na api
+  // buscando os produtos na api
   function getProducts() {
     const promisse = axios.get(`${url}/cart`, user.config);
     promisse.then((res) => {
@@ -34,15 +37,15 @@ function Cart() {
     });
     promisse.catch((e) => console.error(e));
   }
-  //pagando o valor de cada produto
+  // pagando o valor de cada produto
   function getValues(res) {
-    let values = [];
+    const values = [];
     res.forEach((value) => {
       values.push(value.price * value.qtd);
     });
     setProductValue(values);
   }
-  //pegando o valor total das compras
+  // pegando o valor total das compras
   function getTotal() {
     let currentValue = 0;
     productValue.forEach((value) => {
@@ -50,7 +53,8 @@ function Cart() {
     });
     setTotal(currentValue);
   }
-  //deletando produto da api
+
+  // deletando produto da api
   function deleteProduct() {
     const promisse = axios.delete(`${url}/cart`, {
       data: { selected },
@@ -58,24 +62,25 @@ function Cart() {
     });
     promisse.then((res) => {
       console.log(res.data);
-      setSelected("");
+      setSelected('');
       getProducts();
     });
-    promisse.catch((e) => console.error(e));
+
+    promisse.catch((e) => console.error(e.response.data));
   }
-  //selecionando produto com click
+  // selecionando produto com click
   function selectingProduct(id) {
     if (id === selected) {
-      setSelected("");
+      setSelected('');
     } else {
       setSelected(id);
     }
   }
-  //efetuando as compras
+  // efetuando as compras
   function submitPurchases() {
     let totalPurchase = 0;
     let qtdPurchase = 0;
-    let titlesPurchase = [];
+    const titlesPurchase = [];
     products.forEach((product, index) => {
       qtdPurchase += productValue[index] / product.price;
       titlesPurchase.push(product.title);
@@ -88,30 +93,32 @@ function Cart() {
       products: titlesPurchase,
     };
     const confirm = window.confirm(
-      `Sua compra ficou: R$${totalPurchase}!!! Deseja continuar ?`
+      `Deseja efetuar a compra?\nValor: R$${totalPurchase}`
     );
     if (confirm) {
       const promisse = axios.post(`${url}/historic`, purchase, user.config);
       promisse.then((res) => {
         console.log(res.data);
-        setSelected("");
+        setSelected('');
         deleteProduct();
       });
-      promisse.catch((e) => console.error(e));
+      promisse.catch((e) => console.error(e.response.data));
     }
   }
 
-  //monta os produtos na tela
+  // monta os produtos na tela
   function assembleProducts() {
     return (
       <section>
         {products.map((product, index) => {
-          const { img, price, title, _id } = product;
-          let { qtd } = product; // FIX: resover problema de passagem por referencia
+          const {
+            img, price, title, _id
+          } = product;
+          const { qtd } = product; // FIX: resover problema de passagem por referencia
           return (
             <ProductDiv key={_id} border={selected === _id}>
               <InputNumber
-                showNumber={true}
+                showNumber
                 maxValue={10}
                 value={qtd}
                 width="100%"
@@ -138,19 +145,16 @@ function Cart() {
   }
 
   const message = (
-    <section>
-      <h1 className="no-cart">
-        Você não tem nenhum produto no carrinho.
-        <br />
-        Vá até a loja e faça já o seu pedido !!!
-      </h1>
-    </section>
+    <MessageInformation
+      title="Seu carrinho está vazio."
+      subTitle="Vá até a loja e adicione produtos ao seu carrinho!"
+    />
   );
 
   return (
     <CartContainer>
       <Header
-        title={"meu carrionho"}
+        title="meu carrinho"
         callback={deleteProduct}
         ion_icon="trash-outline"
       />
@@ -160,7 +164,7 @@ function Cart() {
       ) : (
         <Footer
           price={total.toFixed(2)}
-          title={"comprar"}
+          title="comprar"
           callback={submitPurchases}
         />
       )}
@@ -179,8 +183,10 @@ const CartContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  border-radius: 15px;
-  background-color: white;
+  border-top-left-radius: var(--radius-min);
+  border-bottom-left-radius: var(--radius-min);
+
+  background-color: var(--color-3);
 
   & > section {
     margin-top: auto;
@@ -196,24 +202,15 @@ const CartContainer = styled.div`
 
     overflow-y: auto;
 
-    border-radius: 15px;
+    border-radius: var(--radius-min);
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
-    background-color: var(--color-1);
-
-    .no-cart {
-      color: var(--color-3);
-      font-weight: var(--font-weight-bold);
-      font-size: var();
-      font-size: var(--font-size-price);
-      text-align: center;
-    }
+    background-color: var(--color-2);
   }
 `;
 const ProductDiv = styled.div`
   width: 100%;
-  border-radius: 15px;
-  outline: ${(props) =>
-    props.border ? "3px solid var(--color-border)" : "none"};
+  border-radius: var(--radius-min);
+  outline: ${(props) => (props.border ? '3px solid var(--color-border)' : 'none')};
   margin-bottom: 1rem;
   box-shadow: var(--shadow);
 `;

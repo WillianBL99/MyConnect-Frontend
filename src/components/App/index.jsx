@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 import '../../styled/css/reset.css';
-import '../../styled/css/index.css'
+import '../../styled/css/index.css';
 import '../../styled/css/query.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -10,17 +11,17 @@ import Register from '../Routes/Register';
 import MainScreen from '../Routes/MainScreen';
 
 function App() {
-	return (		
-		<Provider>
-			<BrowserRouter>
-				<Routes>
-					<Route path='/store' element={<MainScreen />} />
-					<Route path='/' element={<Login />} />
-					<Route path='register' element={<Register />} />
-				</Routes>
-			</BrowserRouter>
-		</Provider>
-	);
+  return (
+    <Provider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/store" element={<MainScreen />} />
+          <Route path="/" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
-export default App
+export default App;

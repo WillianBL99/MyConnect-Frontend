@@ -1,17 +1,21 @@
+/* eslint-disable react/jsx-no-bind */
+import React from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
-import setWindow from '../../../utils/setCurrentWindow';
 import Price from './Price';
+import setWindow from '../../../utils/setCurrentWindow';
 
-function Product({props}) {
-  const {img, title, price} = props;
-  const {setStates, windowsState, setWindowsState, setProductClicked} = getContext();
-  
-  function handleShowProduct(){
+function Product({ props }) {
+  const { img, title, price } = props;
+  const {
+    setStates, windowsState, setWindowsState, setProductClicked
+  } = getContext();
+
+  function handleShowProduct() {
     setProductClicked(props);
     setWindow(setStates, windowsState, setWindowsState, 'info_product');
   }
-  
+
   return (
     <ContainerProduct onClick={handleShowProduct}>
       <figure>
@@ -40,12 +44,12 @@ const ContainerProduct = styled.article`
 
   cursor: pointer;
 
-  border-radius: var(--radio-min);
-  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.3);
-  background-color: var(--color-1);
+  border-radius: var(--radius-min);
+  box-shadow: var(--shadow);
+  background-color: var(--color-3);
 
   &:hover {
-    box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-hover);
   }
 
   &>figure {
@@ -53,7 +57,7 @@ const ContainerProduct = styled.article`
     min-height:  50%;
 
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-    border-radius: var(--radio-min);  
+    border-radius: var(--radius-min);  
   }
 
   &>figure img {
@@ -64,7 +68,7 @@ const ContainerProduct = styled.article`
     object-position: center;
     background-repeat: no-repeat;
 
-    border-radius: var(--radio-min);    
+    border-radius: var(--radius-min);    
   }
 
   &>section {
@@ -76,4 +80,9 @@ const ContainerProduct = styled.article`
     padding: 3px;
 
   }
-`
+
+  &>section p {
+    color: var(--text-color-main);
+    font-weight: var(--font-weight-regular);
+  }
+`;

@@ -1,84 +1,93 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable camelcase */
+/* eslint-disable react/jsx-no-useless-fragment */
 import styled from 'styled-components';
-import Category from "./Category";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Category from './Category';
 import img from '../../../assets/img/img.jpg';
 import Product from './Product';
 import { getContext } from '../../../hooks/UserContext';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Header from '../Header';
-import {filterCategories, filterTitle} from '../../../utils/filterProducts';
+import { filterCategories, filterTitle } from '../../../utils/filterProducts';
+import Carousel from './Carousel';
 
 function Store() {
-  const {user, url, selectedCategory, searchText, setSearchText} = getContext();
+  const {
+    user, url, selectedCategory, searchText
+  } = getContext();
   const [products, setProducts] = useState(null);
   const categories = [];
 
-  function getCategories(res){
+  function getCategories(res) {
     return res.filter(({ category }) => {
-      if(!categories.includes( category.title )){
-        categories.push( category.title );
+      if (!categories.includes(category.title)) {
+        categories.push(category.title);
         return true;
       }
       return false;
-    })
+    });
   }
 
+  function promotions() {
+    return (
+      <article className="promotions">
+        <Carousel />
+      </article>
+    );
+  }
 
-  function assembleCategories(){
-    
+  function assembleCategories() {
     return (
       <div className="categories">
-        <Category describe='Todos' ion_icon='cube-outline' />        
+        <Category describe="Todos" ion_icon="cube-outline" />
         {
-          verifyObject(products) ? getCategories(products).map(product => {
-              const {title, ion_icon} = product.category;
-              return <Category key={title} describe={title} ion_icon={ion_icon} />
+          verifyObject(products) ? getCategories(products).map((product) => {
+            const { title, ion_icon } = product.category;
+            return <Category key={title} describe={title} ion_icon={ion_icon} />;
           }) : <></>
         }
       </div>
     );
   }
 
-  function filterProducts(){
-    return filterTitle( 
-      filterCategories(products, selectedCategory), 
-      searchText 
+  function filterProducts() {
+    return filterTitle(
+      filterCategories(products, selectedCategory),
+      searchText
     );
   }
 
-
-  function assembleProducts(){
+  function assembleProducts() {
     return (
       <div className="products">
         {
-          verifyObject(products) ? filterProducts().map(product => 
-          <Product key={product._id} props={product} />) : <></>
+          verifyObject(products)
+            ? filterProducts().map((product) => <Product key={product._id} props={product} />)
+            : <></>
         }
-        <div className='sp'></div>
+        <div className="sp" />
       </div>
     );
   }
 
-
-  function verifyObject(obj){
-    return typeof(products) === 'object' && products !== null;
+  function verifyObject() {
+    return typeof (products) === 'object' && products !== null;
   }
 
-  
   useEffect(() => {
     const promise = axios.get(`${url}/products`, user.config);
-    promise.then(res => {
+    promise.then((res) => {
       setProducts(res.data);
     });
-    promise.catch(e => console.error(e));
-  }, [user, url])
+    promise.catch((e) => console.error(e));
+  }, [user, url]);
 
   return (
     <ContainerStore>
       <Header />
-      <article className='promotions'>
-        <img src={img} alt="" />
-      </article>
+      {promotions()}
       {assembleCategories()}
       {assembleProducts()}
     </ContainerStore>
@@ -100,20 +109,12 @@ const ContainerStore = styled.section`
 
   &>article.promotions {
     width: 100%;
-    height: 6.5rem;
+    min-height: 6.5rem;
 
     padding-inline: calc(var(--padding-window) * 0.5);
-  }
 
-  &>article.promotions img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-size: cover;
-    object-position: center;
-    background-repeat: no-repeat;
-
-    border-radius: var(--radio-min);    
+    overflow: hidden;
+    border-radius: var(--radius-min);
   }
 
   &>div.categories {
@@ -138,8 +139,8 @@ const ContainerStore = styled.section`
 
     overflow-y: auto;
 
-    background-color: var(--color-white);
-    border-radius: 15px;
+    background-color: var(--color-2);
+    border-radius: var(--radius-min);
 
     box-shadow: 0px -4px 10px -2px rgba(0, 0, 0, 0.25);
   }
@@ -148,4 +149,4 @@ const ContainerStore = styled.section`
     width: 100%;
     height: 50%;
   }
-`
+`;

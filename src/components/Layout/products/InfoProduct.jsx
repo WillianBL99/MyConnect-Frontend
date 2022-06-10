@@ -1,72 +1,72 @@
+/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
 import Price from './Price';
 import Footer from '../Footer';
 import InputNumber from '../InputNumber';
-import axios from 'axios';
 
 function InfoProduct() {
-  const {user, url, setWindowsState} = getContext();
-  const {title, img, describe, price} = getContext().productClicked;
+  const { user, url, setWindowsState } = getContext();
+  const {
+    title, img, describe, price
+  } = getContext().productClicked;
   const [qtd, setQtd] = useState(1);
-  const {email} = user;
+  const { email } = user;
 
-  const backStore = () => setWindowsState({windowOpen: false});
+  const backStore = () => setWindowsState({ windowOpen: false });
 
-  function addToCart(){
+  function addToCart() {
     const body = {
       img,
       qtd,
       email,
       title,
       describe,
-      price: price
+      price
     };
 
-    axios.post(`${url}/cart`, body ,user.config)
+    axios.post(`${url}/cart`, body, user.config)
       .then(() => backStore())
-      .catch((e) => alert(e));
+      .catch((e) => alert(e.response.data));
   }
 
-
-  function confirmBuy(){
+  function confirmBuy() {
     const msg = `Deseja efetuar a compra?\nValor: R$${qtd * price}`;
-    if(!window.confirm(msg)) return;
+    if (!window.confirm(msg)) return;
 
     const body = {
-      qtd, 
-      email, 
-      products:[title],
+      qtd,
+      email,
+      products: [title],
       total: qtd * price
-    }
+    };
 
-    axios.post(`${url}/historic`, body ,user.config)
+    axios.post(`${url}/historic`, body, user.config)
       .then(() => backStore())
-      .catch((e) => alert(e));
+      .catch((e) => alert(e.response.data));
   }
 
-
-  function productActions(){
+  function productActions() {
     return (
       <section>
         <p>{describe}</p>
         <div className="value">
-          <InputNumber maxValue={10} setValue={setQtd} value={qtd} width='5rem' >
-            <strong className='qtd'>{qtd}</strong>
+          <InputNumber maxValue={10} setValue={setQtd} value={qtd} width="5rem">
+            <strong className="qtd">{qtd}</strong>
           </InputNumber>
-          <Price price={price} size='2.5rem' />
+          <Price price={price} size="2.5rem" />
         </div>
-        <Footer title={'Comprar'} price={(price * qtd).toFixed(2)} callback={confirmBuy} />
+        <Footer title="Comprar" price={(price * qtd).toFixed(2)} callback={confirmBuy} />
       </section>
     );
   }
-  
-  
+
   return (
     <ContainerInfoProduct>
-      <Header title={title} ion_icon={'cart-outline'} callback={addToCart} />
+      <Header title={title} ion_icon="cart-outline" callback={addToCart} />
       <figure>
         <img src={img} alt="" />
       </figure>
@@ -87,6 +87,7 @@ const ContainerInfoProduct = styled.section`
   height: 100%;
 
   position: relative;
+  box-shadow: inset 0px 148px 30px -85px rgba(0, 0, 0, 0.35);
 
   &>figure {
     position: absolute;
@@ -94,9 +95,7 @@ const ContainerInfoProduct = styled.section`
     top: 0;
     left: 0;
     right: 0;
-    bottom: calc(100vh * 0.7);
-
-    border-radius: 15px;
+    bottom: calc(100vh * 0.7); 
   }
   
   &>figure img {
@@ -107,7 +106,9 @@ const ContainerInfoProduct = styled.section`
     object-position: center;
     background-repeat: no-repeat;
     
-    border-radius: var(--radio-min);
+    border-radius: var(--radius-min);
+
+    box-shadow: inset 0px 148px 20px 20px rgba(0, 0, 0, 0.55);
   }
 
   &>section {
@@ -123,9 +124,9 @@ const ContainerInfoProduct = styled.section`
 
     padding: 1rem;
 
-    border-radius: 15px;
+    border-radius: var(--radius-min);
     box-shadow: 0px -4px 10px 4px rgba(0, 0, 0, 0.25);
-    background-color: var(--color-1);
+    background-color: var(--color-2);
   }
 
   &>section p {
@@ -145,4 +146,8 @@ const ContainerInfoProduct = styled.section`
     font-weight: bold;
     text-align: center;
   }
-`
+
+  & strong.qtd {
+    color: var(--text-color-plain);
+  }
+`;

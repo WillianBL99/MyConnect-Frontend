@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-function Footer({price, callback, title}){
-
+function Footer({ price, callback, title }) {
   return (
     <ContainerFooter>
       <div className="valueFooter">
@@ -30,8 +29,8 @@ const ContainerFooter = styled.footer`
   height: 4.3rem;
   padding: 1rem;
 
-  border-radius: 15px;
-  background-color: var(--color-white);
+  border-radius: var(--radius-min);
+  background-color: var(--color-3);
 
   &>.valueFooter {
     display: flex;
@@ -43,20 +42,26 @@ const ContainerFooter = styled.footer`
     //margin-top: -5px;
     margin-right: 2px;
     font-size: calc(var(--font-size) * 0.6);
+    font-weight: var(--font-weight-small);
+    color: var(--text-color-plain);
   }
 
   &>.valueFooter strong {
     font-size: var(--font-size);
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-plain);
   }  
 
   &>button {
     height: 100%;
     padding-inline: 1rem;
+    cursor: pointer;
+    
+    font-weight: var(--font-weight-bold);
     font-size: var(--font-size-option-menu);
-    border-radius: var(--radio-min);
 
+    border-radius: var(--radius-min);
     color: var(--color-3);
-    background-color: var(--color-1);
+    background-color: var(--color-4);
   }
-`
+`;

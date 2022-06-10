@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-function FeedbackLabel({ error,text }) {
+function FeedbackLabel({ error, text }) {
   return (
     <DivLabel>
       <Label
         color={
-          error.length===0
-            ? "var(--color-transparent)"
-            : "var(--color-error)"
+          error.length === 0
+            ? 'var(--color-transparent)'
+            : 'var(--color-error)'
         }
       >
         {text}
