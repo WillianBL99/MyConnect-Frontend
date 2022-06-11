@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';

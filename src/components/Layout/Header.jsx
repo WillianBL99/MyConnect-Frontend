@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';

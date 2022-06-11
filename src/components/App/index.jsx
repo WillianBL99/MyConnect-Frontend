@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import '../../styled/css/reset.css';
 import '../../styled/css/index.css';
 import '../../styled/css/query.css';
