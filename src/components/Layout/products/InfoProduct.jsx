@@ -7,6 +7,7 @@ import Header from '../Header';
 import Price from './Price';
 import Footer from '../Footer';
 import InputNumber from '../inputs-buttons/InputNumber';
+import LoadingScreen from '../LoadingScreen';
 
 function InfoProduct() {
   const { user, url, setWindowsState } = getContext();
@@ -14,11 +15,13 @@ function InfoProduct() {
     title, img, describe, price
   } = getContext().productClicked;
   const [qtd, setQtd] = useState(1);
+  const [loading, setLoading] = useState(false);
   const { email } = user;
 
   const backStore = () => setWindowsState({ windowOpen: false });
 
   function addToCart() {
+    setLoading(true);
     const body = {
       img,
       qtd,
@@ -29,11 +32,18 @@ function InfoProduct() {
     };
 
     axios.post(`${url}/cart`, body, user.config)
-      .then(() => backStore())
-      .catch((e) => alert(e.response.data));
+      .then(() => {
+        setLoading(false);
+        backStore()
+      })
+      .catch((e) => {
+        setLoading(false);
+        alert(e.response.data)
+      });
   }
 
   function confirmBuy() {
+    setLoading(true);
     const msg = `Deseja efetuar a compra?\nValor: R$${qtd * price}`;
     if (!window.confirm(msg)) return;
 
@@ -45,8 +55,14 @@ function InfoProduct() {
     };
 
     axios.post(`${url}/historic`, body, user.config)
-      .then(() => backStore())
-      .catch((e) => alert(e.response.data));
+      .then(() => {
+        setLoading(false);
+        backStore()
+      })
+      .catch((e) => {
+        setLoading(false);
+        alert(e.response.data)
+      });
   }
 
   function productActions() {
@@ -70,6 +86,7 @@ function InfoProduct() {
       <figure>
         <img src={img} alt="" />
       </figure>
+      <LoadingScreen loading={loading} />
       {productActions()}
     </ContainerInfoProduct>
   );
