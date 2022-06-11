@@ -11,14 +11,14 @@ function LoadingScreen({loading}) {
 
 export default LoadingScreen;
 
-const ContainerLoadingScreen = styled.section`
+const ContainerLoadingScreen = styled.article`
   --display: ${(props) => props.loading?'flex':'none'};
   display: var(--display);
   flex-direction: column;
   align-items: center;
   justify-content: center;
   
-  position: fixed;
+  position: absolute;
   z-index: 10;
   top: 0;
   bottom: 0;

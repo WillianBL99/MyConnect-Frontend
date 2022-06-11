@@ -11,6 +11,7 @@ import Footer from '../Footer';
 import Product from './Product';
 import InputNumber from '../inputs-buttons/InputNumber';
 import MessageInformation from '../MessageInformation';
+import LoadingScreen from '../LoadingScreen';
 
 function Cart() {
   const { user, url, windowsState } = getContext();
@@ -19,6 +20,7 @@ function Cart() {
   const [products, setProducts] = useState([]);
   const [selected, setSelected] = useState('');
   const [productValue, setProductValue] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -30,12 +32,18 @@ function Cart() {
 
   // buscando os produtos na api
   function getProducts() {
+    setLoading(true);
     const promisse = axios.get(`${url}/cart`, user.config);
     promisse.then((res) => {
+      setLoading(false);
+      console.log('saiu', loading)
       setProducts(res.data);
       getValues(res.data);
     });
-    promisse.catch((e) => console.error(e));
+    promisse.catch((e) => {
+      setLoading(false);
+      console.error(e)
+    });
   }
   // pagando o valor de cada produto
   function getValues(res) {
@@ -98,7 +106,6 @@ function Cart() {
     if (confirm) {
       const promisse = axios.post(`${url}/historic`, purchase, user.config);
       promisse.then((res) => {
-        console.log(res.data);
         setSelected('');
         deleteProduct();
       });
@@ -159,15 +166,18 @@ function Cart() {
         ion_icon="trash-outline"
       />
       {products.length === 0 ? message : assembleProducts()}
+
+      <LoadingScreen loading={loading} />
       {products.length === 0 ? (
         <></>
-      ) : (
-        <Footer
+        ) : (
+          <Footer
           price={total.toFixed(2)}
           title="comprar"
           callback={submitPurchases}
-        />
-      )}
+          />
+          )
+        }
     </CartContainer>
   );
 }
@@ -181,6 +191,7 @@ const CartContainer = styled.div`
   position: relative;
 
   width: 100%;
+  max-width: 100%;
   height: 100%;
 
   border-top-left-radius: var(--radius-min);
