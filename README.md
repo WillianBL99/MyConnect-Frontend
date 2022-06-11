@@ -3,10 +3,10 @@
     <h1 font-size='100px'>MyConnect</h1>
 </div>
 
-<h1>	
-    <img src="https://user-images.githubusercontent.com/65803142/173173279-5aedfc85-4095-48e8-9c6d-c94153db2dd3.png">
+<div display="flex" justifi-content="start">	
+    <img src="https://user-images.githubusercontent.com/65803142/173173279-5aedfc85-4095-48e8-9c6d-c94153db2dd3.png"  width="75%"> <img src="https://user-images.githubusercontent.com/65803142/173174114-c8cb5b40-b0be-4787-b148-07f12dcb20d1.gif" alt="this slowpoke moves"  width="22%" />
 	<a size="-5" href='https://br.freepik.com/fotos-vetores-gratis/maquete'><small size="5px">br.freepik.com</small></a>
-</h1>
+</div>
 
 <h3 align="center">
     <a href="https://my-connect-frontend.vercel.app">Acessar o app</a>
