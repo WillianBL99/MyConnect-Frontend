@@ -9,12 +9,14 @@ import Header from '../Header';
 import Product from './Product';
 import Category from './Category';
 import Carousel from './Carousel';
+import LoadingScreen from '../LoadingScreen';
 
 function Store() {
   const {
     user, url, selectedCategory, searchText
   } = getContext();
   const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(false);
   const categories = [];
 
   function getCategories(res) {
@@ -74,15 +76,21 @@ function Store() {
   }
 
   useEffect(() => {
+    setLoading(true);
     const promise = axios.get(`${url}/products`, user.config);
     promise.then((res) => {
       setProducts(res.data);
+      setLoading(false);
     });
-    promise.catch((e) => console.error(e));
+    promise.catch((e) => {
+      setLoading(false);
+      console.error(e)
+    });
   }, [user, url]);
 
   return (
     <ContainerStore>
+      <LoadingScreen loading={loading} />
       <Header />
       {promotions()}
       {assembleCategories()}
