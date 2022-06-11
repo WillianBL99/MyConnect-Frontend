@@ -5,16 +5,17 @@ import styled from 'styled-components';
 import persistUser from '../../utils/persistUser';
 import { getContext } from '../../hooks/UserContext';
 
-import Input from '../Layout/Input';
+import Input from '../Layout/inputs-buttons/Input';
 import Container from '../Layout/Container';
-import RetangularButton from '../Layout/RetangularButton';
-import FeedbackLabel from '../Layout/Label';
-import AuthContainer from '../Layout/AuthContainer';
+import RetangularButton from '../Layout/inputs-buttons/RetangularButton';
+import FeedbackLabel from '../Layout/login/Label';
+import AuthContainer from '../Layout/login/AuthContainer';
 import logo from '../../assets/img/logo.png';
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [errorFeedback, setErrorFeedback] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { setUser, url } = getContext();
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -29,9 +30,11 @@ function Login() {
 
   function handleLogin(event) {
     event.preventDefault();
+    setLoading(true);
     const promise = axios.post(`${url}/sign-in`, loginData);
 
     promise.then((res) => {
+      setLoading(true);
       storeLogin(res.data);
       navigate('/store');
     });
@@ -39,6 +42,7 @@ function Login() {
       console.log(error.response);
       treatingError(error);
     });
+    setLoading(true);
   }
   function treatingError(error) {
     let firstError = '';
@@ -123,7 +127,7 @@ function Login() {
             error={errorFeedback.filter((error) => error.includes('password'))}
             text={loginData.email ? 'Senha inválida' : 'Campo necessário'}
           />
-          <RetangularButton type="submit" title="Entrar" />
+          <RetangularButton type="submit" title="Entrar" loading={loading} />
         </Form>
         <Link className="link" to="register">
           Não tem uma conta? Cadastre-se!

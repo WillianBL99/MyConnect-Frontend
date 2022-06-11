@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable camelcase */
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { getContext } from '../../../hooks/UserContext';

@@ -1,8 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/jsx-indent */
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';

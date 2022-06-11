@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { getContext } from '../../hooks/UserContext';
+import { getContext } from '../../../hooks/UserContext';
 
 function Search({ search, setSearch, visible }) {
   const [openSearch, setOpenSearch] = useState(search);

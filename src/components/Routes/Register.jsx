@@ -4,11 +4,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
 
-import Input from '../Layout/Input';
+import Input from '../Layout/inputs-buttons/Input';
 import Container from '../Layout/Container';
-import RetangularButton from '../Layout/RetangularButton';
-import FeedbackLabel from '../Layout/Label';
-import AuthContainer from '../Layout/AuthContainer';
+import RetangularButton from '../Layout/inputs-buttons/RetangularButton';
+import FeedbackLabel from '../Layout/login/Label';
+import AuthContainer from '../Layout/login/AuthContainer';
 
 function Login() {
   const [registerData, setRegisterData] = useState({
@@ -19,6 +19,7 @@ function Login() {
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorFeedback, setErrorFeedback] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { url } = getContext();
   const errorEmail = useRef();
@@ -35,10 +36,12 @@ function Login() {
       return;
     }
 
+    setLoading(true);
     const promise = axios.post(`${url}/sign-up`, registerData);
 
     promise.then(() => {
       const { email, password } = registerData;
+      setLoading(false);
       navigate('/', { state: { email, password } });
     });
 
@@ -46,7 +49,9 @@ function Login() {
       console.log(error.response);
       treatingError(error);
     });
+    setLoading(false);
   }
+
   function treatingError(error) {
     let firstError = '';
     if (typeof error.response.data === 'string') {
@@ -58,6 +63,7 @@ function Login() {
     }
     focusInputError(firstError);
   }
+
   function focusInputError(firstError) {
     if (firstError.includes('img')) {
       errorImg.current.focus();
@@ -151,7 +157,7 @@ function Login() {
             error={errorFeedback.filter((error) => error.includes('Different'))}
             text="repita a senha corretamente"
           />
-          <RetangularButton type="submit" title="Registrar" />
+          <RetangularButton type="submit" title="Registrar" loading={loading}/>
         </Form>
         <Link className="link" to="/">
           Já tem uma conta? Entre agora!

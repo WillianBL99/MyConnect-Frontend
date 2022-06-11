@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import { useState } from 'react';
 import styled from 'styled-components';
 

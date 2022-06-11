@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
@@ -9,8 +7,9 @@ import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
 import Footer from '../Footer';
 import Product from './Product';
-import InputNumber from '../InputNumber';
+import InputNumber from '../inputs-buttons/InputNumber';
 import MessageInformation from '../MessageInformation';
+import LoadingScreen from '../LoadingScreen';
 
 function Cart() {
   const { user, url, windowsState } = getContext();
@@ -19,6 +18,7 @@ function Cart() {
   const [products, setProducts] = useState([]);
   const [selected, setSelected] = useState('');
   const [productValue, setProductValue] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -30,12 +30,17 @@ function Cart() {
 
   // buscando os produtos na api
   function getProducts() {
+    setLoading(true);
     const promisse = axios.get(`${url}/cart`, user.config);
     promisse.then((res) => {
+      setLoading(false);
       setProducts(res.data);
       getValues(res.data);
     });
-    promisse.catch((e) => console.error(e));
+    promisse.catch((e) => {
+      setLoading(false);
+      console.error(e)
+    });
   }
   // pagando o valor de cada produto
   function getValues(res) {
@@ -55,18 +60,32 @@ function Cart() {
   }
 
   // deletando produto da api
-  function deleteProduct() {
+  function deleteProduct(showMessage=true) {
+    if(showMessage){
+      const qtdProd = selected === ''?1:products.length
+      const confirm = window.confirm(`
+        ${qtdProd} produto(s) selecinado(s)
+        Deseja retirar do carrinho?`
+      );
+      if(!confirm) return;
+    }
+
+    setLoading(true);
     const promisse = axios.delete(`${url}/cart`, {
       data: { selected },
       headers: user.config.headers,
     });
     promisse.then((res) => {
+      setLoading(false);
       console.log(res.data);
       setSelected('');
       getProducts();
     });
 
-    promisse.catch((e) => console.error(e.response.data));
+    promisse.catch((e) => {
+      setLoading(false);
+      console.error(e.response.data)
+    });
   }
   // selecionando produto com click
   function selectingProduct(id) {
@@ -96,13 +115,17 @@ function Cart() {
       `Deseja efetuar a compra?\nValor: R$${totalPurchase}`
     );
     if (confirm) {
+      setLoading(true);
       const promisse = axios.post(`${url}/historic`, purchase, user.config);
       promisse.then((res) => {
-        console.log(res.data);
+        setLoading(false);
         setSelected('');
-        deleteProduct();
+        deleteProduct(false);
       });
-      promisse.catch((e) => console.error(e.response.data));
+      promisse.catch((e) => {
+        setLoading(false);
+        console.error(e.response.data)
+      });
     }
   }
 
@@ -159,15 +182,18 @@ function Cart() {
         ion_icon="trash-outline"
       />
       {products.length === 0 ? message : assembleProducts()}
+
+      <LoadingScreen loading={loading} />
       {products.length === 0 ? (
         <></>
-      ) : (
-        <Footer
+        ) : (
+          <Footer
           price={total.toFixed(2)}
           title="comprar"
           callback={submitPurchases}
-        />
-      )}
+          />
+          )
+        }
     </CartContainer>
   );
 }
@@ -181,6 +207,7 @@ const CartContainer = styled.div`
   position: relative;
 
   width: 100%;
+  max-width: 100%;
   height: 100%;
 
   border-top-left-radius: var(--radius-min);

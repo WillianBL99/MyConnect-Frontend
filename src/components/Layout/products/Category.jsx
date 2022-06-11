@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import styled from 'styled-components';
 import { getContext } from '../../../hooks/UserContext';
 

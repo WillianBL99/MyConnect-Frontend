@@ -1,8 +1,7 @@
-/* eslint-disable camelcase */
 import { useState } from 'react';
 import styled from 'styled-components';
 import { getContext } from '../../hooks/UserContext';
-import Search from './Search';
+import Search from './inputs-buttons/Search';
 
 function Header({
   title, ion_icon, callback, icon_visible = true

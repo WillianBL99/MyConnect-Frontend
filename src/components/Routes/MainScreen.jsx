@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Container from '../Layout/Container';
+import LoadingScreen from '../Layout/LoadingScreen';
 import Store from '../Layout/products/Store';
 import SideBar from '../Layout/sidebar/SideBar';
 import Window from '../Layout/Window';
