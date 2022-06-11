@@ -1,14 +1,15 @@
 <div align="center">
-    <img width="200" src="https://user-images.githubusercontent.com/65803142/161539044-3dc15b63-9d86-4726-ae77-e964bc9bd971.svg">
+    <img width="150" src="https://user-images.githubusercontent.com/65803142/173173305-f85e4d73-b25d-4ef8-a6a4-a60628116d96.png">
+    <h1 font-size='100px'>MyConnect</h1>
 </div>
 
 <h1>	
-    <img src="https://user-images.githubusercontent.com/65803142/161637661-9ab2e3ff-c970-41fb-a90b-f65bd62a18de.png">
+    <img src="https://user-images.githubusercontent.com/65803142/173173279-5aedfc85-4095-48e8-9c6d-c94153db2dd3.png">
 	<a size="-5" href='https://br.freepik.com/fotos-vetores-gratis/maquete'><small size="5px">br.freepik.com</small></a>
 </h1>
 
 <h3 align="center">
-    <a href="https://track-it-eight.vercel.app">Acessar a demonstração</a>
+    <a href="https://my-connect-frontend.vercel.app">Acessar o app</a>
 <h3 >
 
 # Indice
@@ -19,9 +20,9 @@
 
 ## 🔖&nbsp; Sobre
 	
-O projeto **TrackIt**, é uma aplicação de to do list, que foi criado no bootcamp da **Driven**, com o intuito de praticarmos todo conteúdo exibido no decorrer o mês. Durante o desenvolvimento deste site tivemos que aprender a utilizar alguns conceitos e ferramentas novas, como: React Calendar, React Circular Progressbar, React Loader Spinner, o uso de Context API para realizar o compartilhamento de informações entre componentes e até registrar e logar um usuário na API que utilizamos. Foi um projeto desafiador e ao mesmo tempo gratificante devido ao resultado final e à quantidade de assuntos abordados.
+O projeto **MyConnect**, é um site de vendas de produtos eletrônicos voltados para o mundo dev. Esse projeto consiste de duas partes: Frontend que foi desenvolvido em React; Backend sendo desenvolvido em Node.js conectado ao banco de dados MongoDB através do MongoAtrlas.
 	
-[<img src="https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/c9d90852-e53a-4bf8-88e6-ac0d32188868.svg" alt="wakatime">](https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/ee5f39a4-23ff-40a9-b3ea-e40dc49aabd4) [![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/axios)
+[<img src="https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/0ba188f6-32ec-46f5-9e0d-5fbf8890cc37.svg" alt="wakatime">](https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/ee5f39a4-23ff-40a9-b3ea-e40dc49aabd4) [![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/axios)
 	
 ---
 
@@ -41,14 +42,17 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
 - ✔️ Cadastro de usuário
 - ✔️ Login
-- ✔️ Login automático
+- 🚧 Login automático
 - ✔️ Realizar Logout
-- ✔️ Criação, exibição e  esclusão de hábitos
-- ✔️ Exibição de hábitos do dia
-- ✔️ Marcar hábito como concluido
-- ✔️ Exibir histórico dos hábitos
-- ✔️ Exibir todos os hábitos realizados ou não em um determinado dia
-- 🚧 Concluir implementação de loadings
+- ✔️ Menu lateral
+- ✔️ Transições de telas com sobreposição
+- ✔️ Exibir produtos na tela inicial
+- ✔️ Filtragem de produtos
+- ✔️ Selecionar produto
+- ✔️ Adicionar produto ao carrinho
+- ✔️ Comprar produto
+- ✔️ Exibir histórico de compras
+- ✔️ Exibição de loadings
 	
 ---
 
