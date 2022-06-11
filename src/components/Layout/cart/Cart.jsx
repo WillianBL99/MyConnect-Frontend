@@ -36,7 +36,6 @@ function Cart() {
     const promisse = axios.get(`${url}/cart`, user.config);
     promisse.then((res) => {
       setLoading(false);
-      console.log('saiu', loading)
       setProducts(res.data);
       getValues(res.data);
     });
@@ -63,18 +62,32 @@ function Cart() {
   }
 
   // deletando produto da api
-  function deleteProduct() {
+  function deleteProduct(showMessage=true) {
+    if(showMessage){
+      const qtdProd = selected === ''?1:products.length
+      const confirm = window.confirm(`
+        ${qtdProd} produto(s) selecinado(s)
+        Deseja retirar do carrinho?`
+      );
+      if(!confirm) return;
+    }
+
+    setLoading(true);
     const promisse = axios.delete(`${url}/cart`, {
       data: { selected },
       headers: user.config.headers,
     });
     promisse.then((res) => {
+      setLoading(false);
       console.log(res.data);
       setSelected('');
       getProducts();
     });
 
-    promisse.catch((e) => console.error(e.response.data));
+    promisse.catch((e) => {
+      setLoading(false);
+      console.error(e.response.data)
+    });
   }
   // selecionando produto com click
   function selectingProduct(id) {
@@ -104,12 +117,17 @@ function Cart() {
       `Deseja efetuar a compra?\nValor: R$${totalPurchase}`
     );
     if (confirm) {
+      setLoading(true);
       const promisse = axios.post(`${url}/historic`, purchase, user.config);
       promisse.then((res) => {
+        setLoading(false);
         setSelected('');
-        deleteProduct();
+        deleteProduct(false);
       });
-      promisse.catch((e) => console.error(e.response.data));
+      promisse.catch((e) => {
+        setLoading(false);
+        console.error(e.response.data)
+      });
     }
   }
 

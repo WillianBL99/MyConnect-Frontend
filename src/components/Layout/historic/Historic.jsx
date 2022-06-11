@@ -5,10 +5,12 @@ import Header from '../Header';
 import { getContext } from '../../../hooks/UserContext';
 import PurshaseHistory from './PurchaseStory';
 import MessageInformation from '../MessageInformation';
+import LoadingScreen from '../LoadingScreen';
 
 function Historic() {
   const { user, url } = getContext();
   const [purshase, setPushase] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function assemblePurshase() {
     if (purshase?.length) {
@@ -24,17 +26,23 @@ function Historic() {
   }
 
   useEffect(() => {
+    setLoading(true);
     axios.get(`${url}/historic`, user.config)
       .then((res) => {
+        setLoading(false);
         setPushase(res.data.reverse());
       })
-      .catch((e) => console.error(e.response.data));
+      .catch((e) => {
+        setLoading(false);
+        console.error(e.response.data)
+      });
   }, [user, url]);
 
   return (
     <ContainerHistoric>
       <Header title="Meu histórico" ion_icon="trash-outline" icon_visible={false} />
       <section>
+        <LoadingScreen loading={loading} />
         {assemblePurshase()}
       </section>
     </ContainerHistoric>
