@@ -9,7 +9,7 @@ import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
 import Footer from '../Footer';
 import Product from './Product';
-import InputNumber from '../InputNumber';
+import InputNumber from '../inputs-buttons/InputNumber';
 import MessageInformation from '../MessageInformation';
 
 function Cart() {

@@ -6,7 +6,7 @@ import { getContext } from '../../../hooks/UserContext';
 import Header from '../Header';
 import Price from './Price';
 import Footer from '../Footer';
-import InputNumber from '../InputNumber';
+import InputNumber from '../inputs-buttons/InputNumber';
 
 function InfoProduct() {
   const { user, url, setWindowsState } = getContext();

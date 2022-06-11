@@ -1,16 +1,13 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable camelcase */
-/* eslint-disable react/jsx-no-useless-fragment */
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Category from './Category';
-import img from '../../../assets/img/img.jpg';
-import Product from './Product';
 import { getContext } from '../../../hooks/UserContext';
-import Header from '../Header';
+import { useEffect, useState } from 'react';
 import { filterCategories, filterTitle } from '../../../utils/filterProducts';
+
+import axios from 'axios';
+import styled from 'styled-components';
+
+import Header from '../Header';
+import Product from './Product';
+import Category from './Category';
 import Carousel from './Carousel';
 
 function Store() {

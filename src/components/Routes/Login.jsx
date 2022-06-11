@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import persistUser from '../../utils/persistUser';
 import { getContext } from '../../hooks/UserContext';
 
-import Input from '../Layout/Input';
+import Input from '../Layout/inputs-buttons/Input';
 import Container from '../Layout/Container';
-import RetangularButton from '../Layout/RetangularButton';
-import FeedbackLabel from '../Layout/Label';
-import AuthContainer from '../Layout/AuthContainer';
+import RetangularButton from '../Layout/inputs-buttons/RetangularButton';
+import FeedbackLabel from '../Layout/login/Label';
+import AuthContainer from '../Layout/login/AuthContainer';
 import logo from '../../assets/img/logo.png';
 
 function Login() {
