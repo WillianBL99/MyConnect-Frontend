@@ -2,12 +2,12 @@
     <img width="150" src="https://user-images.githubusercontent.com/65803142/173173305-f85e4d73-b25d-4ef8-a6a4-a60628116d96.png">
     <h1 font-size='100px'>MyConnect</h1>
 	
-<h4>O projeto <strong>MyConnect</strong>, é um aplicativo de vendas de eletrônicos voltado para o mundo dos gamers e da programação. Esse projeto consiste de duas partes: <a href="https://github.com/WillianBL99/MyConnect-Frontend.git">Frontend</a> que foi desenvolvido em React; <a href="https://github.com/WillianBL99/MyConnect-backend.git">Backend</a> sendo desenvolvido em Node.js conectado ao banco de dados <a href="https://www.mongodb.com/docs/">MongoDB</a> através do <a href="[https://my-connect-frontend.vercel.app](https://www.mongodb.com/cloud)">MongoAtrlas</a>.</h4>
+<h4>O projeto <strong>MyConnect</strong>, é um aplicativo de vendas de eletrônicos voltado para o mundo dos gamers e da programação. Esse projeto consiste em: <a href="https://github.com/WillianBL99/MyConnect-Frontend.git">Frontend</a> que foi desenvolvido em React; <a href="https://github.com/WillianBL99/MyConnect-backend.git">Backend</a> sendo desenvolvido em Node.js, conectado a um banco de dados <a href="https://www.mongodb.com/docs/">MongoDB</a>, em nuvem, através da plataforma <a href="[https://my-connect-frontend.vercel.app](https://www.mongodb.com/cloud)">MongoAtlas</a>.</h4>
 </div>
+
 <hr />
 
-
-<div display="flex" justifi-content="start">	
+<div display="flex" justify-content="start">	
     <img src="https://user-images.githubusercontent.com/65803142/173173279-5aedfc85-4095-48e8-9c6d-c94153db2dd3.png"  width="75%"> <img src="https://user-images.githubusercontent.com/65803142/173174114-c8cb5b40-b0be-4787-b148-07f12dcb20d1.gif" alt="this slowpoke moves"  width="22%" />
 	<a size="-5" href='https://br.freepik.com/fotos-vetores-gratis/maquete'><small size="5px">br.freepik.com</small></a>
 </div>
@@ -24,8 +24,8 @@
 
 ## 🔖&nbsp; Sobre
 	
-O projeto **MyConnect**, foi desenvolvido com o intuito de facilitar a vida dos Devs e Gamers que estão em busca de montar seu setup fazer um upgrade ou simplesmente encontrar novas tecnologias atrelado ao seu nincho, durante a navegação.
-O designer da interface foi desenvolvido com o intuito de fazer algo "moderno", assim como, praticar as tecnicas de componenização e trazições/sobreposição de telas, em React. Além disso, devido ao tempo inicial dispoinível, para facilitar a responsividade da aplicação foi pensado o menu lateral.
+O projeto **MyConnect**, foi desenvolvido com o intuito de facilitar a vida dos desenvolvedores e gamers que estão em busca de montar/fazer um upgrade em seu setup ou simplesmente encontrar novas tecnologias relacionadas aos seus gostos, durante a navegação.
+O interface foi desenvolvido para ter um designer moderno, assim como, possibilitar praticar as tecnicas de extrutura de pastas, componenização e trazições/sobreposição de telas, em React. Além disso, devido ao tempo inicial dispoinível para o desenvolvimento de toda a aplicação, para facilitar a responsividade da aplicação foi pensado o menu lateral.
 	
 [<img src="https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/0ba188f6-32ec-46f5-9e0d-5fbf8890cc37.svg" alt="wakatime">](https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/ee5f39a4-23ff-40a9-b3ea-e40dc49aabd4) [![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/axios)
 	
