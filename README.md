@@ -24,8 +24,8 @@
 
 ## 🔖&nbsp; Sobre
 	
-O projeto **MyConnect**, foi desenvolvido com o intuito de facilitar a vida dos desenvolvedores e gamers que estão em busca de montar/fazer um upgrade em seu setup ou simplesmente encontrar novas tecnologias relacionadas aos seus gostos, durante a navegação.
-O interface foi desenvolvido para ter um designer moderno, assim como, possibilitar praticar as tecnicas de extrutura de pastas, componenização e trazições/sobreposição de telas, em React. Além disso, devido ao tempo inicial dispoinível para o desenvolvimento de toda a aplicação, para facilitar a responsividade da aplicação foi pensado o menu lateral.
+O projeto **MyConnect**, foi desenvolvido com o intuito de facilitar a vida dos desenvolvedores e gamers que estão em busca de montar seu setup, fazer um upgrade ou simplesmente encontrar novas tecnologias relacionadas aos seus gostos, durante a navegação.
+A interface foi desenvolvida para ter um designer moderno, assim como, possibilitar praticar as técnicas de extruturação de pastas, componenização e trazições/sobreposição de telas, em React. Além disso, devido ao tempo inicial dispoinível para o desenvolvimento de toda a aplicação, para facilitar a responsividade da mesma foi pensado o menu lateral.
 	
 [<img src="https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/0ba188f6-32ec-46f5-9e0d-5fbf8890cc37.svg" alt="wakatime">](https://wakatime.com/badge/user/ea37d403-453f-4319-bd0c-77e54bb1318a/project/ee5f39a4-23ff-40a9-b3ea-e40dc49aabd4) [![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/axios)
 	
