@@ -98,4 +98,4 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
 ---
 
-Desenvolvido por [**Paulo Uilian Barros Lago**](https://github.com/WillianBL99) e [**Guilherme Alves**](https://github.com/Adamantyne) 🧑🏻‍💻
+Desenvolvido por [**Paulo Uilian Barros Lago**](https://github.com/WillianBL99) e [**Guilherme Alves Teixera**](https://github.com/Adamantyne) 🧑🏻‍💻
