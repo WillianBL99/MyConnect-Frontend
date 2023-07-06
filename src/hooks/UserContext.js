@@ -14,7 +14,7 @@ export function Provider(props) {
   });
   const [productClicked, setProductClicked] = useState({});
   const [searchText, setSearchText] = useState('');
-	const url = 'https://my-connect.herokuapp.com';
+	const url = 'https://my-connect.onrender.com';
   
   return (
     <context.Provider
